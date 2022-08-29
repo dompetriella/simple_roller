@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dice_roller/providers/theme_provider.dart';
 
-class RollButton extends StatelessWidget {
+class RollButton extends ConsumerWidget {
   const RollButton({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
     return Padding(
@@ -15,9 +15,17 @@ class RollButton extends StatelessWidget {
         width: screenWidth,
         height: screenHeight * .1,
         decoration: BoxDecoration(
-            color: Colors.blue,
-            borderRadius: BorderRadius.all(Radius.circular(30))),
-        child: Center(child: Text("ROLL")),
+            color: ref.watch(themeProvider).rollButtonBgColor,
+            borderRadius: BorderRadius.all(Radius.circular(
+                ref.watch(themeProvider).numberDisplayBorderRadius))),
+        child: Center(
+            child: Text(
+          "ROLL",
+          style: TextStyle(
+              fontSize: 50,
+              color: ref.watch(themeProvider).rollButtonTextColor,
+              fontWeight: FontWeight.bold),
+        )),
       ),
     );
   }

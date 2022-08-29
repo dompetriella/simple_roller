@@ -1,4 +1,5 @@
 import 'package:dice_roller/components/dice_button.dart';
+import 'package:dice_roller/components/dice_input_button.dart';
 import 'package:flutter/material.dart';
 
 class ButtonsDialer extends StatelessWidget {
@@ -50,6 +51,15 @@ class ButtonsDialer extends StatelessWidget {
                 padding: EdgeInsets.all(12.0),
                 child: DiceButton(diceNumber: 12),
               )
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: EdgeInsets.all(12.0),
+                child: DiceInputButton(),
+              ),
             ],
           ),
         ],

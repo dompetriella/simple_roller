@@ -9,11 +9,12 @@ class DiceButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    double buttonSize = 120;
+    double buttonHeight = 110;
+    double buttonWidth = 120;
     String diceNumberString = diceNumber.toString();
     return Container(
-      width: buttonSize,
-      height: buttonSize,
+      width: buttonWidth,
+      height: buttonHeight,
       decoration: BoxDecoration(
           color: ref.watch(themeProvider).diceButtonBg,
           borderRadius: BorderRadius.all(Radius.circular(
@@ -23,8 +24,8 @@ class DiceButton extends ConsumerWidget {
         child: Column(
           children: [
             Container(
-              height: buttonSize * .65,
-              width: buttonSize,
+              height: buttonHeight * .60,
+              width: buttonWidth,
               child: Center(
                 child: SvgPicture.asset(
                   "assets/D$diceNumberString.svg",
@@ -40,7 +41,8 @@ class DiceButton extends ConsumerWidget {
                 "D$diceNumberString",
                 style: TextStyle(
                     color: ref.watch(themeProvider).diceButtonTextColor,
-                    fontSize: 20),
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
               ),
             ))
           ],
