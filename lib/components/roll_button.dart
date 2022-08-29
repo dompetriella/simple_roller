@@ -5,6 +5,18 @@ class RollButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    var screenHeight = MediaQuery.of(context).size.height;
+    var screenWidth = MediaQuery.of(context).size.width;
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
+      child: Container(
+        width: screenWidth,
+        height: screenHeight * .1,
+        decoration: BoxDecoration(
+            color: Colors.blue,
+            borderRadius: BorderRadius.all(Radius.circular(30))),
+        child: Center(child: Text("ROLL")),
+      ),
+    );
   }
 }
