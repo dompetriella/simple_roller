@@ -22,7 +22,7 @@ class ButtonsDialer extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.all(12.0),
-                child: DiceButton(diceNumber: 4),
+                child: DiceButton(diceNumber: 6),
               )
             ],
           ),
@@ -31,7 +31,7 @@ class ButtonsDialer extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.all(12.0),
-                child: DiceButton(diceNumber: 6),
+                child: DiceButton(diceNumber: 4),
               ),
               Padding(
                 padding: EdgeInsets.all(12.0),

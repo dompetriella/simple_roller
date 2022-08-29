@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:dice_roller/providers/theme_provider.dart';
 
-class DiceButton extends StatelessWidget {
+class DiceButton extends ConsumerWidget {
   final int diceNumber;
   DiceButton({Key? key, required this.diceNumber}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    double buttonSize = 130;
+  Widget build(BuildContext context, WidgetRef ref) {
+    double buttonSize = 120;
     String diceNumberString = diceNumber.toString();
     return Container(
       width: buttonSize,
       height: buttonSize,
-      decoration: const BoxDecoration(
-          color: Colors.purple,
-          borderRadius: BorderRadius.all(Radius.circular(20))),
+      decoration: BoxDecoration(
+          color: ref.watch(themeProvider).diceButtonBg,
+          borderRadius: BorderRadius.all(Radius.circular(
+              ref.watch(themeProvider).diceButtonBorderRadius))),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -25,7 +28,7 @@ class DiceButton extends StatelessWidget {
               child: Center(
                 child: SvgPicture.asset(
                   "assets/D$diceNumberString.svg",
-                  color: Colors.white,
+                  color: ref.watch(themeProvider).diceButtonTextColor,
                   clipBehavior: Clip.antiAlias,
                 ),
               ),
@@ -35,7 +38,9 @@ class DiceButton extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: Text(
                 "D$diceNumberString",
-                style: TextStyle(color: Colors.white, fontSize: 20),
+                style: TextStyle(
+                    color: ref.watch(themeProvider).diceButtonTextColor,
+                    fontSize: 20),
               ),
             ))
           ],
