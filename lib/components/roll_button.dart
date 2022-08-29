@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:dice_roller/providers/theme_provider.dart';
 
 class RollButton extends StatelessWidget {
   const RollButton({Key? key}) : super(key: key);

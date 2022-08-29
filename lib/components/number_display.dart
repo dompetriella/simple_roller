@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:dice_roller/components/rolled_dice_icon.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:dice_roller/providers/theme_provider.dart';
 
 class NumberDisplay extends StatelessWidget {
   const NumberDisplay({Key? key}) : super(key: key);

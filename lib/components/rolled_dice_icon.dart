@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:dice_roller/providers/theme_provider.dart';
 
 class RolledDiceIcon extends StatelessWidget {
   final int originalDice;
