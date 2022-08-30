@@ -46,53 +46,40 @@ class NumberDisplay extends ConsumerWidget {
                 ),
               ),
             ),
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Align(
-                    alignment: Alignment.bottomCenter,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10.0),
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                        color: ref.watch(themeProvider).diceTypeBgColor,
+                        borderRadius: BorderRadius.all(Radius.circular(
+                            ref.watch(themeProvider).diceTypeBorderRadius))),
                     child: Padding(
-                      padding: const EdgeInsets.only(bottom: 10.0),
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(
-                            color: ref.watch(themeProvider).diceTypeBgColor,
-                            borderRadius: BorderRadius.all(Radius.circular(ref
-                                .watch(themeProvider)
-                                .diceTypeBorderRadius))),
-                        child: Padding(
-                          padding: const EdgeInsets.all(5.0),
-                          child: SvgPicture.asset(
-                            'assets/D20.svg',
-                            color: ref.watch(themeProvider).diceTypeStrokeColor,
-                          ),
-                        ),
+                      padding: const EdgeInsets.all(5.0),
+                      child: SvgPicture.asset(
+                        'assets/D20.svg',
+                        color: ref.watch(themeProvider).diceTypeStrokeColor,
                       ),
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Text(
-                      '20',
-                      style: TextStyle(
-                          color:
-                              ref.watch(themeProvider).numberDisplayTextColor,
-                          fontSize: 110),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.bottomRight,
-                    child: Text('x2',
-                        style: TextStyle(
-                            color:
-                                ref.watch(themeProvider).numberDisplayTextColor,
-                            fontSize: 50)),
-                  )
-                ],
-              ),
+                ),
+                Text(
+                  '20',
+                  style: TextStyle(
+                      color: ref.watch(themeProvider).numberDisplayTextColor,
+                      fontSize: 90,
+                      fontWeight: FontWeight.w900),
+                ),
+                Text('x2',
+                    style: TextStyle(
+                        color: ref.watch(themeProvider).numberDisplayTextColor,
+                        fontSize: 50))
+              ],
             )
           ],
         ),

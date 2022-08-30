@@ -20,19 +20,20 @@ class MultiplierControls extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                height: 50,
-                width: 60,
-                decoration: BoxDecoration(
-                    color: ref.watch(themeProvider).multiplierBgColor,
-                    borderRadius: BorderRadius.all(Radius.circular(
-                        ref.watch(themeProvider).diceButtonBorderRadius)),
-                    boxShadow: ref.watch(themeProvider).multiplierDropShadow),
-                child: Icon(
-                  Icons.remove,
-                  color: ref.watch(themeProvider).multiplierTextColor,
-                  size: 30,
-                ),
-              ),
+                  height: 50,
+                  width: 60,
+                  decoration: BoxDecoration(
+                      color: ref.watch(themeProvider).multiplierBgColor,
+                      borderRadius: BorderRadius.all(Radius.circular(
+                          ref.watch(themeProvider).diceButtonBorderRadius)),
+                      boxShadow: ref.watch(themeProvider).multiplierDropShadow),
+                  child: Center(
+                    child: Text(
+                      "-",
+                      style:
+                          TextStyle(fontSize: 40, fontWeight: FontWeight.w900),
+                    ),
+                  )),
               Padding(
                 padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
                 child: Container(
@@ -46,22 +47,25 @@ class MultiplierControls extends ConsumerWidget {
                   child: Center(
                       child: Text(
                     "C",
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.w900),
                   )),
                 ),
               ),
               Container(
-                height: 50,
-                width: 60,
-                decoration: BoxDecoration(
-                    color: ref.watch(themeProvider).multiplierBgColor,
-                    borderRadius: BorderRadius.all(Radius.circular(
-                        ref.watch(themeProvider).diceButtonBorderRadius)),
-                    boxShadow: ref.watch(themeProvider).multiplierDropShadow),
-                child: Icon(Icons.add,
-                    color: ref.watch(themeProvider).multiplierTextColor,
-                    size: 30),
-              ),
+                  height: 50,
+                  width: 60,
+                  decoration: BoxDecoration(
+                      color: ref.watch(themeProvider).multiplierBgColor,
+                      borderRadius: BorderRadius.all(Radius.circular(
+                          ref.watch(themeProvider).diceButtonBorderRadius)),
+                      boxShadow: ref.watch(themeProvider).multiplierDropShadow),
+                  child: Center(
+                    child: Text(
+                      "+",
+                      style:
+                          TextStyle(fontSize: 40, fontWeight: FontWeight.w900),
+                    ),
+                  )),
             ],
           ),
         ),

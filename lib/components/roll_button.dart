@@ -26,7 +26,7 @@ class RollButton extends ConsumerWidget {
           style: TextStyle(
               fontSize: 50,
               color: ref.watch(themeProvider).rollButtonTextColor,
-              fontWeight: FontWeight.bold),
+              fontWeight: FontWeight.w900),
         )),
       ),
     );
