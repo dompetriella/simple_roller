@@ -1,3 +1,4 @@
+import 'package:dice_roller/providers/dice_provider.dart';
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:dice_roller/components/rolled_dice_icon.dart';
@@ -24,7 +25,7 @@ class NumberDisplay extends ConsumerWidget {
             color: ref.watch(themeProvider).numberDisplayBgColor,
             borderRadius: BorderRadius.all(Radius.circular(
                 ref.watch(themeProvider).numberDisplayBorderRadius)),
-            boxShadow: ref.watch(themeProvider).innerShadow),
+            boxShadow: [ref.watch(themeProvider).innerShadow]),
         child: Column(
           children: [
             Padding(
@@ -72,13 +73,15 @@ class NumberDisplay extends ConsumerWidget {
                   '20',
                   style: TextStyle(
                       color: ref.watch(themeProvider).numberDisplayTextColor,
-                      fontSize: 90,
+                      fontSize: 100,
+                      height: 1.1,
                       fontWeight: FontWeight.w900),
                 ),
-                Text('x2',
+                Text('x${(ref.watch(multiplierProvider).toString())}',
                     style: TextStyle(
                         color: ref.watch(themeProvider).numberDisplayTextColor,
-                        fontSize: 50))
+                        fontSize: 40,
+                        fontWeight: FontWeight.w900))
               ],
             )
           ],

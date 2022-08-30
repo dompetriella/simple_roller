@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dice_roller/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:dice_roller/components/multiplier_controls.dart';
@@ -16,14 +18,23 @@ class MainPage extends ConsumerWidget {
     return Scaffold(
       backgroundColor: ref.watch(themeProvider).bgColor,
       drawer: HistoryDrawer(),
-      body: ListView(
-        children: const [
-          NumberDisplay(),
-          RollButton(),
-          MultiplierControls(),
-          ButtonsDialer()
-        ],
-      ),
+      body: Builder(builder: (context) {
+        return GestureDetector(
+          onPanUpdate: (swipe) {
+            if (swipe.delta.dx > 0) {
+              Scaffold.of(context).openDrawer();
+            }
+          },
+          child: ListView(
+            children: const [
+              NumberDisplay(),
+              RollButton(),
+              MultiplierControls(),
+              ButtonsDialer()
+            ],
+          ),
+        );
+      }),
     );
   }
 }

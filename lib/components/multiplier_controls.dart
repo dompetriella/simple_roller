@@ -1,3 +1,4 @@
+import 'package:dice_roller/providers/dice_provider.dart';
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,53 +20,77 @@ class MultiplierControls extends ConsumerWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                  height: 50,
-                  width: 60,
-                  decoration: BoxDecoration(
-                      color: ref.watch(themeProvider).multiplierBgColor,
-                      borderRadius: BorderRadius.all(Radius.circular(
-                          ref.watch(themeProvider).diceButtonBorderRadius)),
-                      boxShadow: ref.watch(themeProvider).multiplierDropShadow),
-                  child: Center(
-                    child: Text(
-                      "-",
-                      style:
-                          TextStyle(fontSize: 40, fontWeight: FontWeight.w900),
-                    ),
-                  )),
+              GestureDetector(
+                onTap: () => ref.watch(multiplierProvider.notifier).decrement(),
+                onLongPress: () =>
+                    ref.watch(multiplierProvider.notifier).bigDecrement(),
+                child: Container(
+                    height: 50,
+                    width: 60,
+                    decoration: BoxDecoration(
+                        color: ref.watch(themeProvider).multiplierBgColor,
+                        borderRadius: BorderRadius.all(Radius.circular(
+                            ref.watch(themeProvider).diceButtonBorderRadius)),
+                        boxShadow: [
+                          ref.watch(themeProvider).multiplierDropShadow
+                        ]),
+                    child: Center(
+                      child: Text(
+                        "-",
+                        style: TextStyle(
+                            fontSize: 60,
+                            fontWeight: FontWeight.w900,
+                            height: .95),
+                      ),
+                    )),
+              ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
-                child: Container(
-                  height: 50,
-                  width: 50,
-                  decoration: BoxDecoration(
-                      color: ref.watch(themeProvider).multiplierBgColor,
-                      borderRadius: BorderRadius.all(Radius.circular(
-                          ref.watch(themeProvider).diceButtonBorderRadius)),
-                      boxShadow: ref.watch(themeProvider).multiplierDropShadow),
-                  child: Center(
-                      child: Text(
-                    "C",
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.w900),
-                  )),
+                child: GestureDetector(
+                  onTap: () => ref.watch(multiplierProvider.notifier).reset(),
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                        color: ref.watch(themeProvider).multiplierBgColor,
+                        borderRadius: BorderRadius.all(Radius.circular(
+                            ref.watch(themeProvider).diceButtonBorderRadius)),
+                        boxShadow: [
+                          ref.watch(themeProvider).multiplierDropShadow
+                        ]),
+                    child: Center(
+                        child: Text(
+                      "C",
+                      style:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.w900),
+                    )),
+                  ),
                 ),
               ),
-              Container(
-                  height: 50,
-                  width: 60,
-                  decoration: BoxDecoration(
-                      color: ref.watch(themeProvider).multiplierBgColor,
-                      borderRadius: BorderRadius.all(Radius.circular(
-                          ref.watch(themeProvider).diceButtonBorderRadius)),
-                      boxShadow: ref.watch(themeProvider).multiplierDropShadow),
-                  child: Center(
-                    child: Text(
-                      "+",
-                      style:
-                          TextStyle(fontSize: 40, fontWeight: FontWeight.w900),
-                    ),
-                  )),
+              GestureDetector(
+                onTap: () => ref.watch(multiplierProvider.notifier).increment(),
+                onLongPress: () =>
+                    ref.watch(multiplierProvider.notifier).bigIncrement(),
+                child: Container(
+                    height: 50,
+                    width: 60,
+                    decoration: BoxDecoration(
+                        color: ref.watch(themeProvider).multiplierBgColor,
+                        borderRadius: BorderRadius.all(Radius.circular(
+                            ref.watch(themeProvider).diceButtonBorderRadius)),
+                        boxShadow: [
+                          ref.watch(themeProvider).multiplierDropShadow
+                        ]),
+                    child: Center(
+                      child: Text(
+                        "+",
+                        style: TextStyle(
+                            fontSize: 60,
+                            fontWeight: FontWeight.w900,
+                            height: .95),
+                      ),
+                    )),
+              ),
             ],
           ),
         ),

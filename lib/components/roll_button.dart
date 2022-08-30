@@ -2,9 +2,12 @@ import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dice_roller/providers/theme_provider.dart';
+import 'package:dice_roller/models/rolledDice.dart';
 
 class RollButton extends ConsumerWidget {
   const RollButton({Key? key}) : super(key: key);
+
+  createRolledDiceList() {}
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -19,7 +22,7 @@ class RollButton extends ConsumerWidget {
             color: ref.watch(themeProvider).rollButtonBgColor,
             borderRadius: BorderRadius.all(Radius.circular(
                 ref.watch(themeProvider).numberDisplayBorderRadius)),
-            boxShadow: ref.watch(themeProvider).innerShadow),
+            boxShadow: [ref.watch(themeProvider).innerShadow]),
         child: Center(
             child: Text(
           "ROLL",

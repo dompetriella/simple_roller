@@ -5,6 +5,9 @@ class HistoryDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      width: MediaQuery.of(context).size.width * .85,
+      color: Colors.lightBlue,
+    );
   }
 }

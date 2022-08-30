@@ -25,7 +25,17 @@ class DiceButton extends ConsumerWidget {
             color: ref.watch(themeProvider).diceButtonBg,
             borderRadius: BorderRadius.all(Radius.circular(
                 ref.watch(themeProvider).diceButtonBorderRadius)),
-            boxShadow: ref.watch(themeProvider).innerShadow),
+            boxShadow: [
+              ref.watch(themeProvider).innerShadow,
+              ref.watch(selectedDiceProvider) == diceNumber
+                  ? BoxShadow(
+                      color: ref.watch(themeProvider).rollButtonBgColor,
+                      offset: Offset(0, 0),
+                      spreadRadius: 5,
+                      blurRadius: 15,
+                      blurStyle: BlurStyle.normal)
+                  : BoxShadow()
+            ]),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
