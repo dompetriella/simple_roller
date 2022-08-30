@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
+import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dice_roller/providers/theme_provider.dart';
 
@@ -17,7 +18,8 @@ class RollButton extends ConsumerWidget {
         decoration: BoxDecoration(
             color: ref.watch(themeProvider).rollButtonBgColor,
             borderRadius: BorderRadius.all(Radius.circular(
-                ref.watch(themeProvider).numberDisplayBorderRadius))),
+                ref.watch(themeProvider).numberDisplayBorderRadius)),
+            boxShadow: ref.watch(themeProvider).innerShadow),
         child: Center(
             child: Text(
           "ROLL",

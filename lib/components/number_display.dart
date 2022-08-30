@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
+import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:dice_roller/components/rolled_dice_icon.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,6 +14,7 @@ class NumberDisplay extends ConsumerWidget {
     var screenWidth = MediaQuery.of(context).size.width;
     var widgetHeight = screenHeight * .20;
     var widgetWidth = screenWidth;
+    List<BoxShadow>? other = [];
     return Padding(
       padding: const EdgeInsets.all(14.0),
       child: Container(
@@ -21,7 +23,8 @@ class NumberDisplay extends ConsumerWidget {
         decoration: BoxDecoration(
             color: ref.watch(themeProvider).numberDisplayBgColor,
             borderRadius: BorderRadius.all(Radius.circular(
-                ref.watch(themeProvider).numberDisplayBorderRadius))),
+                ref.watch(themeProvider).numberDisplayBorderRadius)),
+            boxShadow: ref.watch(themeProvider).innerShadow),
         child: Column(
           children: [
             Padding(

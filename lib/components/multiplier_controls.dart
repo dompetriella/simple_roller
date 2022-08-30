@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
+import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dice_roller/providers/theme_provider.dart';
 
@@ -24,7 +25,8 @@ class MultiplierControls extends ConsumerWidget {
                 decoration: BoxDecoration(
                     color: ref.watch(themeProvider).multiplierBgColor,
                     borderRadius: BorderRadius.all(Radius.circular(
-                        ref.watch(themeProvider).diceButtonBorderRadius))),
+                        ref.watch(themeProvider).diceButtonBorderRadius)),
+                    boxShadow: ref.watch(themeProvider).multiplierDropShadow),
                 child: Icon(
                   Icons.remove,
                   color: ref.watch(themeProvider).multiplierTextColor,
@@ -39,7 +41,8 @@ class MultiplierControls extends ConsumerWidget {
                   decoration: BoxDecoration(
                       color: ref.watch(themeProvider).multiplierBgColor,
                       borderRadius: BorderRadius.all(Radius.circular(
-                          ref.watch(themeProvider).diceButtonBorderRadius))),
+                          ref.watch(themeProvider).diceButtonBorderRadius)),
+                      boxShadow: ref.watch(themeProvider).multiplierDropShadow),
                   child: Center(
                       child: Text(
                     "C",
@@ -53,7 +56,8 @@ class MultiplierControls extends ConsumerWidget {
                 decoration: BoxDecoration(
                     color: ref.watch(themeProvider).multiplierBgColor,
                     borderRadius: BorderRadius.all(Radius.circular(
-                        ref.watch(themeProvider).diceButtonBorderRadius))),
+                        ref.watch(themeProvider).diceButtonBorderRadius)),
+                    boxShadow: ref.watch(themeProvider).multiplierDropShadow),
                 child: Icon(Icons.add,
                     color: ref.watch(themeProvider).multiplierTextColor,
                     size: 30),
