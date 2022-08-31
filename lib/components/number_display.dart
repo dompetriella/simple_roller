@@ -5,9 +5,18 @@ import 'package:dice_roller/components/rolled_dice_icon.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dice_roller/providers/theme_provider.dart';
+import 'package:dice_roller/models/rolledDice.dart';
 
 class NumberDisplay extends ConsumerWidget {
   const NumberDisplay({Key? key}) : super(key: key);
+
+  int getRolledDiceSum(List<RolledDice> rolledDice) {
+    int sum = 0;
+    for (var die in rolledDice) {
+      sum += die.rollValue;
+    }
+    return sum < 1000 ? sum : 999;
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -15,7 +24,6 @@ class NumberDisplay extends ConsumerWidget {
     var screenWidth = MediaQuery.of(context).size.width;
     var widgetHeight = screenHeight * .20;
     var widgetWidth = screenWidth;
-    List<BoxShadow>? other = [];
     return Padding(
       padding: const EdgeInsets.all(14.0),
       child: Container(
@@ -31,21 +39,22 @@ class NumberDisplay extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-                height: widgetHeight * .20,
-                width: widgetWidth * .85,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(
-                        ref.watch(themeProvider).diceIconBorderRadius)),
-                    color: ref.watch(themeProvider).numberDisplayBgColor),
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    RolledDiceIcon(originalDice: 20, diceNumber: 8),
-                    RolledDiceIcon(originalDice: 20, diceNumber: 12),
-                    RolledDiceIcon(originalDice: 20, diceNumber: 2),
-                  ],
-                ),
-              ),
+                  height: widgetHeight * .20,
+                  width: widgetWidth * .85,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(
+                          ref.watch(themeProvider).diceIconBorderRadius)),
+                      color: ref.watch(themeProvider).numberDisplayBgColor),
+                  child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: ref
+                          .watch(rollHistoryProvider)
+                          .last
+                          .map((e) => RolledDiceIcon(
+                                originalDice: e.diceValue,
+                                rolledValue: e.rollValue,
+                              ))
+                          .toList())),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -63,25 +72,46 @@ class NumberDisplay extends ConsumerWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: SvgPicture.asset(
-                        'assets/D20.svg',
+                        'assets/D${ref.watch(selectedDiceProvider).toString()}.svg',
                         color: ref.watch(themeProvider).diceTypeStrokeColor,
                       ),
                     ),
                   ),
                 ),
-                Text(
-                  '20',
-                  style: TextStyle(
-                      color: ref.watch(themeProvider).numberDisplayTextColor,
-                      fontSize: 100,
-                      height: 1.1,
-                      fontWeight: FontWeight.w900),
+                Center(
+                  child: SizedBox(
+                    width: widgetWidth * .4,
+                    child: Center(
+                      child: Text(
+                        '${getRolledDiceSum(ref.watch(rollHistoryProvider).last)}',
+                        style: TextStyle(
+                            color:
+                                ref.watch(themeProvider).numberDisplayTextColor,
+                            fontSize: getRolledDiceSum(
+                                        ref.watch(rollHistoryProvider).last) <
+                                    100
+                                ? 100
+                                : 80,
+                            height: getRolledDiceSum(
+                                        ref.watch(rollHistoryProvider).last) <
+                                    100
+                                ? 1.1
+                                : 1.4,
+                            fontWeight: FontWeight.w900),
+                      ),
+                    ),
+                  ),
                 ),
-                Text('x${(ref.watch(multiplierProvider).toString())}',
-                    style: TextStyle(
-                        color: ref.watch(themeProvider).numberDisplayTextColor,
-                        fontSize: 40,
-                        fontWeight: FontWeight.w900))
+                SizedBox(
+                  width: widgetWidth * .12,
+                  child: Text('x${(ref.watch(multiplierProvider).toString())}',
+                      style: TextStyle(
+                          color:
+                              ref.watch(themeProvider).numberDisplayTextColor,
+                          fontSize:
+                              ref.watch(multiplierProvider) < 10 ? 40 : 24,
+                          fontWeight: FontWeight.w900)),
+                )
               ],
             )
           ],

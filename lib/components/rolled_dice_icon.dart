@@ -6,9 +6,9 @@ import 'package:dice_roller/providers/theme_provider.dart';
 
 class RolledDiceIcon extends ConsumerWidget {
   final int originalDice;
-  final int diceNumber;
+  final int rolledValue;
   const RolledDiceIcon(
-      {Key? key, required this.originalDice, required this.diceNumber})
+      {Key? key, required this.originalDice, required this.rolledValue})
       : super(key: key);
 
   @override
@@ -25,16 +25,19 @@ class RolledDiceIcon extends ConsumerWidget {
               color: ref.watch(themeProvider).diceIconBgColor),
           child: Stack(
             children: [
-              Opacity(
-                opacity: .70,
-                child: SvgPicture.asset(
-                  'assets/D${originalDice.toString()}.svg',
-                  color: Colors.white,
+              Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: Opacity(
+                  opacity: .70,
+                  child: SvgPicture.asset(
+                    'assets/D${originalDice.toString()}.svg',
+                    color: Colors.white,
+                  ),
                 ),
               ),
               Center(
                   child: Text(
-                diceNumber.toString(),
+                rolledValue.toString(),
                 style: TextStyle(
                     color: ref.watch(themeProvider).diceIconTextColor,
                     fontSize: 20),

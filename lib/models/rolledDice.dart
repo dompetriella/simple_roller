@@ -1,4 +1,6 @@
 class RolledDice {
-  int rollValue = 0;
-  int diceValue = 0;
+  final int rollValue;
+  final int diceValue;
+
+  RolledDice({required this.rollValue, required this.diceValue});
 }

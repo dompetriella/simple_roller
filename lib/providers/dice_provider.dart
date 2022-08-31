@@ -1,3 +1,4 @@
+import 'package:dice_roller/models/rolledDice.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final selectedDiceProvider = StateNotifierProvider<DiceNotifier, int>((ref) {
@@ -5,7 +6,7 @@ final selectedDiceProvider = StateNotifierProvider<DiceNotifier, int>((ref) {
 });
 
 class DiceNotifier extends StateNotifier<int> {
-  DiceNotifier() : super(0);
+  DiceNotifier() : super(20);
 
   void changeCurrentDie(int currentDie) {
     state = currentDie;
@@ -39,4 +40,22 @@ class MultiplierNotifier extends StateNotifier<int> {
   }
 
   void reset() => state = 1;
+}
+
+final rollHistoryProvider =
+    StateNotifierProvider<RollHistoryNotifier, List<List<RolledDice>>>((ref) {
+  return RollHistoryNotifier();
+});
+
+class RollHistoryNotifier extends StateNotifier<List<List<RolledDice>>> {
+  RollHistoryNotifier()
+      : super([
+          [RolledDice(diceValue: 20, rollValue: 0)]
+        ]);
+
+  addRoll(List<RolledDice> diceRolls) {
+    state = [
+      ...[diceRolls]
+    ];
+  }
 }
