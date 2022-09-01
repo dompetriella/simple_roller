@@ -27,6 +27,8 @@ class DiceButton extends ConsumerWidget {
                 ref.watch(themeProvider).diceButtonBorderRadius)),
             boxShadow: [
               ref.watch(themeProvider).innerShadow,
+              ref.watch(themeProvider).diceButtonInnerShadow,
+              ref.watch(themeProvider).diceButtonOutline,
               ref.watch(selectedDiceProvider) == diceNumber
                   ? BoxShadow(
                       color: ref.watch(themeProvider).rollButtonBgColor,

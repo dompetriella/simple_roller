@@ -26,13 +26,14 @@ class MultiplierControls extends ConsumerWidget {
                     ref.watch(multiplierProvider.notifier).bigDecrement(),
                 child: Container(
                     height: 50,
-                    width: 60,
+                    width: 70,
                     decoration: BoxDecoration(
                         color: ref.watch(themeProvider).multiplierBgColor,
                         borderRadius: BorderRadius.all(Radius.circular(
                             ref.watch(themeProvider).diceButtonBorderRadius)),
                         boxShadow: [
-                          ref.watch(themeProvider).multiplierDropShadow
+                          ref.watch(themeProvider).multiplierDropShadow,
+                          ref.watch(themeProvider).multiplierOutline,
                         ]),
                     child: Center(
                       child: Text(
@@ -40,7 +41,9 @@ class MultiplierControls extends ConsumerWidget {
                         style: TextStyle(
                             fontSize: 60,
                             fontWeight: FontWeight.w900,
-                            height: .95),
+                            height: .95,
+                            color:
+                                ref.watch(themeProvider).multiplierTextColor),
                       ),
                     )),
               ),
@@ -50,19 +53,22 @@ class MultiplierControls extends ConsumerWidget {
                   onTap: () => ref.watch(multiplierProvider.notifier).reset(),
                   child: Container(
                     height: 50,
-                    width: 50,
+                    width: 60,
                     decoration: BoxDecoration(
                         color: ref.watch(themeProvider).multiplierBgColor,
                         borderRadius: BorderRadius.all(Radius.circular(
                             ref.watch(themeProvider).diceButtonBorderRadius)),
                         boxShadow: [
-                          ref.watch(themeProvider).multiplierDropShadow
+                          ref.watch(themeProvider).multiplierDropShadow,
+                          ref.watch(themeProvider).multiplierOutline,
                         ]),
                     child: Center(
                         child: Text(
                       "C",
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.w900),
+                      style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.w900,
+                          color: ref.watch(themeProvider).multiplierTextColor),
                     )),
                   ),
                 ),
@@ -73,13 +79,14 @@ class MultiplierControls extends ConsumerWidget {
                     ref.watch(multiplierProvider.notifier).bigIncrement(),
                 child: Container(
                     height: 50,
-                    width: 60,
+                    width: 70,
                     decoration: BoxDecoration(
                         color: ref.watch(themeProvider).multiplierBgColor,
                         borderRadius: BorderRadius.all(Radius.circular(
                             ref.watch(themeProvider).diceButtonBorderRadius)),
                         boxShadow: [
-                          ref.watch(themeProvider).multiplierDropShadow
+                          ref.watch(themeProvider).multiplierDropShadow,
+                          ref.watch(themeProvider).multiplierOutline,
                         ]),
                     child: Center(
                       child: Text(
@@ -87,7 +94,9 @@ class MultiplierControls extends ConsumerWidget {
                         style: TextStyle(
                             fontSize: 60,
                             fontWeight: FontWeight.w900,
-                            height: .95),
+                            height: .95,
+                            color:
+                                ref.watch(themeProvider).multiplierTextColor),
                       ),
                     )),
               ),

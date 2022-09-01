@@ -31,7 +31,10 @@ class RolledDiceIcon extends ConsumerWidget {
                   opacity: .70,
                   child: SvgPicture.asset(
                     'assets/D${originalDice.toString()}.svg',
-                    color: Colors.white,
+                    color: ref
+                        .watch(themeProvider)
+                        .diceIconTextColor
+                        .withOpacity(.75),
                   ),
                 ),
               ),

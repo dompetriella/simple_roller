@@ -44,7 +44,10 @@ class RollButton extends ConsumerWidget {
               color: ref.watch(themeProvider).rollButtonBgColor,
               borderRadius: BorderRadius.all(Radius.circular(
                   ref.watch(themeProvider).numberDisplayBorderRadius)),
-              boxShadow: [ref.watch(themeProvider).innerShadow]),
+              boxShadow: [
+                ref.watch(themeProvider).innerShadow,
+                ref.watch(themeProvider).rollButtonOutline
+              ]),
           child: Center(
               child: Text(
             "ROLL",

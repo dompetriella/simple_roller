@@ -18,7 +18,11 @@ class DiceInputButton extends ConsumerWidget {
           color: ref.watch(themeProvider).diceButtonBg,
           borderRadius: BorderRadius.all(
               Radius.circular(ref.watch(themeProvider).diceButtonBorderRadius)),
-          boxShadow: [ref.watch(themeProvider).innerShadow]),
+          boxShadow: [
+            ref.watch(themeProvider).innerShadow,
+            ref.watch(themeProvider).diceButtonInnerShadow,
+            ref.watch(themeProvider).diceButtonOutline,
+          ]),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

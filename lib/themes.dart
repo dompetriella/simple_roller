@@ -8,20 +8,138 @@ Color hex(String code) {
 }
 
 // light blue
-var lightThemeBg = hex('AAC6C3');
+var daylightBg = hex('AAC6C3');
 // purple
-var lightThemePrimary = hex('423B52');
+var daylightPrimary = hex('423B52');
 // grey
-var lightThemeSecondary = hex('D9D9D9');
+var daylightSecondary = hex('D9D9D9');
 // red
-var lightThemeAccent = hex('990000');
+var daylightAccent = hex('990000');
 
-AppTheme lightTheme = AppTheme(
-    bgColor: lightThemeBg,
-    numberDisplayBgColor: lightThemeSecondary,
-    diceIconBgColor: lightThemePrimary,
-    diceTypeBgColor: lightThemePrimary,
-    rollButtonBgColor: lightThemeAccent,
-    multiplierTextColor: lightThemePrimary,
-    diceButtonBg: lightThemePrimary,
-    diceButtonInputColorBg: Colors.white);
+AppTheme daylight = AppTheme(
+  bgColor: daylightBg,
+  numberDisplayBgColor: daylightSecondary,
+  diceIconBgColor: daylightPrimary,
+  diceTypeBgColor: daylightPrimary,
+  rollButtonBgColor: daylightAccent,
+  multiplierTextColor: daylightPrimary,
+  diceButtonBg: daylightPrimary,
+  diceButtonInputColorBg: Colors.white,
+  drawerBg: daylightPrimary,
+  drawerColumnBg: daylightBg,
+  drawerColumnTextColor: Colors.black,
+  drawerHistorySliverBg: daylightSecondary,
+  drawerStatsIconBg: daylightPrimary,
+  drawerStatsColorBg: Colors.white,
+);
+
+AppTheme twilight = AppTheme(
+    bgColor: Colors.black,
+    numberDisplayBgColor: daylightSecondary,
+    diceIconBgColor: Colors.black,
+    diceTypeBgColor: Colors.black,
+    rollButtonBgColor: hex('DB893D'),
+    multiplierTextColor: Colors.black,
+    diceButtonBg: daylightSecondary,
+    diceButtonInputColorBg: Colors.white,
+    drawerBg: daylightSecondary,
+    drawerColumnBg: Colors.black,
+    drawerColumnTextColor: Colors.white,
+    drawerHistorySliverBg: Colors.black,
+    drawerStatsIconBg: Colors.black,
+    drawerStatsColorBg: Colors.white,
+    rollButtonTextColor: Colors.black,
+    diceButtonTextColor: Colors.black,
+    diceButtonInputTextColor: Colors.black,
+    multiplierBgColor: daylightSecondary);
+
+AppTheme midnight = AppTheme(
+    bgColor: Colors.black,
+    numberDisplayBgColor: Colors.black,
+    diceIconBgColor: Colors.white,
+    diceTypeBgColor: Colors.white,
+    diceTypeStrokeColor: Colors.black,
+    diceIconTextColor: Colors.black,
+    numberDisplayTextColor: Colors.white,
+    rollButtonBgColor: Colors.white,
+    rollButtonTextColor: Colors.black,
+    multiplierTextColor: Colors.white,
+    multiplierOutline: BoxShadow(color: Colors.white, spreadRadius: 1),
+    diceButtonBg: Colors.black,
+    diceButtonOutline: const BoxShadow(color: Colors.white, spreadRadius: 1),
+    diceButtonInnerShadow:
+        const BoxShadow(color: Colors.white, blurRadius: 25, inset: true),
+    diceButtonInputColorBg: Colors.black,
+    drawerBg: daylightSecondary,
+    drawerColumnBg: Colors.black,
+    drawerColumnTextColor: Colors.white,
+    drawerHistorySliverBg: Colors.black,
+    drawerStatsIconBg: Colors.black,
+    drawerStatsColorBg: Colors.white,
+    diceButtonTextColor: Colors.white,
+    diceButtonInputTextColor: Colors.black,
+    multiplierBgColor: Colors.black);
+
+var verdantBg = hex('1C4A1B');
+var verdantPrimary = hex('3B8E39');
+var verdantSecondary = hex('BDEEAC');
+var verdantAccent = hex('50B5B5');
+
+AppTheme verdant = AppTheme(
+  bgColor: verdantBg,
+  numberDisplayBgColor: verdantSecondary,
+  numberDisplayTextColor: verdantBg,
+  diceIconBgColor: verdantPrimary,
+  diceTypeBgColor: verdantPrimary,
+  rollButtonBgColor: verdantAccent,
+  multiplierTextColor: verdantBg,
+  diceButtonBg: verdantPrimary,
+  diceButtonInputColorBg: verdantSecondary,
+  drawerBg: verdantPrimary,
+  drawerColumnBg: verdantBg,
+  drawerColumnTextColor: Colors.white,
+  drawerHistorySliverBg: verdantSecondary,
+  drawerStatsIconBg: verdantPrimary,
+  drawerStatsColorBg: Colors.white,
+);
+
+var glacierBg = hex('1B073D');
+var glacierPrimary = hex('2A4ABB');
+var glacierSecondary = hex('ADF3F3');
+var glacierAccent = hex('895AC5');
+
+AppTheme glacier = AppTheme(
+  bgColor: glacierBg,
+  numberDisplayBgColor: glacierSecondary,
+  numberDisplayTextColor: glacierBg,
+  diceIconBgColor: glacierPrimary,
+  diceTypeBgColor: glacierPrimary,
+  rollButtonBgColor: glacierAccent,
+  multiplierTextColor: glacierBg,
+  diceButtonBg: glacierPrimary,
+  diceButtonInputColorBg: glacierSecondary,
+  drawerBg: glacierPrimary,
+  drawerColumnBg: glacierBg,
+  drawerColumnTextColor: Colors.white,
+  drawerHistorySliverBg: glacierSecondary,
+  drawerStatsIconBg: glacierPrimary,
+  drawerStatsColorBg: Colors.white,
+);
+
+AppTheme fireball = AppTheme(
+  bgColor: verdantBg,
+  numberDisplayBgColor: verdantSecondary,
+  numberDisplayTextColor: verdantBg,
+  diceIconBgColor: verdantPrimary,
+  diceTypeBgColor: verdantPrimary,
+  rollButtonBgColor: verdantAccent,
+  multiplierTextColor: verdantBg,
+  diceButtonBg: verdantPrimary,
+  diceButtonInputColorBg: verdantSecondary,
+  drawerBg: verdantPrimary,
+  drawerColumnBg: verdantBg,
+  drawerColumnTextColor: Colors.white,
+  drawerHistorySliverBg: verdantSecondary,
+  drawerStatsIconBg: verdantPrimary,
+  drawerStatsColorBg: Colors.white,
+);
