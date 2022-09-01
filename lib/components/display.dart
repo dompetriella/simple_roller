@@ -7,8 +7,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dice_roller/providers/theme_provider.dart';
 import 'package:dice_roller/models/rolledDice.dart';
 
-class NumberDisplay extends ConsumerWidget {
-  const NumberDisplay({Key? key}) : super(key: key);
+class Display extends ConsumerWidget {
+  const Display({Key? key}) : super(key: key);
 
   int getRolledDiceSum(List<RolledDice> rolledDice) {
     int sum = 0;
