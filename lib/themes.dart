@@ -126,20 +126,25 @@ AppTheme glacier = AppTheme(
   drawerStatsColorBg: Colors.white,
 );
 
+var fireballBg = hex('401717');
+var fireballPrimary = hex('CA6821');
+var fireballSecondary = hex('F1F99E');
+var fireballAccent = hex('F93535');
+
 AppTheme fireball = AppTheme(
-  bgColor: verdantBg,
-  numberDisplayBgColor: verdantSecondary,
-  numberDisplayTextColor: verdantBg,
-  diceIconBgColor: verdantPrimary,
-  diceTypeBgColor: verdantPrimary,
-  rollButtonBgColor: verdantAccent,
-  multiplierTextColor: verdantBg,
-  diceButtonBg: verdantPrimary,
-  diceButtonInputColorBg: verdantSecondary,
-  drawerBg: verdantPrimary,
-  drawerColumnBg: verdantBg,
+  bgColor: fireballBg,
+  numberDisplayBgColor: fireballSecondary,
+  numberDisplayTextColor: fireballBg,
+  diceIconBgColor: fireballPrimary,
+  diceTypeBgColor: fireballPrimary,
+  rollButtonBgColor: fireballAccent,
+  multiplierTextColor: fireballBg,
+  diceButtonBg: fireballPrimary,
+  diceButtonInputColorBg: fireballSecondary,
+  drawerBg: fireballPrimary,
+  drawerColumnBg: fireballBg,
   drawerColumnTextColor: Colors.white,
-  drawerHistorySliverBg: verdantSecondary,
-  drawerStatsIconBg: verdantPrimary,
+  drawerHistorySliverBg: fireballSecondary,
+  drawerStatsIconBg: fireballPrimary,
   drawerStatsColorBg: Colors.white,
 );

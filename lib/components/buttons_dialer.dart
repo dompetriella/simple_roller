@@ -58,7 +58,9 @@ class ButtonsDialer extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.all(12.0),
-                child: DiceInputButton(),
+                child: DiceButton(
+                  diceNumber: 100,
+                ),
               ),
             ],
           ),
