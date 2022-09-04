@@ -7,8 +7,12 @@ import 'package:dice_roller/providers/theme_provider.dart';
 class RolledDiceIcon extends ConsumerWidget {
   final int originalDice;
   final int rolledValue;
+  final double fontSize;
   const RolledDiceIcon(
-      {Key? key, required this.originalDice, required this.rolledValue})
+      {Key? key,
+      required this.originalDice,
+      required this.rolledValue,
+      required this.fontSize})
       : super(key: key);
 
   @override
@@ -43,7 +47,7 @@ class RolledDiceIcon extends ConsumerWidget {
                 rolledValue.toString(),
                 style: TextStyle(
                     color: ref.watch(themeProvider).diceIconTextColor,
-                    fontSize: 20),
+                    fontSize: fontSize),
               ))
             ],
           ),

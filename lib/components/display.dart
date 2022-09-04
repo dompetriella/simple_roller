@@ -53,6 +53,7 @@ class Display extends ConsumerWidget {
                           .map((e) => RolledDiceIcon(
                                 originalDice: e.diceValue,
                                 rolledValue: e.rollValue,
+                                fontSize: 20,
                               ))
                           .toList())),
             ),

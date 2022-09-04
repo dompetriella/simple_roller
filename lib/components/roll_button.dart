@@ -33,6 +33,7 @@ class RollButton extends ConsumerWidget {
       padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
       child: GestureDetector(
         onTap: () {
+          print(ref.read(rollHistoryProvider));
           ref
               .read(rollHistoryProvider.notifier)
               .addRoll(createRolledDiceList(ref));

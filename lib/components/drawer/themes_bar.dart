@@ -1,8 +1,9 @@
 import 'package:dice_roller/providers/theme_provider.dart';
 import 'package:dice_roller/themes.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
+import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:dice_roller/components/drawer/drawer_themes_button.dart';
+import 'package:dice_roller/components/drawer/theme_button.dart';
 
 class ThemesBar extends ConsumerWidget {
   const ThemesBar({
@@ -27,8 +28,9 @@ class ThemesBar extends ConsumerWidget {
         child: Container(
           decoration: BoxDecoration(
               color: ref.watch(themeProvider).drawerColumnBg,
-              borderRadius: BorderRadius.all(Radius.circular(
-                  ref.watch(themeProvider).drawerBorderRadius))),
+              borderRadius: BorderRadius.all(
+                  Radius.circular(ref.watch(themeProvider).drawerBorderRadius)),
+              boxShadow: [ref.watch(themeProvider).innerShadow]),
           child: Padding(
             padding: const EdgeInsets.fromLTRB(8.0, 12, 12, 8),
             child: Column(
@@ -66,16 +68,18 @@ class ThemesBar extends ConsumerWidget {
                     flex: 6,
                     child: Container(
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(
-                                ref.watch(themeProvider).drawerBorderRadius)),
+                            borderRadius: BorderRadius.all(Radius.circular(15)),
                             color: Colors.white,
                             boxShadow: [ref.watch(themeProvider).columnShadow]),
-                        child: ListView.builder(
-                            itemBuilder: ((context, index) {
-                              return themesButtonList[
-                                  index % themesButtonList.length];
-                            }),
-                            scrollDirection: Axis.horizontal)))
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(6.0, 2, 6, 2),
+                          child: ListView.builder(
+                              itemBuilder: ((context, index) {
+                                return themesButtonList[
+                                    index % themesButtonList.length];
+                              }),
+                              scrollDirection: Axis.horizontal),
+                        )))
               ],
             ),
           ),

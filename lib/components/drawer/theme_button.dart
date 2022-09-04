@@ -11,39 +11,31 @@ class ThemesButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     List<Expanded> generateButtonColors() {
-      return appTheme.themeColors.map<Expanded>((e) {
+      return appTheme.themeColors.map<Expanded>((color) {
         return Expanded(
           child: Container(
-            color: e,
+            decoration: BoxDecoration(
+                color: color,
+                boxShadow: [ref.watch(themeProvider).innerShadow]),
           ),
         );
       }).toList();
     }
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(3.0, 0, 3, 0),
+      padding: const EdgeInsets.fromLTRB(5.0, 0, 3, 0),
       child: Center(
           child: GestureDetector(
         onTap: () => ref.watch(themeProvider.notifier).state = appTheme,
         child: Container(
-          height: 55,
-          width: 55,
-          decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.all(Radius.circular(100)),
-          ),
-          child: Center(
-            child: Container(
-                height: 50,
-                width: 50,
-                clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(
-                  boxShadow: [BoxShadow(color: Colors.white, spreadRadius: 1)],
-                  borderRadius: BorderRadius.all(Radius.circular(100)),
-                ),
-                child: Row(children: generateButtonColors())),
-          ),
-        ),
+            height: 50,
+            width: 50,
+            clipBehavior: Clip.antiAlias,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(
+                  Radius.circular(ref.watch(themeProvider).drawerBorderRadius)),
+            ),
+            child: Row(children: generateButtonColors())),
       )),
     );
   }
