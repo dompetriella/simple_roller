@@ -2,6 +2,8 @@ import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 
 class AppTheme {
+  final String themeName;
+  final List<Color> themeColors;
   final Color bgColor;
   final BoxShadow innerShadow;
   final String fontFamily;
@@ -39,7 +41,8 @@ class AppTheme {
 
   final Color drawerBg;
   final Color drawerNegativeSpace;
-  final int drawerBorderRadius;
+  final double drawerBorderRadius;
+  final BoxShadow columnShadow;
   final Color drawerColumnBg;
   final Color drawerColumnTextColor;
   final Color drawerThemesBg;
@@ -49,7 +52,9 @@ class AppTheme {
   final Color drawerStatsColorBg;
 
   AppTheme(
-      {required this.bgColor,
+      {required this.themeName,
+      required this.themeColors,
+      required this.bgColor,
       required this.numberDisplayBgColor,
       required this.diceIconBgColor,
       required this.diceTypeBgColor,
@@ -72,6 +77,11 @@ class AppTheme {
           color: Color.fromRGBO(0, 0, 0, .50),
           blurRadius: 4,
           offset: Offset(0, -5)),
+      this.columnShadow = const BoxShadow(
+          inset: true,
+          color: Color.fromRGBO(0, 0, 0, .50),
+          blurRadius: 4,
+          offset: Offset(4, 4)),
       this.diceButtonInnerShadow = const BoxShadow(
           inset: true,
           color: Color.fromRGBO(0, 0, 0, .50),

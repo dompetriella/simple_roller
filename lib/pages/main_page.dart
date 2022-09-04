@@ -22,7 +22,7 @@ class MainPage extends ConsumerWidget {
         return GestureDetector(
           onPanUpdate: (swipe) {
             if (swipe.delta.dx < 0) {
-              Scaffold.of(context).openDrawer();
+              Scaffold.of(context).openEndDrawer();
             }
           },
           child: ListView(

@@ -50,7 +50,10 @@ class MultiplierControls extends ConsumerWidget {
               Padding(
                 padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
                 child: GestureDetector(
-                  onTap: () => ref.watch(multiplierProvider.notifier).reset(),
+                  onTap: () {
+                    ref.watch(multiplierProvider.notifier).reset();
+                    Scaffold.of(context).openEndDrawer();
+                  },
                   child: Container(
                     height: 50,
                     width: 60,

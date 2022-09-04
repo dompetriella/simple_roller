@@ -62,18 +62,20 @@ class Display extends ConsumerWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10.0),
-                  child: Container(
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                        color: ref.watch(themeProvider).diceTypeBgColor,
-                        borderRadius: BorderRadius.all(Radius.circular(
-                            ref.watch(themeProvider).diceTypeBorderRadius))),
-                    child: Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: SvgPicture.asset(
-                        'assets/D${ref.watch(selectedDiceProvider).toString()}.svg',
-                        color: ref.watch(themeProvider).diceTypeStrokeColor,
+                  child: GestureDetector(
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                          color: ref.watch(themeProvider).diceTypeBgColor,
+                          borderRadius: BorderRadius.all(Radius.circular(
+                              ref.watch(themeProvider).diceTypeBorderRadius))),
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: SvgPicture.asset(
+                          'assets/D${ref.watch(selectedDiceProvider).toString()}.svg',
+                          color: ref.watch(themeProvider).diceTypeStrokeColor,
+                        ),
                       ),
                     ),
                   ),
