@@ -44,10 +44,12 @@ class AppTheme {
   final double drawerBorderRadius;
   final BoxShadow columnShadow;
   final Color drawerColumnBg;
+  final Color drawerColumnContentBg;
   final Color drawerColumnTextColor;
   final Color drawerThemesBg;
   final Color drawerHistorySliverBg;
   final Color drawerHistorySliverTextColor;
+  final BoxShadow drawerHistorySliverOutline;
   final Color drawerStatsIconBg;
   final Color drawerStatsColorBg;
 
@@ -72,6 +74,11 @@ class AppTheme {
       this.drawerNegativeSpace = Colors.white,
       this.drawerBorderRadius = 20,
       this.drawerHistorySliverTextColor = Colors.black,
+      this.drawerColumnContentBg = Colors.white,
+      this.drawerHistorySliverOutline = const BoxShadow(
+        color: Colors.white,
+        spreadRadius: 2,
+      ),
       this.innerShadow = const BoxShadow(
           inset: true,
           color: Color.fromRGBO(0, 0, 0, .50),

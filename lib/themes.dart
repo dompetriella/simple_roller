@@ -48,6 +48,7 @@ AppTheme twilight = AppTheme(
     diceButtonInputColorBg: Colors.white,
     drawerBg: daylightSecondary,
     drawerColumnBg: Colors.black,
+    drawerColumnContentBg: Colors.black,
     drawerColumnTextColor: Colors.white,
     drawerHistorySliverBg: Colors.black,
     drawerStatsIconBg: Colors.black,
@@ -65,10 +66,10 @@ AppTheme midnight = AppTheme(
     ],
     bgColor: Colors.black,
     numberDisplayBgColor: Colors.black,
-    diceIconBgColor: Colors.white,
-    diceTypeBgColor: Colors.white,
-    diceTypeStrokeColor: Colors.black,
-    diceIconTextColor: Colors.black,
+    diceIconBgColor: Colors.black,
+    diceTypeBgColor: Colors.black,
+    diceTypeStrokeColor: Colors.white,
+    diceIconTextColor: Colors.white,
     numberDisplayTextColor: Colors.white,
     rollButtonBgColor: Colors.white,
     rollButtonTextColor: Colors.black,
@@ -79,12 +80,15 @@ AppTheme midnight = AppTheme(
     diceButtonInnerShadow:
         const BoxShadow(color: Colors.white, blurRadius: 25, inset: true),
     diceButtonInputColorBg: Colors.black,
-    drawerBg: daylightSecondary,
+    drawerBg: Colors.black,
     drawerColumnBg: Colors.black,
+    drawerColumnContentBg: Colors.black,
     drawerColumnTextColor: Colors.white,
-    drawerHistorySliverBg: Colors.black,
+    drawerThemesBg: Colors.black,
+    drawerHistorySliverBg: Colors.white,
+    drawerHistorySliverTextColor: Colors.white,
     drawerStatsIconBg: Colors.black,
-    drawerStatsColorBg: Colors.white,
+    drawerStatsColorBg: Colors.black,
     diceButtonTextColor: Colors.white,
     diceButtonInputTextColor: Colors.black,
     multiplierBgColor: Colors.black);
@@ -161,5 +165,29 @@ AppTheme fireball = AppTheme(
   drawerColumnTextColor: Colors.white,
   drawerHistorySliverBg: fireballSecondary,
   drawerStatsIconBg: fireballPrimary,
+  drawerStatsColorBg: Colors.white,
+);
+
+var obeliskPrimary = hex('515151');
+var obeliskSecondary = daylightSecondary;
+var obeliskBg = hex('888888');
+var obeliskAccent = hex('28272F');
+
+AppTheme obelisk = AppTheme(
+  themeName: "Obelisk",
+  themeColors: [obeliskAccent, obeliskPrimary, obeliskBg, obeliskSecondary],
+  bgColor: obeliskBg,
+  numberDisplayBgColor: obeliskSecondary,
+  diceIconBgColor: obeliskPrimary,
+  diceTypeBgColor: obeliskPrimary,
+  rollButtonBgColor: obeliskAccent,
+  multiplierTextColor: obeliskPrimary,
+  diceButtonBg: obeliskPrimary,
+  diceButtonInputColorBg: Colors.white,
+  drawerBg: obeliskPrimary,
+  drawerColumnBg: obeliskBg,
+  drawerColumnTextColor: Colors.black,
+  drawerHistorySliverBg: obeliskSecondary,
+  drawerStatsIconBg: obeliskPrimary,
   drawerStatsColorBg: Colors.white,
 );

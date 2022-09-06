@@ -36,7 +36,9 @@ class HistoryLog extends ConsumerWidget {
             color: ref.watch(themeProvider).numberDisplayBgColor,
             borderRadius: BorderRadius.all(
                 Radius.circular(ref.watch(themeProvider).drawerBorderRadius)),
-            boxShadow: [ref.watch(themeProvider).innerShadow]),
+            boxShadow: [
+              ref.watch(themeProvider).innerShadow,
+            ]),
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: sequence > 0
@@ -46,7 +48,12 @@ class HistoryLog extends ConsumerWidget {
                         flex: 4,
                         child: Container(
                           child: Text(
-                              '${(ref.watch(rollHistoryProvider).length) - sequence} Rolls Ago'),
+                            '${(ref.watch(rollHistoryProvider).length) - sequence} Rolls Ago',
+                            style: TextStyle(
+                                color: ref
+                                    .watch(themeProvider)
+                                    .drawerHistorySliverTextColor),
+                          ),
                         )),
                     Flexible(
                         flex: 6,
@@ -59,22 +66,33 @@ class HistoryLog extends ConsumerWidget {
                                       .map((e) => RolledDiceIcon(
                                             originalDice: e.diceValue,
                                             rolledValue: e.rollValue,
-                                            fontSize: 20,
+                                            fontSize: 14,
                                           ))
                                       .toList()),
                               Padding(
                                 padding: const EdgeInsets.only(right: 12.0),
                                 child: Text(
-                                    '${getRolledDiceSum(rolledDiceList)}',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold)),
+                                  '${getRolledDiceSum(rolledDiceList)}',
+                                  style: TextStyle(
+                                      color: ref
+                                          .watch(themeProvider)
+                                          .drawerHistorySliverTextColor,
+                                      fontWeight: FontWeight.w900),
+                                ),
                               )
                             ],
                           ),
                         ))
                   ],
                 )
-              : Center(child: Text('Simple Roller Started')),
+              : Center(
+                  child: Text(
+                  'Simple Roller Started',
+                  style: TextStyle(
+                      color:
+                          ref.watch(themeProvider).drawerHistorySliverTextColor,
+                      fontWeight: FontWeight.w900),
+                )),
         ),
       ),
     );

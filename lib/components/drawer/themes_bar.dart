@@ -19,6 +19,7 @@ class ThemesBar extends ConsumerWidget {
       ThemesButton(appTheme: verdant),
       ThemesButton(appTheme: glacier),
       ThemesButton(appTheme: fireball),
+      ThemesButton(appTheme: obelisk)
     ];
 
     return Flexible(
@@ -69,8 +70,11 @@ class ThemesBar extends ConsumerWidget {
                     child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(15)),
-                            color: Colors.white,
-                            boxShadow: [ref.watch(themeProvider).columnShadow]),
+                            color: ref.watch(themeProvider).drawerThemesBg,
+                            boxShadow: [
+                              ref.watch(themeProvider).columnShadow,
+                              ref.watch(themeProvider).diceButtonOutline
+                            ]),
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(6.0, 2, 6, 2),
                           child: ListView.builder(

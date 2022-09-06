@@ -23,6 +23,8 @@ class StatsLog extends ConsumerWidget {
           return d4Stats;
         case '6':
           return d6Stats;
+        case '8':
+          return d8Stats;
         case '10':
           return d10Stats;
         case '12':
@@ -42,16 +44,13 @@ class StatsLog extends ConsumerWidget {
         width: buttonWidth,
         height: buttonHeight,
         decoration: BoxDecoration(
-            color: ref.watch(themeProvider).diceButtonBg,
-            borderRadius: BorderRadius.all(Radius.circular(
-                ref.watch(themeProvider).diceButtonBorderRadius)),
-            boxShadow: [
-              ref.watch(themeProvider).diceButtonOutline,
-            ]),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          color: ref.watch(themeProvider).diceButtonBg,
+          borderRadius: BorderRadius.all(
+              Radius.circular(ref.watch(themeProvider).diceButtonBorderRadius)),
+        ),
+        child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(

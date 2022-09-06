@@ -69,7 +69,7 @@ class RollButton extends ConsumerWidget {
         ref.read(d10Stats.notifier).state.total += addToTotal;
         ref.read(d10Stats.notifier).state.times += lastRoll.length;
         ref.read(d10Stats.notifier).state.average = double.parse(
-            (ref.read(d10Stats).total / ref.read(d20Stats).times)
+            (ref.read(d10Stats).total / ref.read(d10Stats).times)
                 .toStringAsFixed(3));
         break;
 
@@ -77,7 +77,7 @@ class RollButton extends ConsumerWidget {
         ref.read(d12Stats.notifier).state.total += addToTotal;
         ref.read(d12Stats.notifier).state.times += lastRoll.length;
         ref.read(d12Stats.notifier).state.average = double.parse(
-            (ref.read(d12Stats).total / ref.read(d20Stats).times)
+            (ref.read(d12Stats).total / ref.read(d12Stats).times)
                 .toStringAsFixed(3));
         break;
 
@@ -85,7 +85,7 @@ class RollButton extends ConsumerWidget {
         ref.read(d100Stats.notifier).state.total += addToTotal;
         ref.read(d100Stats.notifier).state.times += lastRoll.length;
         ref.read(d100Stats.notifier).state.average =
-            ref.read(d100Stats).total / ref.read(d20Stats).times;
+            ref.read(d100Stats).total / ref.read(d100Stats).times;
         break;
 
       default:

@@ -48,10 +48,14 @@ class StatsBar extends ConsumerWidget {
                     padding: const EdgeInsets.fromLTRB(12.0, 8, 12, 8),
                     child: Container(
                       decoration: BoxDecoration(
-                          boxShadow: [ref.watch(themeProvider).columnShadow],
+                          boxShadow: [
+                            ref.watch(themeProvider).columnShadow,
+                            ref.watch(themeProvider).diceButtonOutline
+                          ],
                           borderRadius: BorderRadius.all(Radius.circular(
                               ref.watch(themeProvider).drawerBorderRadius)),
-                          color: ref.watch(themeProvider).diceButtonTextColor),
+                          color:
+                              ref.watch(themeProvider).drawerColumnContentBg),
                       child: Padding(
                           padding: const EdgeInsets.fromLTRB(2, 10, 2, 5),
                           child: ListView(

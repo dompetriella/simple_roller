@@ -62,11 +62,14 @@ class RollHistoryBar extends ConsumerWidget {
                     padding: const EdgeInsets.fromLTRB(12.0, 0, 12, 12),
                     child: Container(
                         decoration: BoxDecoration(
-                            boxShadow: [ref.watch(themeProvider).columnShadow],
+                            boxShadow: [
+                              ref.watch(themeProvider).columnShadow,
+                              ref.watch(themeProvider).diceButtonOutline,
+                            ],
                             borderRadius: BorderRadius.all(Radius.circular(
                                 ref.watch(themeProvider).drawerBorderRadius)),
                             color:
-                                ref.watch(themeProvider).diceButtonTextColor),
+                                ref.watch(themeProvider).drawerColumnContentBg),
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
                           child: ListView(
