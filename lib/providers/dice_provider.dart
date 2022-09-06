@@ -58,3 +58,38 @@ class RollHistoryNotifier extends StateNotifier<List<List<RolledDice>>> {
     print(state.length);
   }
 }
+
+final d20Stats = StateProvider<StatsDice>(
+  // We return the default sort type, here name.
+  (ref) => StatsDice(total: 0, times: 0),
+);
+
+final d4Stats = StateProvider<StatsDice>(
+  // We return the default sort type, here name.
+  (ref) => StatsDice(total: 0, times: 0),
+);
+
+final d6Stats = StateProvider<StatsDice>(
+  // We return the default sort type, here name.
+  (ref) => StatsDice(total: 0, times: 0),
+);
+
+final d8Stats = StateProvider<StatsDice>(
+  // We return the default sort type, here name.
+  (ref) => StatsDice(total: 0, times: 0),
+);
+
+final d10Stats = StateProvider<StatsDice>(
+  // We return the default sort type, here name.
+  (ref) => StatsDice(total: 0, times: 0),
+);
+
+final d12Stats = StateProvider<StatsDice>(
+  // We return the default sort type, here name.
+  (ref) => StatsDice(total: 0, times: 0),
+);
+
+final d100Stats = StateProvider<StatsDice>(
+  // We return the default sort type, here name.
+  (ref) => StatsDice(total: 0, times: 0),
+);

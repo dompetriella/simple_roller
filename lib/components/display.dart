@@ -64,6 +64,7 @@ class Display extends ConsumerWidget {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10.0),
                   child: GestureDetector(
+                    onTap: () => Scaffold.of(context).openEndDrawer(),
                     child: Container(
                       width: 50,
                       height: 50,
@@ -112,7 +113,7 @@ class Display extends ConsumerWidget {
                           color:
                               ref.watch(themeProvider).numberDisplayTextColor,
                           fontSize:
-                              ref.watch(multiplierProvider) < 10 ? 40 : 24,
+                              ref.watch(multiplierProvider) < 10 ? 35 : 22,
                           fontWeight: FontWeight.w900)),
                 )
               ],

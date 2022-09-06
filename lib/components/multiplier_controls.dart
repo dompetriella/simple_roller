@@ -52,7 +52,6 @@ class MultiplierControls extends ConsumerWidget {
                 child: GestureDetector(
                   onTap: () {
                     ref.watch(multiplierProvider.notifier).reset();
-                    Scaffold.of(context).openEndDrawer();
                   },
                   child: Container(
                     height: 50,

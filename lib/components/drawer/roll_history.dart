@@ -20,7 +20,7 @@ class RollHistoryBar extends ConsumerWidget {
           sequence: i,
         ));
       }
-      return logsList;
+      return logsList.reversed.toList();
     }
 
     return Flexible(
@@ -56,7 +56,7 @@ class RollHistoryBar extends ConsumerWidget {
                 ),
               ),
               Expanded(
-                flex: 6,
+                flex: 8,
                 child: Container(
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(12.0, 0, 12, 12),
@@ -68,8 +68,9 @@ class RollHistoryBar extends ConsumerWidget {
                             color:
                                 ref.watch(themeProvider).diceButtonTextColor),
                         child: Padding(
-                          padding: const EdgeInsets.fromLTRB(2, 10, 2, 5),
-                          child: ListView(children: getLoggingData()),
+                          padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+                          child: ListView(
+                              reverse: true, children: getLoggingData()),
                         )),
                   ),
                 ),
