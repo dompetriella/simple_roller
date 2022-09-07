@@ -191,3 +191,71 @@ AppTheme obelisk = AppTheme(
   drawerStatsIconBg: obeliskPrimary,
   drawerStatsColorBg: Colors.white,
 );
+
+var abyssalPrimary = hex('4F1315');
+var abyssalSecondary = Colors.black;
+var abyssalAccent = hex('F3DB59');
+
+AppTheme abyssal = AppTheme(
+    themeName: "Abyssal",
+    themeColors: [abyssalAccent, abyssalPrimary, abyssalSecondary],
+    bgColor: abyssalPrimary,
+    numberDisplayBgColor: abyssalSecondary,
+    diceIconBgColor: abyssalPrimary,
+    diceTypeBgColor: abyssalPrimary,
+    rollButtonBgColor: abyssalAccent,
+    multiplierTextColor: Colors.white,
+    diceButtonBg: Colors.black,
+    diceButtonInputColorBg: abyssalPrimary,
+    drawerBorderRadius: 0,
+    diceIconBorderRadius: 0,
+    diceTypeBorderRadius: 0,
+    diceButtonBorderRadius: 0,
+    numberDisplayBorderRadius: 0,
+    drawerBg: Colors.black,
+    drawerColumnBg: abyssalPrimary,
+    drawerColumnTextColor: Colors.white,
+    drawerHistorySliverBg: Colors.black,
+    drawerStatsIconBg: abyssalPrimary,
+    drawerStatsColorBg: Colors.black,
+    rollButtonTextColor: Colors.black,
+    multiplierBgColor: Colors.black,
+    numberDisplayTextColor: Colors.white,
+    drawerThemesBg: Colors.white,
+    drawerHistorySliverTextColor: Colors.white,
+    drawerColumnContentBg: Colors.black,
+    drawerHistorySliverOutline: BoxShadow(
+      color: abyssalAccent,
+      spreadRadius: 1,
+    ));
+
+var faeriePrimary = hex('2CE8E8');
+var faerieSecondary = Colors.white;
+var faerieBg = hex('B2FBFB');
+var faerieAccent = hex('FF81BD');
+
+AppTheme faerie = AppTheme(
+    themeName: "Faerie",
+    themeColors: [faeriePrimary, faerieBg, faerieSecondary, faerieAccent],
+    bgColor: faerieBg,
+    numberDisplayBgColor: faerieSecondary,
+    diceIconBgColor: faeriePrimary,
+    diceTypeBgColor: faeriePrimary,
+    rollButtonBgColor: faerieAccent,
+    multiplierTextColor: faeriePrimary,
+    diceButtonBg: faeriePrimary,
+    diceButtonInputColorBg: Colors.white,
+    drawerBg: faerieAccent,
+    drawerColumnBg: faeriePrimary,
+    drawerColumnTextColor: Colors.black,
+    drawerHistorySliverBg: faerieBg,
+    drawerStatsIconBg: faeriePrimary,
+    drawerStatsColorBg: faerieBg,
+    diceButtonBorderRadius: 100,
+    diceButtonTextColor: Colors.black,
+    diceIconBorderRadius: 100,
+    diceTypeBorderRadius: 100,
+    numberDisplayBorderRadius: 50,
+    diceTypeStrokeColor: Colors.black,
+    diceIconTextColor: Colors.black,
+    drawerNegativeSpace: faerieAccent);

@@ -19,7 +19,9 @@ class ThemesBar extends ConsumerWidget {
       ThemesButton(appTheme: verdant),
       ThemesButton(appTheme: glacier),
       ThemesButton(appTheme: fireball),
-      ThemesButton(appTheme: obelisk)
+      ThemesButton(appTheme: obelisk),
+      ThemesButton(appTheme: abyssal),
+      ThemesButton(appTheme: faerie)
     ];
 
     return Flexible(
