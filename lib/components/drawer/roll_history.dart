@@ -46,7 +46,7 @@ class RollHistoryBar extends ConsumerWidget {
                       Text(
                         'Roll History',
                         style: TextStyle(
-                            fontSize: 25,
+                            fontSize: MediaQuery.of(context).size.height * 0.03,
                             fontWeight: FontWeight.w900,
                             color:
                                 ref.watch(themeProvider).drawerColumnTextColor),

@@ -22,7 +22,7 @@ class StatsBar extends ConsumerWidget {
           child: Column(
             children: [
               Expanded(
-                flex: 2,
+                flex: 3,
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
                   child: Row(
@@ -32,7 +32,7 @@ class StatsBar extends ConsumerWidget {
                       Text(
                         'Stats',
                         style: TextStyle(
-                            fontSize: 25,
+                            fontSize: MediaQuery.of(context).size.height * 0.03,
                             fontWeight: FontWeight.w900,
                             color:
                                 ref.watch(themeProvider).drawerColumnTextColor),
@@ -42,10 +42,10 @@ class StatsBar extends ConsumerWidget {
                 ),
               ),
               Expanded(
-                flex: 5,
+                flex: 7,
                 child: Container(
                   child: Padding(
-                    padding: const EdgeInsets.fromLTRB(12.0, 8, 12, 8),
+                    padding: const EdgeInsets.fromLTRB(8.0, 8, 8, 8),
                     child: Container(
                       decoration: BoxDecoration(
                           boxShadow: [
@@ -57,7 +57,7 @@ class StatsBar extends ConsumerWidget {
                           color:
                               ref.watch(themeProvider).drawerColumnContentBg),
                       child: Padding(
-                          padding: const EdgeInsets.fromLTRB(2, 10, 2, 5),
+                          padding: const EdgeInsets.fromLTRB(2, 5, 2, 5),
                           child: ListView(
                               scrollDirection: Axis.horizontal,
                               children: [

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "191900571185",
+    "project_id": "simple-roller",
+    "storage_bucket": "simple-roller.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:191900571185:android:c10380310d1d5b78f06710",
+        "android_client_info": {
+          "package_name": "com.example.dice_roller"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "191900571185-s61keho2o5qepbnan591g8p9p8hhvkvt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBH1Q9KH4anUD-1eJQgRr5ppknPSajVlx0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "191900571185-s61keho2o5qepbnan591g8p9p8hhvkvt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

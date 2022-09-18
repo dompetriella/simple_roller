@@ -12,8 +12,7 @@ class StatsLog extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    double buttonHeight = 80;
-    double buttonWidth = 80;
+    double buttonSize = MediaQuery.of(context).size.height * 0.10;
 
     StateProvider<StatsDice> chosenDice() {
       switch (diceValue) {
@@ -41,8 +40,8 @@ class StatsLog extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(4.0, 0, 4, 0),
       child: Container(
-        width: buttonWidth,
-        height: buttonHeight,
+        width: buttonSize,
+        height: buttonSize,
         decoration: BoxDecoration(
           color: ref.watch(themeProvider).diceButtonBg,
           borderRadius: BorderRadius.all(
@@ -58,21 +57,21 @@ class StatsLog extends ConsumerWidget {
                 style: TextStyle(
                     color: ref.watch(themeProvider).diceButtonTextColor,
                     fontWeight: FontWeight.bold,
-                    fontSize: 20),
+                    fontSize: MediaQuery.of(context).size.height * 0.025),
               ),
               Text(
                 'Rolls: ${ref.watch(thisDieProvider).times}',
                 style: TextStyle(
-                  color: ref.watch(themeProvider).diceButtonTextColor,
-                  fontWeight: FontWeight.normal,
-                ),
+                    color: ref.watch(themeProvider).diceButtonTextColor,
+                    fontWeight: FontWeight.normal,
+                    fontSize: MediaQuery.of(context).size.height * 0.018),
               ),
               Text(
                 'Avg: ${double.parse((ref.watch(thisDieProvider).average).toStringAsFixed(1))}',
                 style: TextStyle(
-                  color: ref.watch(themeProvider).diceButtonTextColor,
-                  fontWeight: FontWeight.normal,
-                ),
+                    color: ref.watch(themeProvider).diceButtonTextColor,
+                    fontWeight: FontWeight.normal,
+                    fontSize: MediaQuery.of(context).size.height * 0.018),
               ),
             ],
           ),

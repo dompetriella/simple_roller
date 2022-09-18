@@ -36,6 +36,7 @@ dependencies:
   flutter_riverpod: ^1.0.4
   flutter_svg: ^1.1.4
   flutter_inset_box_shadow: ^1.0.8
+  firebase_core: ^1.21.1
 
 dev_dependencies:
   flutter_test:

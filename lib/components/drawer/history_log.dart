@@ -31,7 +31,7 @@ class HistoryLog extends ConsumerWidget {
       padding: const EdgeInsets.fromLTRB(10.0, 5, 8, 0),
       child: Container(
         width: double.infinity,
-        height: 65,
+        height: MediaQuery.of(context).size.height * 0.1,
         decoration: BoxDecoration(
             color: ref.watch(themeProvider).numberDisplayBgColor,
             borderRadius: BorderRadius.all(
@@ -66,7 +66,6 @@ class HistoryLog extends ConsumerWidget {
                                       .map((e) => RolledDiceIcon(
                                             originalDice: e.diceValue,
                                             rolledValue: e.rollValue,
-                                            fontSize: 14,
                                           ))
                                       .toList()),
                               Padding(

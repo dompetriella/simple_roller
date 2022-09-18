@@ -97,7 +97,7 @@ class RollButton extends ConsumerWidget {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
+      padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
       child: GestureDetector(
         onTap: () {
           ref
@@ -107,7 +107,7 @@ class RollButton extends ConsumerWidget {
         },
         child: Container(
           width: screenWidth,
-          height: screenHeight * .1,
+          height: 100,
           decoration: BoxDecoration(
               color: ref.watch(themeProvider).rollButtonBgColor,
               borderRadius: BorderRadius.all(Radius.circular(
@@ -120,7 +120,7 @@ class RollButton extends ConsumerWidget {
               child: Text(
             "ROLL",
             style: TextStyle(
-                fontSize: 50,
+                fontSize: MediaQuery.of(context).size.height * 0.09,
                 color: ref.watch(themeProvider).rollButtonTextColor,
                 fontWeight: FontWeight.w900),
           )),

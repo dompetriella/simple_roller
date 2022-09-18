@@ -21,21 +21,43 @@ final multiplierProvider =
 class MultiplierNotifier extends StateNotifier<int> {
   MultiplierNotifier() : super(1);
 
-  void increment() => state++;
+  void increment() {
+    var testState = state;
+    testState++;
+    if (testState > 99) {
+      state = 99;
+    } else {
+      state++;
+    }
+  }
 
-  void bigIncrement() => state += 10;
+  void bigIncrement() {
+    var testState = state;
+    testState += 10;
+    if (testState > 99) {
+      state = 99;
+    } else {
+      state = testState;
+    }
+  }
 
   void decrement() {
-    if (state > 1) {
+    var testState = state;
+    testState--;
+    if (testState > 1) {
       state--;
+    } else {
+      state = 1;
     }
   }
 
   void bigDecrement() {
-    if (state < 6) {
+    var testState = state;
+    testState -= 10;
+    if (testState < 1) {
       state = 1;
     } else {
-      state -= 10;
+      state = testState;
     }
   }
 

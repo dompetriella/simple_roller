@@ -23,13 +23,13 @@ class ThemesButton extends ConsumerWidget {
     }
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(5.0, 0, 3, 0),
+      padding: const EdgeInsets.fromLTRB(5.0, 2, 3, 2),
       child: Center(
           child: GestureDetector(
         onTap: () => ref.watch(themeProvider.notifier).state = appTheme,
         child: Container(
-            height: 50,
-            width: 50,
+            height: MediaQuery.of(context).size.height * 0.06,
+            width: MediaQuery.of(context).size.height * 0.06,
             clipBehavior: Clip.antiAlias,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(

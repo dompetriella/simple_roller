@@ -25,13 +25,16 @@ class MainPage extends ConsumerWidget {
               Scaffold.of(context).openEndDrawer();
             }
           },
-          child: ListView(
-            children: const [
-              Display(),
-              RollButton(),
-              MultiplierControls(),
-              ButtonsDialer()
-            ],
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(8.0, 8, 8, 0),
+            child: ListView(
+              children: const [
+                Display(),
+                RollButton(),
+                MultiplierControls(),
+                ButtonsDialer()
+              ],
+            ),
           ),
         );
       }),

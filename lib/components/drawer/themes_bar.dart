@@ -24,6 +24,9 @@ class ThemesBar extends ConsumerWidget {
       ThemesButton(appTheme: faerie)
     ];
 
+    var screenHeight = MediaQuery.of(context).size.height;
+    var screenWidth = MediaQuery.of(context).size.width;
+
     return Flexible(
       flex: 2,
       child: Padding(
@@ -50,7 +53,7 @@ class ThemesBar extends ConsumerWidget {
                           Text(
                             'Themes',
                             style: TextStyle(
-                                fontSize: 25,
+                                fontSize: screenHeight * 0.04,
                                 fontWeight: FontWeight.w900,
                                 color: ref
                                     .watch(themeProvider)
@@ -58,7 +61,7 @@ class ThemesBar extends ConsumerWidget {
                           ),
                           Text(ref.watch(themeProvider).themeName,
                               style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: screenHeight * 0.02,
                                   color: ref
                                       .watch(themeProvider)
                                       .drawerColumnTextColor))
@@ -68,7 +71,7 @@ class ThemesBar extends ConsumerWidget {
                   ),
                 ),
                 Flexible(
-                    flex: 6,
+                    flex: 4,
                     child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -77,15 +80,12 @@ class ThemesBar extends ConsumerWidget {
                               ref.watch(themeProvider).columnShadow,
                               ref.watch(themeProvider).diceButtonOutline
                             ]),
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(6.0, 2, 6, 2),
-                          child: ListView.builder(
-                              itemBuilder: ((context, index) {
-                                return themesButtonList[
-                                    index % themesButtonList.length];
-                              }),
-                              scrollDirection: Axis.horizontal),
-                        )))
+                        child: ListView.builder(
+                            itemBuilder: ((context, index) {
+                              return themesButtonList[
+                                  index % themesButtonList.length];
+                            }),
+                            scrollDirection: Axis.horizontal)))
               ],
             ),
           ),
