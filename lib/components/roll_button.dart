@@ -107,7 +107,7 @@ class RollButton extends ConsumerWidget {
         },
         child: Container(
           width: screenWidth,
-          height: 100,
+          constraints: BoxConstraints(minHeight: 100),
           decoration: BoxDecoration(
               color: ref.watch(themeProvider).rollButtonBgColor,
               borderRadius: BorderRadius.all(Radius.circular(
@@ -120,7 +120,7 @@ class RollButton extends ConsumerWidget {
               child: Text(
             "ROLL",
             style: TextStyle(
-                fontSize: MediaQuery.of(context).size.height * 0.09,
+                fontSize: MediaQuery.of(context).size.height * 0.07,
                 color: ref.watch(themeProvider).rollButtonTextColor,
                 fontWeight: FontWeight.w900),
           )),

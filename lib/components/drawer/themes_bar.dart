@@ -74,7 +74,8 @@ class ThemesBar extends ConsumerWidget {
                     flex: 4,
                     child: Container(
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                            borderRadius: BorderRadius.all(Radius.circular(
+                                ref.watch(themeProvider).themeBarBorderRadius)),
                             color: ref.watch(themeProvider).drawerThemesBg,
                             boxShadow: [
                               ref.watch(themeProvider).columnShadow,

@@ -23,7 +23,7 @@ class Display extends ConsumerWidget {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      constraints: BoxConstraints(minHeight: 200),
+      constraints: BoxConstraints(minHeight: 100),
       decoration: BoxDecoration(
           color: ref.watch(themeProvider).numberDisplayBgColor,
           borderRadius: BorderRadius.all(Radius.circular(

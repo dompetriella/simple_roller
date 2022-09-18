@@ -47,6 +47,7 @@ class AppTheme {
   final Color drawerColumnContentBg;
   final Color drawerColumnTextColor;
   final Color drawerThemesBg;
+  final double themeBarBorderRadius;
   final Color drawerHistorySliverBg;
   final Color drawerHistorySliverTextColor;
   final BoxShadow drawerHistorySliverOutline;
@@ -73,6 +74,7 @@ class AppTheme {
       this.drawerThemesBg = Colors.white,
       this.drawerNegativeSpace = Colors.white,
       this.drawerBorderRadius = 20,
+      this.themeBarBorderRadius = 15,
       this.drawerHistorySliverTextColor = Colors.black,
       this.drawerColumnContentBg = Colors.white,
       this.drawerHistorySliverOutline = const BoxShadow(

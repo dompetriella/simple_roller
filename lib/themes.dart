@@ -222,6 +222,7 @@ AppTheme abyssal = AppTheme(
     multiplierBgColor: Colors.black,
     numberDisplayTextColor: Colors.white,
     drawerThemesBg: Colors.white,
+    themeBarBorderRadius: 0,
     drawerHistorySliverTextColor: Colors.white,
     drawerColumnContentBg: Colors.black,
     drawerHistorySliverOutline: BoxShadow(
