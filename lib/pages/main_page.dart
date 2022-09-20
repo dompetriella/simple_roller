@@ -5,16 +5,35 @@ import 'package:flutter/material.dart';
 import 'package:dice_roller/components/multiplier_controls.dart';
 import 'package:dice_roller/components/display.dart';
 import 'package:dice_roller/components/roll_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'history_drawer.dart';
 import 'package:dice_roller/components/buttons_dialer.dart';
 import 'package:dice_roller/themes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MainPage extends ConsumerWidget {
-  const MainPage({Key? key}) : super(key: key);
+class MainPage extends ConsumerStatefulWidget {
+  const MainPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<MainPage> createState() => _MainPageState();
+}
+
+Future getStoredTheme(WidgetRef ref) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? storedTheme = prefs.getString('theme');
+  var theme = themesDictionary[storedTheme];
+  ref.read(themeProvider.notifier).state = theme ?? defaultTheme;
+}
+
+class _MainPageState extends ConsumerState<MainPage> {
+  @override
+  void initState() {
+    getStoredTheme(ref);
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ref.watch(themeProvider).bgColor,
       endDrawer: HistoryDrawer(),

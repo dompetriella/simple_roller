@@ -3,6 +3,7 @@ import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dice_roller/models/theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemesButton extends ConsumerWidget {
   final AppTheme appTheme;
@@ -22,11 +23,19 @@ class ThemesButton extends ConsumerWidget {
       }).toList();
     }
 
+    Future saveThemeToPreferences() async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString('theme', ref.read(themeProvider).themeName);
+    }
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(5.0, 2, 3, 2),
       child: Center(
           child: GestureDetector(
-        onTap: () => ref.watch(themeProvider.notifier).state = appTheme,
+        onTap: () => {
+          ref.watch(themeProvider.notifier).state = appTheme,
+          saveThemeToPreferences()
+        },
         child: Container(
             height: MediaQuery.of(context).size.height * 0.06,
             width: MediaQuery.of(context).size.height * 0.06,

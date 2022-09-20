@@ -38,6 +38,7 @@ dependencies:
   flutter_inset_box_shadow: ^1.0.8
   firebase_core: ^1.21.1
   intl: ^0.17.0
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:

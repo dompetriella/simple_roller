@@ -12,20 +12,13 @@ class ThemesBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    List<ThemesButton> themesButtonList = [
-      ThemesButton(appTheme: daylight),
-      ThemesButton(appTheme: twilight),
-      ThemesButton(appTheme: midnight),
-      ThemesButton(appTheme: verdant),
-      ThemesButton(appTheme: glacier),
-      ThemesButton(appTheme: fireball),
-      ThemesButton(appTheme: obelisk),
-      ThemesButton(appTheme: abyssal),
-      ThemesButton(appTheme: faerie)
-    ];
+    List<ThemesButton> themesButtonList = themesDictionary.values
+        .map((e) => ThemesButton(
+              appTheme: e,
+            ))
+        .toList();
 
     var screenHeight = MediaQuery.of(context).size.height;
-    var screenWidth = MediaQuery.of(context).size.width;
 
     return Flexible(
       flex: 2,
