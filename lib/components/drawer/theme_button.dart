@@ -32,6 +32,14 @@ class ThemesButton extends ConsumerWidget {
             width: MediaQuery.of(context).size.height * 0.06,
             clipBehavior: Clip.antiAlias,
             decoration: BoxDecoration(
+              boxShadow: [
+                if (ref.watch(themeProvider.notifier).state == appTheme)
+                  BoxShadow(
+                      color: ref.watch(themeProvider).rollButtonBgColor,
+                      offset: Offset(0, 0),
+                      blurRadius: 5,
+                      spreadRadius: 2)
+              ],
               borderRadius: BorderRadius.all(
                   Radius.circular(ref.watch(themeProvider).drawerBorderRadius)),
             ),

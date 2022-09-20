@@ -34,7 +34,9 @@ class Display extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            RolledDiceView(),
+            RolledDiceView(
+              size: 35,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -63,11 +65,7 @@ class Display extends ConsumerWidget {
                   '${getRolledDiceSum(ref.watch(rollHistoryProvider).last)}',
                   style: TextStyle(
                       color: ref.watch(themeProvider).numberDisplayTextColor,
-                      fontSize: getRolledDiceSum(
-                                  ref.watch(rollHistoryProvider).last) <
-                              100
-                          ? screenHeight * .18
-                          : screenHeight * .12,
+                      fontSize: 100,
                       fontWeight: FontWeight.w900),
                 ),
                 SizedBox(
@@ -94,14 +92,13 @@ class Display extends ConsumerWidget {
 }
 
 class RolledDiceView extends ConsumerWidget {
-  const RolledDiceView({
-    Key? key,
-  }) : super(key: key);
+  final double size;
+  const RolledDiceView({Key? key, required this.size}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return SizedBox(
-        height: MediaQuery.of(context).size.height * 0.05,
+        height: size,
         child: ListView(
             scrollDirection: Axis.horizontal,
             children: ref
@@ -110,6 +107,7 @@ class RolledDiceView extends ConsumerWidget {
                 .map((e) => RolledDiceIcon(
                       originalDice: e.diceValue,
                       rolledValue: e.rollValue,
+                      size: size,
                     ))
                 .toList()));
   }

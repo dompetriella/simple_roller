@@ -7,48 +7,50 @@ import 'package:dice_roller/providers/theme_provider.dart';
 class RolledDiceIcon extends ConsumerWidget {
   final int originalDice;
   final int rolledValue;
+  final double size;
   const RolledDiceIcon(
-      {Key? key, required this.originalDice, required this.rolledValue})
+      {Key? key,
+      required this.originalDice,
+      required this.rolledValue,
+      required this.size})
       : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return LayoutBuilder(builder: ((context, BoxConstraints constraints) {
-      return Padding(
-        padding: const EdgeInsets.fromLTRB(2.0, 0, 2.0, 0),
-        child: Container(
-          height: constraints.maxHeight,
-          width: constraints.maxHeight,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(
-                  ref.watch(themeProvider).diceIconBorderRadius)),
-              color: ref.watch(themeProvider).diceIconBgColor),
-          child: Stack(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: Opacity(
-                  opacity: .70,
-                  child: SvgPicture.asset(
-                    'assets/D${originalDice.toString()}.svg',
-                    color: ref
-                        .watch(themeProvider)
-                        .diceIconTextColor
-                        .withOpacity(.75),
-                  ),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(2.0, 0, 2.0, 0),
+      child: Container(
+        height: size,
+        width: size,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(
+                Radius.circular(ref.watch(themeProvider).diceIconBorderRadius)),
+            color: ref.watch(themeProvider).diceIconBgColor),
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(2.0),
+              child: Opacity(
+                opacity: .70,
+                child: SvgPicture.asset(
+                  'assets/D${originalDice.toString()}.svg',
+                  color: ref
+                      .watch(themeProvider)
+                      .diceIconTextColor
+                      .withOpacity(.75),
                 ),
               ),
-              Center(
-                  child: Text(
-                rolledValue.toString(),
-                style: TextStyle(
-                    color: ref.watch(themeProvider).diceIconTextColor,
-                    fontSize: constraints.maxHeight * .5),
-              ))
-            ],
-          ),
+            ),
+            Center(
+                child: Text(
+              rolledValue.toString(),
+              style: TextStyle(
+                  color: ref.watch(themeProvider).diceIconTextColor,
+                  fontSize: size * .50),
+            ))
+          ],
         ),
-      );
-    }));
+      ),
+    );
   }
 }
