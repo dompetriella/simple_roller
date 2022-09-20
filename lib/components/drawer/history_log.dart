@@ -103,7 +103,8 @@ class HistoryLog extends ConsumerWidget {
                                               ))
                                           .toList()),
                                 ),
-                              if (ref.read(_expand) == true)
+                              if (ref.read(_expand) == true &&
+                                  rolledDiceList.length > 1)
                                 Text('${getRolledDiceSum(rolledDiceList)}',
                                     style: TextStyle(
                                         color: ref

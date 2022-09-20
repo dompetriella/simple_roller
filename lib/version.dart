@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final themeProvider = StateProvider<String>((ref) {
-  return 'v0.3.0';
+  return 'v0.3.1';
 });
