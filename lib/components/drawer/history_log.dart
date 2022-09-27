@@ -1,13 +1,13 @@
-import 'dart:math';
-
 import 'package:dice_roller/components/rolled_dice_icon.dart';
 import 'package:dice_roller/providers/dice_provider.dart';
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dice_roller/providers/theme_provider.dart';
 import 'package:dice_roller/models/rolledDice.dart';
 import 'package:intl/intl.dart';
+import 'dart:math';
 
 class HistoryLog extends ConsumerWidget {
   final List<RolledDice> rolledDiceList;
@@ -25,8 +25,13 @@ class HistoryLog extends ConsumerWidget {
           ? '${(ref.watch(rollHistoryProvider).length - sequence)} Rolls Ago : '
           : 'Last Roll : ';
       String time =
-          DateFormat('MM-dd kk:mm').format(rolledDiceList[0].time) + '  ';
+          DateFormat('MM-dd kk:mm').format(rolledDiceList[0].time) + ' ';
       return messageString + time;
+    }
+
+    int getRandomNumber(int min, int max) {
+      final _random = Random();
+      return min + _random.nextInt(max - min);
     }
 
     int getRolledDiceSum(List<RolledDice> rolledDice) {
@@ -36,6 +41,8 @@ class HistoryLog extends ConsumerWidget {
       }
       return sum < 1000 ? sum : 999;
     }
+
+    var throwDirection = getRandomNumber(-20, 20);
 
     return GestureDetector(
       onTap: () {
@@ -94,13 +101,33 @@ class HistoryLog extends ConsumerWidget {
                                           WrapCrossAlignment.center,
                                       children: rolledDiceList
                                           .map((e) => Padding(
-                                                padding:
-                                                    const EdgeInsets.all(1.0),
-                                                child: RolledDiceIcon(
-                                                    originalDice: e.diceValue,
-                                                    rolledValue: e.rollValue,
-                                                    size: 25),
-                                              ))
+                                              padding:
+                                                  const EdgeInsets.all(1.0),
+                                              child: RolledDiceIcon(
+                                                      originalDice: e.diceValue,
+                                                      rolledValue: e.rollValue,
+                                                      size: 25)
+                                                  .animate()
+                                                  .fade(
+                                                      duration: 300.ms,
+                                                      delay: 100.ms)
+                                                  .rotate(
+                                                      duration: 500.ms,
+                                                      begin: throwDirection > 0
+                                                          ? 1.80
+                                                          : .20)
+                                                  .move(
+                                                      duration: 500.ms,
+                                                      begin: Offset(
+                                                          throwDirection
+                                                              .toDouble(),
+                                                          -20),
+                                                      curve: Curves.elasticOut,
+                                                      delay: 200.ms)
+                                                  .scale(
+                                                      duration: 200.ms,
+                                                      curve: Curves.elasticIn,
+                                                      begin: .7)))
                                           .toList()),
                                 ),
                               if (ref.read(_expand) == true &&
