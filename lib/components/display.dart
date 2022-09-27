@@ -28,7 +28,10 @@ class Display extends ConsumerWidget {
           color: ref.watch(themeProvider).numberDisplayBgColor,
           borderRadius: BorderRadius.all(Radius.circular(
               ref.watch(themeProvider).numberDisplayBorderRadius)),
-          boxShadow: [ref.watch(themeProvider).innerShadow]),
+          boxShadow: [
+            ref.watch(themeProvider).innerShadow,
+            ref.watch(themeProvider).numberDisplayDropShadow
+          ]),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(24.0, 16, 24.0, 16),
         child: Column(

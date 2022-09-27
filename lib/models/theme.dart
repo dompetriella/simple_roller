@@ -10,7 +10,7 @@ class AppTheme {
 
   final Color numberDisplayBgColor;
   final double numberDisplayBorderRadius;
-  final BoxShadow? numberDisplayDropShadow;
+  final BoxShadow numberDisplayDropShadow;
 
   final Color diceIconTextColor;
   final Color diceIconBgColor;
@@ -99,7 +99,7 @@ class AppTheme {
       this.diceButtonOutline = const BoxShadow(color: Colors.transparent),
       this.fontFamily = 'Helvetica',
       this.numberDisplayBorderRadius = 30,
-      this.numberDisplayDropShadow,
+      this.numberDisplayDropShadow = const BoxShadow(),
       this.diceIconTextColor = Colors.white,
       this.diceIconBorderRadius = 5,
       this.diceTypeStrokeColor = Colors.white,
