@@ -47,7 +47,7 @@ class _MainPageState extends ConsumerState<MainPage> {
           child: Padding(
             padding: const EdgeInsets.fromLTRB(8.0, 8, 8, 0),
             child: ListView(
-              children: const [
+              children: [
                 Display(),
                 RollButton(),
                 MultiplierControls(),

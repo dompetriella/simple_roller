@@ -5,9 +5,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dice_roller/providers/theme_provider.dart';
 import 'package:dice_roller/models/rolledDice.dart';
 import 'dart:math';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:dice_roller/providers/animation_provider.dart';
 
 class RollButton extends ConsumerWidget {
-  const RollButton({Key? key}) : super(key: key);
+  RollButton({Key? key}) : super(key: key);
 
   int randomInt(int min, int max) {
     var randomInt = min + Random.secure().nextInt((max + 1) - min);
@@ -94,36 +96,41 @@ class RollButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
       child: GestureDetector(
         onTap: () {
+          buttonPressAnimation(
+              ref, rollButtonPressEffects, rollButtonPressCondition);
           ref
               .read(rollHistoryProvider.notifier)
               .addRoll(createRolledDiceList(ref));
           calculateStats(ref);
         },
-        child: Container(
-          width: screenWidth,
-          constraints: BoxConstraints(minHeight: 100),
-          decoration: BoxDecoration(
-              color: ref.watch(themeProvider).rollButtonBgColor,
-              borderRadius: BorderRadius.all(Radius.circular(
-                  ref.watch(themeProvider).numberDisplayBorderRadius)),
-              boxShadow: [
-                ref.watch(themeProvider).innerShadow,
-                ref.watch(themeProvider).rollButtonOutline
-              ]),
-          child: Center(
-              child: Text(
-            "ROLL",
-            style: TextStyle(
-                fontSize: MediaQuery.of(context).size.height * 0.07,
-                color: ref.watch(themeProvider).rollButtonTextColor,
-                fontWeight: FontWeight.w900),
-          )),
+        child: Animate(
+          adapter: TriggerAdapter(ref.watch(rollButtonPressCondition)),
+          effects: ref.watch(rollButtonPressEffects),
+          child: Container(
+            width: screenWidth,
+            constraints: BoxConstraints(minHeight: 100),
+            decoration: BoxDecoration(
+                color: ref.watch(themeProvider).rollButtonBgColor,
+                borderRadius: BorderRadius.all(Radius.circular(
+                    ref.watch(themeProvider).numberDisplayBorderRadius)),
+                boxShadow: [
+                  ref.watch(themeProvider).innerShadow,
+                  ref.watch(themeProvider).rollButtonOutline
+                ]),
+            child: Center(
+                child: Text(
+              "ROLL",
+              style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.height * 0.07,
+                  color: ref.watch(themeProvider).rollButtonTextColor,
+                  fontWeight: FontWeight.w900),
+            )),
+          ),
         ),
       ),
     );

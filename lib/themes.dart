@@ -65,7 +65,7 @@ Map<String, AppTheme> themesDictionary = {
       diceButtonInputColorBg: Colors.black,
       diceButtonInnerShadow:
           BoxShadow(color: hex('392033'), blurRadius: 25, inset: true),
-      drawerBg: Colors.white,
+      drawerBg: sunsetBg,
       drawerColumnBg: Colors.black,
       drawerColumnContentBg: Colors.black,
       drawerColumnTextColor: sunsetPrimary,
