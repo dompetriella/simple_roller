@@ -53,7 +53,7 @@ class StatsBar extends ConsumerWidget {
                             ref.watch(themeProvider).diceButtonOutline
                           ],
                           borderRadius: BorderRadius.all(Radius.circular(
-                              ref.watch(themeProvider).drawerBorderRadius)),
+                              ref.watch(themeProvider).themeBarBorderRadius)),
                           color:
                               ref.watch(themeProvider).drawerColumnContentBg),
                       child: Padding(

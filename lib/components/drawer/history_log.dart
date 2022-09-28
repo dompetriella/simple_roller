@@ -57,7 +57,7 @@ class HistoryLog extends ConsumerWidget {
                 Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
-                      color: ref.watch(themeProvider).numberDisplayBgColor,
+                      color: ref.watch(themeProvider).drawerHistorySliverBg,
                       borderRadius: BorderRadius.all(Radius.circular(
                           ref.watch(themeProvider).drawerBorderRadius)),
                       boxShadow: [
