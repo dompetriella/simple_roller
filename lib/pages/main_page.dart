@@ -10,6 +10,7 @@ import 'history_drawer.dart';
 import 'package:dice_roller/components/buttons_dialer.dart';
 import 'package:dice_roller/themes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:dice_roller/version.dart';
 
 class MainPage extends ConsumerStatefulWidget {
   const MainPage({super.key});
@@ -51,7 +52,12 @@ class _MainPageState extends ConsumerState<MainPage> {
                 Display(),
                 RollButton(),
                 MultiplierControls(),
-                ButtonsDialer()
+                ButtonsDialer(),
+                Text(
+                  ref.read(version),
+                  style: TextStyle(
+                      color: ref.watch(themeProvider).rollButtonBgColor),
+                )
               ],
             ),
           ),
