@@ -44,19 +44,20 @@ void buttonPressAnimation(
         begin: 1.0, end: 0.9, duration: speed.ms, curve: Curves.easeOut),
     ScaleEffect(begin: 0.9, end: 1.1, delay: speed.ms)
   ];
-  print('$name: Current State: ${ref.read(condition)}');
-  ref.read(condition.notifier).state = false;
   ref.read(effectsProvider.notifier).state.clear();
   for (var element in effects) {
     ref.read(effectsProvider.notifier).state.add(element);
   }
   ref.read(condition.notifier).state = true;
-  print('$name: CurrentState: ${ref.read(condition)}');
 }
 
 //Display Animations
 final diceTotalEffects = StateProvider<List<Effect<dynamic>>>((ref) => []);
 final diceTotalCondition = StateProvider<bool>((ref) => false);
+
+final rolledDisplayDiceEffects =
+    StateProvider<List<Effect<dynamic>>>((ref) => []);
+final rolledDisplayDiceCondition = StateProvider<bool>((ref) => false);
 
 //Roll Button Animations
 final rollButtonPressEffects =
@@ -75,3 +76,7 @@ final multiplierMinusButtonPressCondition = StateProvider<bool>((ref) => false);
 final multiplierClearButtonPressEffects =
     StateProvider<List<Effect<dynamic>>>((ref) => []);
 final multiplierClearButtonPressCondition = StateProvider<bool>((ref) => false);
+
+// Dice Button Animations
+final diceButtonEffects = StateProvider<List<Effect<dynamic>>>((ref) => []);
+final diceButtonCondition = StateProvider<bool>((ref) => false);

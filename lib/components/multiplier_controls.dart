@@ -32,7 +32,7 @@ class MultiplierControls extends ConsumerWidget {
                 onLongPress: () {
                   buttonPressAnimation(ref, multiplierMinusButtonPressEffects,
                       multiplierMinusButtonPressCondition,
-                      speed: 250);
+                      speed: 300);
                   ref.watch(multiplierProvider.notifier).bigDecrement();
                 },
                 child: Animate(
@@ -118,7 +118,7 @@ class MultiplierControls extends ConsumerWidget {
                     ref,
                     multiplierPlusButtonPressEffects,
                     multiplierPlusButtonPressCondition,
-                    speed: 250,
+                    speed: 300,
                   );
                   ref.watch(multiplierProvider.notifier).bigIncrement();
                 },

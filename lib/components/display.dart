@@ -46,26 +46,7 @@ class Display extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                SizedBox(
-                  width: screenHeight * 0.07,
-                  height: screenHeight * 0.07,
-                  child: GestureDetector(
-                    onTap: () => Scaffold.of(context).openEndDrawer(),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: ref.watch(themeProvider).diceTypeBgColor,
-                          borderRadius: BorderRadius.all(Radius.circular(
-                              ref.watch(themeProvider).diceTypeBorderRadius))),
-                      child: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: SvgPicture.asset(
-                          'assets/D${ref.watch(selectedDiceProvider).toString()}.svg',
-                          color: ref.watch(themeProvider).diceTypeStrokeColor,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                DiceIconDisplay(screenHeight: screenHeight),
                 Animate(
                   adapter: TriggerAdapter(ref.watch(diceTotalCondition)),
                   effects: ref.watch(diceTotalEffects),
@@ -79,23 +60,68 @@ class Display extends ConsumerWidget {
                         fontWeight: FontWeight.w900),
                   ),
                 ),
-                SizedBox(
-                  width: screenHeight * 0.07,
-                  child: Center(
-                    child: Text(
-                        'x${(ref.watch(multiplierProvider).toString())}',
-                        style: TextStyle(
-                            color:
-                                ref.watch(themeProvider).numberDisplayTextColor,
-                            fontSize: ref.watch(multiplierProvider) < 10
-                                ? screenHeight * .05
-                                : screenHeight * 0.04,
-                            fontWeight: FontWeight.w900)),
-                  ),
-                )
+                DisplayMultiplierTotal(screenHeight: screenHeight)
               ],
             )
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class DisplayMultiplierTotal extends ConsumerWidget {
+  const DisplayMultiplierTotal({
+    Key? key,
+    required this.screenHeight,
+  }) : super(key: key);
+
+  final double screenHeight;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return SizedBox(
+      width: screenHeight * 0.07,
+      child: Center(
+        child: Text('x${(ref.watch(multiplierProvider).toString())}',
+            style: TextStyle(
+                color: ref.watch(themeProvider).numberDisplayTextColor,
+                fontSize: ref.watch(multiplierProvider) < 10
+                    ? screenHeight * .05
+                    : screenHeight * 0.04,
+                fontWeight: FontWeight.w900)),
+      ),
+    );
+  }
+}
+
+class DiceIconDisplay extends ConsumerWidget {
+  const DiceIconDisplay({
+    Key? key,
+    required this.screenHeight,
+  }) : super(key: key);
+
+  final double screenHeight;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return SizedBox(
+      width: screenHeight * 0.07,
+      height: screenHeight * 0.07,
+      child: GestureDetector(
+        onTap: () => Scaffold.of(context).openEndDrawer(),
+        child: Container(
+          decoration: BoxDecoration(
+              color: ref.watch(themeProvider).diceTypeBgColor,
+              borderRadius: BorderRadius.all(Radius.circular(
+                  ref.watch(themeProvider).diceTypeBorderRadius))),
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: SvgPicture.asset(
+              'assets/D${ref.watch(selectedDiceProvider).toString()}.svg',
+              color: ref.watch(themeProvider).diceTypeStrokeColor,
+            ),
+          ),
         ),
       ),
     );
@@ -112,14 +138,22 @@ class RolledDiceView extends ConsumerWidget {
         height: size,
         child: ListView(
             scrollDirection: Axis.horizontal,
-            children: ref
-                .watch(rollHistoryProvider)
-                .last
-                .map((e) => RolledDiceIcon(
+            children: AnimateList(
+              children: ref
+                  .watch(rollHistoryProvider)
+                  .last
+                  .map(
+                    (e) => RolledDiceIcon(
                       originalDice: e.diceValue,
                       rolledValue: e.rollValue,
                       size: size,
-                    ))
-                .toList()));
+                    ),
+                  )
+                  .toList(),
+              adapter: TriggerAdapter(ref.watch(rollButtonPressCondition)),
+              effects: ref.watch(rolledDisplayDiceEffects),
+              onComplete: (controller) =>
+                  ref.watch(rolledDisplayDiceCondition.notifier).state = false,
+            )));
   }
 }

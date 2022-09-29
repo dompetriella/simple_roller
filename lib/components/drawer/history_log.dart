@@ -104,31 +104,28 @@ class HistoryLog extends ConsumerWidget {
                                               padding:
                                                   const EdgeInsets.all(1.0),
                                               child: RolledDiceIcon(
-                                                      originalDice: e.diceValue,
-                                                      rolledValue: e.rollValue,
-                                                      size: 25)
-                                                  .animate()
-                                                  .fade(
-                                                      duration: 300.ms,
-                                                      delay: 100.ms)
-                                                  .rotate(
-                                                      duration: 500.ms,
-                                                      begin: throwDirection > 0
-                                                          ? 1.80
-                                                          : .20)
-                                                  .move(
-                                                      duration: 500.ms,
-                                                      begin: Offset(
-                                                          throwDirection
-                                                              .toDouble(),
-                                                          -20),
-                                                      curve: Curves.elasticOut,
-                                                      delay: 200.ms)
-                                                  .scale(
-                                                      duration: 200.ms,
-                                                      curve: Curves.elasticIn,
-                                                      begin: .7)))
-                                          .toList()),
+                                                  originalDice: e.diceValue,
+                                                  rolledValue: e.rollValue,
+                                                  size: 25)))
+                                          .toList()
+                                          .animate(interval: 80.ms)
+                                          .fade(duration: 300.ms, delay: 100.ms)
+                                          .rotate(
+                                              duration: 500.ms,
+                                              begin: throwDirection > 0
+                                                  ? 1.80
+                                                  : .20)
+                                          .move(
+                                              duration: 500.ms,
+                                              begin: Offset(
+                                                  throwDirection.toDouble(),
+                                                  -20),
+                                              curve: Curves.elasticOut,
+                                              delay: 200.ms)
+                                          .scale(
+                                              duration: 200.ms,
+                                              curve: Curves.elasticIn,
+                                              begin: .7)),
                                 ),
                               if (ref.read(_expand) == true &&
                                   rolledDiceList.length > 1)

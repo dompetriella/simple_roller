@@ -96,6 +96,12 @@ class RollButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    int getRandomNumber(int min, int max) {
+      final random = Random();
+      return min + random.nextInt(max - min);
+    }
+
+    var throwDirection = getRandomNumber(-20, 20);
     var screenWidth = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
@@ -103,18 +109,28 @@ class RollButton extends ConsumerWidget {
         onTap: () {
           buttonPressAnimation(
               ref, rollButtonPressEffects, rollButtonPressCondition);
-          triggerAnimation(ref, diceTotalEffects, diceTotalCondition, [
-            FadeEffect(duration: 350.ms, curve: Curves.easeIn),
-            SlideEffect(
-                begin: Offset(
-                  0,
-                  0.25,
-                ),
-                curve: Curves.easeOut)
-          ]);
           ref
               .read(rollHistoryProvider.notifier)
               .addRoll(createRolledDiceList(ref));
+
+          triggerAnimation(ref, diceTotalEffects, diceTotalCondition, [
+            ScaleEffect(begin: 1.05, delay: 300.ms, curve: Curves.easeInOut),
+            MoveEffect(delay: 300.ms, begin: Offset(0, 5), curve: Curves.easeIn)
+          ]);
+
+          triggerAnimation(
+              ref, rolledDisplayDiceEffects, rolledDisplayDiceCondition, [
+            FadeEffect(duration: 200.ms, delay: 50.ms),
+            RotateEffect(
+                duration: 500.ms, begin: throwDirection > 0 ? 1.80 : .20),
+            MoveEffect(
+                duration: 500.ms,
+                begin: Offset(throwDirection.toDouble(), -20),
+                curve: Curves.elasticOut,
+                delay: 200.ms),
+            ScaleEffect(duration: 200.ms, curve: Curves.elasticIn, begin: .7),
+          ]);
+
           calculateStats(ref);
         },
         child: Animate(
