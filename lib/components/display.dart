@@ -6,6 +6,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dice_roller/providers/theme_provider.dart';
 import 'package:dice_roller/models/rolledDice.dart';
+import 'package:dice_roller/providers/animation_provider.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class Display extends ConsumerWidget {
   const Display({Key? key}) : super(key: key);
@@ -64,12 +66,18 @@ class Display extends ConsumerWidget {
                     ),
                   ),
                 ),
-                Text(
-                  '${getRolledDiceSum(ref.watch(rollHistoryProvider).last)}',
-                  style: TextStyle(
-                      color: ref.watch(themeProvider).numberDisplayTextColor,
-                      fontSize: 100,
-                      fontWeight: FontWeight.w900),
+                Animate(
+                  adapter: TriggerAdapter(ref.watch(diceTotalCondition)),
+                  effects: ref.watch(diceTotalEffects),
+                  onComplete: (controller) =>
+                      ref.watch(diceTotalCondition.notifier).state = false,
+                  child: Text(
+                    '${getRolledDiceSum(ref.watch(rollHistoryProvider).last)}',
+                    style: TextStyle(
+                        color: ref.watch(themeProvider).numberDisplayTextColor,
+                        fontSize: 100,
+                        fontWeight: FontWeight.w900),
+                  ),
                 ),
                 SizedBox(
                   width: screenHeight * 0.07,

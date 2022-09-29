@@ -25,13 +25,13 @@ class HistoryLog extends ConsumerWidget {
           ? '${(ref.watch(rollHistoryProvider).length - sequence)} Rolls Ago : '
           : 'Last Roll : ';
       String time =
-          DateFormat('MM-dd kk:mm').format(rolledDiceList[0].time) + ' ';
+          '${DateFormat('MM-dd kk:mm').format(rolledDiceList[0].time)} ';
       return messageString + time;
     }
 
     int getRandomNumber(int min, int max) {
-      final _random = Random();
-      return min + _random.nextInt(max - min);
+      final random = Random();
+      return min + random.nextInt(max - min);
     }
 
     int getRolledDiceSum(List<RolledDice> rolledDice) {

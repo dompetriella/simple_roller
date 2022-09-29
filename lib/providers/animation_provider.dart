@@ -54,6 +54,10 @@ void buttonPressAnimation(
   print('$name: CurrentState: ${ref.read(condition)}');
 }
 
+//Display Animations
+final diceTotalEffects = StateProvider<List<Effect<dynamic>>>((ref) => []);
+final diceTotalCondition = StateProvider<bool>((ref) => false);
+
 //Roll Button Animations
 final rollButtonPressEffects =
     StateProvider<List<Effect<dynamic>>>((ref) => []);

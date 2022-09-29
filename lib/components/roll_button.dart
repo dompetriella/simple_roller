@@ -103,6 +103,15 @@ class RollButton extends ConsumerWidget {
         onTap: () {
           buttonPressAnimation(
               ref, rollButtonPressEffects, rollButtonPressCondition);
+          triggerAnimation(ref, diceTotalEffects, diceTotalCondition, [
+            FadeEffect(duration: 350.ms, curve: Curves.easeIn),
+            SlideEffect(
+                begin: Offset(
+                  0,
+                  0.25,
+                ),
+                curve: Curves.easeOut)
+          ]);
           ref
               .read(rollHistoryProvider.notifier)
               .addRoll(createRolledDiceList(ref));
