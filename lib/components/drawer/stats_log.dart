@@ -57,21 +57,21 @@ class StatsLog extends ConsumerWidget {
                 style: TextStyle(
                     color: ref.watch(themeProvider).diceButtonTextColor,
                     fontWeight: FontWeight.bold,
-                    fontSize: MediaQuery.of(context).size.height * 0.025),
+                    fontSize: MediaQuery.of(context).size.height * 0.024),
               ),
               Text(
                 'Rolls: ${ref.watch(thisDieProvider).times}',
                 style: TextStyle(
                     color: ref.watch(themeProvider).diceButtonTextColor,
                     fontWeight: FontWeight.normal,
-                    fontSize: MediaQuery.of(context).size.height * 0.018),
+                    fontSize: MediaQuery.of(context).size.height * 0.015),
               ),
               Text(
                 'Avg: ${double.parse((ref.watch(thisDieProvider).average).toStringAsFixed(1))}',
                 style: TextStyle(
                     color: ref.watch(themeProvider).diceButtonTextColor,
                     fontWeight: FontWeight.normal,
-                    fontSize: MediaQuery.of(context).size.height * 0.018),
+                    fontSize: MediaQuery.of(context).size.height * 0.015),
               ),
             ],
           ),

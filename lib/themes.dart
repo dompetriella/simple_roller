@@ -54,8 +54,8 @@ Map<String, AppTheme> themesDictionary = {
       numberDisplayBgColor: sunsetBg,
       diceIconBgColor: sunsetPrimary,
       diceTypeBgColor: sunsetPrimary,
-      diceTypeStrokeColor: sunsetAccent,
-      diceIconTextColor: Colors.black,
+      diceTypeStrokeColor: sunsetBg,
+      diceIconTextColor: sunsetBg,
       numberDisplayTextColor: sunsetPrimary,
       rollButtonBgColor: sunsetAccent,
       rollButtonTextColor: sunsetBg,
@@ -302,8 +302,8 @@ Map<String, AppTheme> themesDictionary = {
     drawerStatsIconBg: fireballPrimary,
     drawerStatsColorBg: Colors.white,
   ),
-  'Gust': AppTheme(
-    themeName: "Gust",
+  'Whirlwind': AppTheme(
+    themeName: "Whirlwind",
     themeColors: [gustSecondary, gustAccent, gustPrimary, gustBg],
     bgColor: gustBg,
     numberDisplayBgColor: gustSecondary,

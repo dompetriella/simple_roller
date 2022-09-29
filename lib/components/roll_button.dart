@@ -111,6 +111,8 @@ class RollButton extends ConsumerWidget {
         child: Animate(
           adapter: TriggerAdapter(ref.watch(rollButtonPressCondition)),
           effects: ref.watch(rollButtonPressEffects),
+          onComplete: (controller) =>
+              ref.watch(rollButtonPressCondition.notifier).state = false,
           child: Container(
             width: screenWidth,
             constraints: BoxConstraints(minHeight: 100),

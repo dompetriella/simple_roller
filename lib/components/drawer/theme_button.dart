@@ -49,8 +49,7 @@ class ThemesButton extends ConsumerWidget {
                       blurRadius: 5,
                       spreadRadius: 2)
               ],
-              borderRadius: BorderRadius.all(
-                  Radius.circular(ref.watch(themeProvider).drawerBorderRadius)),
+              borderRadius: BorderRadius.all(Radius.circular(100)),
             ),
             child: Row(children: generateButtonColors())),
       )),
