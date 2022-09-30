@@ -77,7 +77,6 @@ class RollHistoryNotifier extends StateNotifier<List<List<RolledDice>>> {
 
   addRoll(List<RolledDice> diceRolls) {
     state = [...state, diceRolls];
-    print(state.length);
   }
 }
 

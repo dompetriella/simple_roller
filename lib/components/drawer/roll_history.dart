@@ -1,4 +1,3 @@
-import 'package:dice_roller/models/rolledDice.dart';
 import 'package:dice_roller/providers/dice_provider.dart';
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
@@ -14,7 +13,6 @@ class RollHistoryBar extends ConsumerWidget {
     List<HistoryLog> getLoggingData() {
       List<HistoryLog> logsList = [];
       for (var i = 0; i < ref.watch(rollHistoryProvider).length; i++) {
-        print(i);
         logsList.add(HistoryLog(
           rolledDiceList: ref.watch(rollHistoryProvider)[i],
           sequence: i,

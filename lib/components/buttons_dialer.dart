@@ -1,5 +1,4 @@
 import 'package:dice_roller/components/dice_button.dart';
-import 'package:dice_roller/components/dice_input_button.dart';
 import 'package:flutter/material.dart';
 
 class ButtonsDialer extends StatelessWidget {

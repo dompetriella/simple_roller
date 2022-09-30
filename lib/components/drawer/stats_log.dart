@@ -1,7 +1,6 @@
 import 'package:dice_roller/providers/dice_provider.dart';
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dice_roller/providers/theme_provider.dart';
 import 'package:dice_roller/models/rolledDice.dart';

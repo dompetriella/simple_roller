@@ -152,6 +152,17 @@ class HistoryLog extends ConsumerWidget {
               ],
             ),
           ),
+          if (sequence > 0 && ref.watch(_expand))
+            Positioned(
+              bottom: -50,
+              right: 0,
+              left: 0,
+              child: Icon(
+                Icons.arrow_drop_up_rounded,
+                size: 100.0,
+                color: ref.watch(themeProvider).rollButtonBgColor,
+              ).animate().move(begin: Offset(0, 10)).scale(begin: 1.1),
+            ),
           if (sequence > 0 && ref.watch(_expand) == false)
             Icon(
               Icons.arrow_drop_down_circle,
