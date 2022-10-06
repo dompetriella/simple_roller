@@ -7,7 +7,7 @@ import 'package:dice_roller/models/rolledDice.dart';
 
 class StatsLog extends ConsumerWidget {
   final String diceValue;
-  StatsLog({Key? key, required this.diceValue}) : super(key: key);
+  const StatsLog({Key? key, required this.diceValue}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

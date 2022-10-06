@@ -3,7 +3,7 @@ import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:dice_roller/models/theme.dart';
 
 Color hex(String code) {
-  String colorString = '0xFF' + code;
+  String colorString = '0xFF$code';
   return Color(int.parse(colorString));
 }
 
@@ -450,13 +450,9 @@ Map<String, AppTheme> themesDictionary = {
       multiplierBgColor: Colors.white),
 };
 
-// light blue
 var daylightBg = hex('AAC6C3');
-// purple
 var daylightPrimary = hex('423B52');
-// grey
 var daylightSecondary = hex('D9D9D9');
-// red
 var daylightAccent = hex('990000');
 
 var verdantBg = hex('1C4A1B');

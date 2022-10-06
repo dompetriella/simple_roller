@@ -116,7 +116,7 @@ class DiceIconDisplay extends ConsumerWidget {
               borderRadius: BorderRadius.all(Radius.circular(
                   ref.watch(themeProvider).diceTypeBorderRadius))),
           child: Padding(
-            padding: const EdgeInsets.all(4.0),
+            padding: const EdgeInsets.all(6.0),
             child: SvgPicture.asset(
               'assets/D${ref.watch(selectedDiceProvider).toString()}.svg',
               color: ref.watch(themeProvider).diceTypeStrokeColor,

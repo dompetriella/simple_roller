@@ -9,7 +9,7 @@ import 'package:dice_roller/providers/animation_provider.dart';
 
 class DiceButton extends ConsumerWidget {
   final int diceNumber;
-  DiceButton({Key? key, required this.diceNumber}) : super(key: key);
+  const DiceButton({Key? key, required this.diceNumber}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

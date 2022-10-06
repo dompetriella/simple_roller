@@ -13,7 +13,7 @@ class DiceRoller extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(),
-      home: SafeArea(child: const MainPage()),
+      home: const SafeArea(child: MainPage()),
     );
   }
 }

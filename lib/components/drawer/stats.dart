@@ -60,7 +60,7 @@ class StatsBar extends ConsumerWidget {
                           padding: const EdgeInsets.fromLTRB(2, 5, 2, 5),
                           child: ListView(
                               scrollDirection: Axis.horizontal,
-                              children: [
+                              children: const [
                                 StatsLog(
                                   diceValue: '20',
                                 ),

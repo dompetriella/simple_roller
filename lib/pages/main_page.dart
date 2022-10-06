@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:dice_roller/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:dice_roller/components/multiplier_controls.dart';
@@ -49,10 +48,10 @@ class _MainPageState extends ConsumerState<MainPage> {
             padding: const EdgeInsets.fromLTRB(8.0, 8, 8, 0),
             child: ListView(
               children: [
-                Display(),
-                RollButton(),
-                MultiplierControls(),
-                ButtonsDialer(),
+                const Display(),
+                const RollButton(),
+                const MultiplierControls(),
+                const ButtonsDialer(),
                 Text(
                   ref.read(version),
                   style: TextStyle(

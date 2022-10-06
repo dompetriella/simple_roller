@@ -20,9 +20,9 @@ void triggerAnimation(
     StateProvider<bool> condition,
     List<Effect<dynamic>> effects) {
   ref.read(condition.notifier).state = false;
-  ref.read(effectsProvider.notifier).state..clear();
+  ref.read(effectsProvider.notifier).state.clear();
   effects.forEach((element) {
-    ref.read(effectsProvider.notifier).state..add(element);
+    ref.read(effectsProvider.notifier).state.add(element);
   });
   ref.read(condition.notifier).state = true;
 }

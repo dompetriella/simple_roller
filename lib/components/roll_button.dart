@@ -9,7 +9,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:dice_roller/providers/animation_provider.dart';
 
 class RollButton extends ConsumerWidget {
-  RollButton({Key? key}) : super(key: key);
+  const RollButton({Key? key}) : super(key: key);
 
   int randomInt(int min, int max) {
     var randomInt = min + Random.secure().nextInt((max + 1) - min);
