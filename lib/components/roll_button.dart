@@ -21,7 +21,10 @@ class RollButton extends ConsumerWidget {
     for (var i = 0; i < ref.read(multiplierProvider); i++) {
       RolledDice die = RolledDice(
           rollValue: randomInt(1, ref.read(selectedDiceProvider)),
-          diceValue: ref.read(selectedDiceProvider));
+          diceValue: ref.read(selectedDiceProvider),
+          modifier: (ref.read(modifierSignPositive)
+              ? ref.read(modifierProvider)
+              : ref.read(modifierProvider) * -1));
       rolledDiceList.add(die);
     }
     return rolledDiceList;

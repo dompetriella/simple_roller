@@ -85,7 +85,8 @@ class HistoryLog extends ConsumerWidget {
                                     ),
                                   ),
                                   if (ref.read(_expand) == false)
-                                    Text('${getRolledDiceSum(rolledDiceList)}',
+                                    Text(
+                                        '${getRolledDiceSum(rolledDiceList) + rolledDiceList[0].modifier}',
                                         style: TextStyle(
                                             color: ref
                                                 .watch(themeProvider)
@@ -127,9 +128,9 @@ class HistoryLog extends ConsumerWidget {
                                               curve: Curves.elasticIn,
                                               begin: .7)),
                                 ),
-                              if (ref.read(_expand) == true &&
-                                  rolledDiceList.length > 1)
-                                Text('${getRolledDiceSum(rolledDiceList)}',
+                              if (ref.read(_expand))
+                                Text(
+                                    '${getRolledDiceSum(rolledDiceList)}${(rolledDiceList[0].modifier != 0 ? ' +(${rolledDiceList[0].modifier})' : '')}',
                                     style: TextStyle(
                                         color: ref
                                             .watch(themeProvider)

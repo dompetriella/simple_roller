@@ -74,6 +74,7 @@ class MultiplierControls extends ConsumerWidget {
                         multiplierClearButtonPressCondition,
                         speed: 100, name: "Clear");
                     ref.watch(multiplierProvider.notifier).reset();
+                    ref.watch(modifierProvider.notifier).state = 0;
                   },
                   child: Animate(
                     adapter: TriggerAdapter(

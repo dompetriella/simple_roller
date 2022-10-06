@@ -18,10 +18,16 @@ class DiceButton extends ConsumerWidget {
     String diceNumberString = diceNumber.toString();
     return GestureDetector(
       onTap: () => {
-        ref.watch(selectedDiceProvider.notifier).changeCurrentDie(diceNumber),
-        triggerAnimation(ref, diceButtonEffects, diceButtonCondition, [
-          ScaleEffect(begin: 1.05, duration: 400.ms, curve: Curves.easeInOut)
-        ])
+        ref
+            .watch(selectedDiceProvider.notifier)
+            .changeCurrentDie(diceNumber, ref),
+        triggerAnimation(
+          ref,
+          diceButtonEffects,
+          diceButtonCondition,
+          [ScaleEffect(begin: 1.05, duration: 400.ms, curve: Curves.easeInOut)],
+        ),
+        ref.read(modifierProvider.notifier).state = 0
       },
       child: diceNumber == ref.watch(selectedDiceProvider)
           ? Animate(

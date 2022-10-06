@@ -2,8 +2,10 @@ class RolledDice {
   final int rollValue;
   final int diceValue;
   final DateTime time = DateTime.now();
+  final int modifier;
 
-  RolledDice({required this.rollValue, required this.diceValue});
+  RolledDice(
+      {required this.rollValue, required this.diceValue, this.modifier = 0});
 }
 
 class StatsDice {

@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart';
 import 'package:dice_roller/providers/dice_provider.dart';
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
@@ -46,14 +47,16 @@ class Display extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                DiceIconDisplay(screenHeight: screenHeight),
+                RepaintBoundary(
+                  child: DiceIconDisplay(screenHeight: screenHeight),
+                ),
                 Animate(
                   adapter: TriggerAdapter(ref.watch(diceTotalCondition)),
                   effects: ref.watch(diceTotalEffects),
                   onComplete: (controller) =>
                       ref.watch(diceTotalCondition.notifier).state = false,
                   child: Text(
-                    '${getRolledDiceSum(ref.watch(rollHistoryProvider).last)}',
+                    '${getRolledDiceSum(ref.watch(rollHistoryProvider).last) + ref.watch(rollHistoryProvider).last[0].modifier}',
                     style: TextStyle(
                         color: ref.watch(themeProvider).numberDisplayTextColor,
                         fontSize: 100,
@@ -105,21 +108,44 @@ class DiceIconDisplay extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return SizedBox(
-      width: screenHeight * 0.07,
-      height: screenHeight * 0.07,
-      child: GestureDetector(
-        onTap: () => Scaffold.of(context).openEndDrawer(),
-        child: Container(
-          decoration: BoxDecoration(
-              color: ref.watch(themeProvider).diceTypeBgColor,
-              borderRadius: BorderRadius.all(Radius.circular(
-                  ref.watch(themeProvider).diceTypeBorderRadius))),
-          child: Padding(
-            padding: const EdgeInsets.all(6.0),
-            child: SvgPicture.asset(
-              'assets/D${ref.watch(selectedDiceProvider).toString()}.svg',
-              color: ref.watch(themeProvider).diceTypeStrokeColor,
+    return Badge(
+      showBadge: ref.watch(modifierProvider) != 0,
+      elevation: 5,
+      badgeColor: ref.watch(modifierSignPositive)
+          ? ref.watch(themeProvider).rollButtonBgColor
+          : ref.watch(themeProvider).rollButtonTextColor,
+      padding: EdgeInsets.all(6),
+      position: BadgePosition(top: -10, start: -10),
+      badgeContent: ref.watch(modifierSignPositive)
+          ? Text(
+              "+${ref.watch(modifierProvider)}",
+              style: TextStyle(
+                  color: ref.watch(themeProvider).rollButtonTextColor),
+            )
+          : Text(
+              "-${ref.watch(modifierProvider)}",
+              style:
+                  TextStyle(color: ref.watch(themeProvider).rollButtonBgColor),
+            ),
+      child: SizedBox(
+        width: screenHeight * 0.07,
+        height: screenHeight * 0.07,
+        child: GestureDetector(
+          onTap: () => ref.read(modifierProvider.notifier).state++,
+          onLongPress: (() => ref.read(modifierSignPositive.notifier).state =
+              !ref.read(modifierSignPositive)),
+          onPanStart: (swipe) => ref.read(modifierProvider.notifier).state = 0,
+          child: Container(
+            decoration: BoxDecoration(
+                color: ref.watch(themeProvider).diceTypeBgColor,
+                borderRadius: BorderRadius.all(Radius.circular(
+                    ref.watch(themeProvider).diceTypeBorderRadius))),
+            child: Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: SvgPicture.asset(
+                'assets/D${ref.watch(selectedDiceProvider).toString()}.svg',
+                color: ref.watch(themeProvider).diceTypeStrokeColor,
+              ),
             ),
           ),
         ),

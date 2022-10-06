@@ -31,20 +31,17 @@ class RolledDiceIcon extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.all(2.0),
               child: Opacity(
-                opacity: .70,
+                opacity: .90,
                 child: SvgPicture.asset(
-                  'assets/D${originalDice.toString()}.svg',
-                  color: ref
-                      .watch(themeProvider)
-                      .diceIconTextColor
-                      .withOpacity(.75),
-                ),
+                    'assets/D${originalDice.toString()}.svg',
+                    color: ref.watch(themeProvider).diceIconTextColor),
               ),
             ),
             Center(
                 child: Text(
               rolledValue.toString(),
               style: TextStyle(
+                  fontWeight: FontWeight.bold,
                   color: ref.watch(themeProvider).diceIconTextColor,
                   fontSize: size * .50),
             ))
