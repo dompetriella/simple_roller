@@ -130,7 +130,7 @@ class HistoryLog extends ConsumerWidget {
                                 ),
                               if (ref.read(_expand))
                                 Text(
-                                    '${getRolledDiceSum(rolledDiceList)}${(rolledDiceList[0].modifier != 0 ? ' +(${rolledDiceList[0].modifier})' : '')}',
+                                    '${getRolledDiceSum(rolledDiceList)}${(rolledDiceList[0].modifier != 0 ? ' + (${rolledDiceList[0].modifier})' : '')}',
                                     style: TextStyle(
                                         color: ref
                                             .watch(themeProvider)

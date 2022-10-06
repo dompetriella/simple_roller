@@ -109,6 +109,8 @@ class DiceIconDisplay extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Badge(
+      toAnimate: true,
+      animationType: BadgeAnimationType.scale,
       showBadge: ref.watch(modifierProvider) != 0,
       elevation: 5,
       badgeColor: ref.watch(modifierSignPositive)
