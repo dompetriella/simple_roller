@@ -111,6 +111,7 @@ class DiceIconDisplay extends ConsumerWidget {
     return Badge(
       toAnimate: true,
       animationType: BadgeAnimationType.scale,
+      animationDuration: Duration(milliseconds: 350),
       showBadge: ref.watch(modifierProvider) != 0,
       elevation: 5,
       badgeColor: ref.watch(modifierSignPositive)
