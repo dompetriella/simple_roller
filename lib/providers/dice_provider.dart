@@ -11,6 +11,7 @@ class DiceNotifier extends StateNotifier<int> {
   void changeCurrentDie(int currentDie, WidgetRef ref) {
     if (state != currentDie) {
       ref.read(modifierProvider.notifier).state = 0;
+      ref.read(modifierSignPositive.notifier).state = true;
     }
     state = currentDie;
   }

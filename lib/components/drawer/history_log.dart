@@ -49,6 +49,7 @@ class HistoryLog extends ConsumerWidget {
         ref.read(_expand.notifier).state = !ref.read(_expand);
       },
       child: Stack(
+        clipBehavior: Clip.none,
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(10.0, 5, 8, 0),
@@ -129,14 +130,15 @@ class HistoryLog extends ConsumerWidget {
                                               begin: .7)),
                                 ),
                               if (ref.read(_expand))
-                                Text(
-                                    '${getRolledDiceSum(rolledDiceList)}${(rolledDiceList[0].modifier != 0 ? ' + (${rolledDiceList[0].modifier})' : '')}',
-                                    style: TextStyle(
-                                        color: ref
-                                            .watch(themeProvider)
-                                            .drawerHistorySliverTextColor,
-                                        fontWeight: FontWeight.w900,
-                                        fontSize: 25)),
+                                Text('${getRolledDiceSum(rolledDiceList)}${(rolledDiceList[0].modifier != 0 ? ' + (${rolledDiceList[0].modifier})' : '')}',
+                                        style: TextStyle(
+                                            color: ref
+                                                .watch(themeProvider)
+                                                .drawerHistorySliverTextColor,
+                                            fontWeight: FontWeight.w900,
+                                            fontSize: 25))
+                                    .animate()
+                                    .fade(duration: 500.ms, delay: 250.ms),
                             ],
                           )
                         : Center(
@@ -155,20 +157,29 @@ class HistoryLog extends ConsumerWidget {
           ),
           if (sequence > 0 && ref.watch(_expand))
             Positioned(
-              bottom: -50,
+              bottom: -30,
               right: 0,
               left: 0,
               child: Icon(
                 Icons.arrow_drop_up_rounded,
-                size: 100.0,
+                size: 75.0,
                 color: ref.watch(themeProvider).rollButtonBgColor,
-              ).animate().move(begin: Offset(0, 10)).scale(begin: 1.1),
+              ).animate().scale(begin: 0.50, duration: 750.ms).move(
+                  begin: Offset(0, -25),
+                  duration: 250.ms,
+                  curve: Curves.bounceOut),
             ),
           if (sequence > 0 && ref.watch(_expand) == false)
-            Icon(
-              Icons.arrow_drop_down_circle,
-              color: ref.watch(themeProvider).rollButtonBgColor,
-            )
+            Positioned(
+              right: 5,
+              bottom: 0,
+              top: 2,
+              child: Icon(
+                Icons.arrow_drop_down_rounded,
+                size: 35,
+                color: ref.watch(themeProvider).rollButtonBgColor,
+              ),
+            ),
         ],
       ),
     );

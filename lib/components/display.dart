@@ -108,51 +108,76 @@ class DiceIconDisplay extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Badge(
-      toAnimate: true,
-      animationType: BadgeAnimationType.scale,
-      animationDuration: Duration(milliseconds: 350),
-      showBadge: ref.watch(modifierProvider) != 0,
-      elevation: 5,
-      badgeColor: ref.watch(modifierSignPositive)
-          ? ref.watch(themeProvider).rollButtonBgColor
-          : ref.watch(themeProvider).rollButtonTextColor,
-      padding: EdgeInsets.all(6),
-      position: BadgePosition(top: -10, start: -10),
-      badgeContent: ref.watch(modifierSignPositive)
-          ? Text(
-              "+${ref.watch(modifierProvider)}",
-              style: TextStyle(
-                  color: ref.watch(themeProvider).rollButtonTextColor),
-            )
-          : Text(
-              "-${ref.watch(modifierProvider)}",
-              style:
-                  TextStyle(color: ref.watch(themeProvider).rollButtonBgColor),
-            ),
-      child: SizedBox(
-        width: screenHeight * 0.07,
-        height: screenHeight * 0.07,
-        child: GestureDetector(
-          onTap: () => ref.read(modifierProvider.notifier).state++,
-          onLongPress: (() => ref.read(modifierSignPositive.notifier).state =
-              !ref.read(modifierSignPositive)),
-          onPanStart: (swipe) => ref.read(modifierProvider.notifier).state = 0,
-          child: Container(
-            decoration: BoxDecoration(
-                color: ref.watch(themeProvider).diceTypeBgColor,
-                borderRadius: BorderRadius.all(Radius.circular(
-                    ref.watch(themeProvider).diceTypeBorderRadius))),
-            child: Padding(
-              padding: const EdgeInsets.all(6.0),
-              child: SvgPicture.asset(
-                'assets/D${ref.watch(selectedDiceProvider).toString()}.svg',
-                color: ref.watch(themeProvider).diceTypeStrokeColor,
+    String formatModifierToString() {
+      if (ref.read(modifierSignPositive))
+        return '+${ref.watch(modifierProvider)}';
+      return '- ${ref.watch(modifierProvider)}';
+    }
+
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        SizedBox(
+          width: screenHeight * 0.07,
+          height: screenHeight * 0.07,
+          child: GestureDetector(
+            // onTap: () => Scaffold.of(context).openEndDrawer(),
+            onTap: () => (ref.read(modifierProvider) < 99)
+                ? ref.read(modifierProvider.notifier).state += 1
+                : null,
+            onLongPress: (() => ref.read(modifierProvider.notifier).state = 0),
+            onPanStart: (swipe) => ref
+                .read(modifierSignPositive.notifier)
+                .state = !ref.read(modifierSignPositive),
+
+            child: Container(
+              decoration: BoxDecoration(
+                  color: ref.watch(themeProvider).diceTypeBgColor,
+                  borderRadius: BorderRadius.all(Radius.circular(
+                      ref.watch(themeProvider).diceTypeBorderRadius))),
+              child: Padding(
+                padding: const EdgeInsets.all(6.0),
+                child: SvgPicture.asset(
+                  'assets/D${ref.watch(selectedDiceProvider).toString()}.svg',
+                  color: ref.watch(themeProvider).diceTypeStrokeColor,
+                ),
               ),
             ),
           ),
         ),
-      ),
+        if (ref.watch(modifierProvider) != 0)
+          Positioned(
+              top: -8,
+              left: -8,
+              child: Container(
+                height: 25,
+                width: 25,
+                decoration: BoxDecoration(
+                    color: ref.watch(modifierSignPositive)
+                        ? ref.watch(themeProvider).rollButtonBgColor
+                        : ref.watch(themeProvider).rollButtonTextColor,
+                    borderRadius: BorderRadius.circular(
+                        ref.watch(themeProvider).diceButtonBorderRadius),
+                    border: Border.all(
+                      color: ref.watch(modifierSignPositive)
+                          ? ref.watch(themeProvider).rollButtonTextColor
+                          : ref.watch(themeProvider).rollButtonBgColor,
+                    )),
+                child: Center(
+                  child: Text(
+                    ref.watch(modifierSignPositive)
+                        ? '+${ref.watch(modifierProvider)}'
+                        : '- ${ref.watch(modifierProvider)}',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: ref.watch(modifierSignPositive)
+                          ? ref.watch(themeProvider).rollButtonTextColor
+                          : ref.watch(themeProvider).rollButtonBgColor,
+                    ),
+                  ),
+                ),
+              ).animate().scale(begin: 0.5, duration: 100.ms))
+      ],
     );
   }
 }
