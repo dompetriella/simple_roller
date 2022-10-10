@@ -36,7 +36,7 @@ class RollHistoryBar extends ConsumerWidget {
               Expanded(
                 flex: 1,
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+                  padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -69,7 +69,7 @@ class RollHistoryBar extends ConsumerWidget {
                             color:
                                 ref.watch(themeProvider).drawerColumnContentBg),
                         child: Padding(
-                          padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+                          padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
                           child: ListView(
                               reverse: true, children: getLoggingData()),
                         )),
