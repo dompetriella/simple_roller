@@ -5,6 +5,7 @@ import 'package:dice_roller/components/multiplier_controls.dart';
 import 'package:dice_roller/components/display.dart';
 import 'package:dice_roller/components/roll_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sticky_headers/sticky_headers.dart';
 import 'history_drawer.dart';
 import 'package:dice_roller/components/buttons_dialer.dart';
 import 'package:dice_roller/themes.dart';
@@ -48,10 +49,22 @@ class _MainPageState extends ConsumerState<MainPage> {
             padding: const EdgeInsets.fromLTRB(8.0, 8, 8, 0),
             child: ListView(
               children: [
-                const Display(),
-                const RollButton(),
-                const MultiplierControls(),
-                const ButtonsDialer(),
+                StickyHeader(
+                  header: Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Container(
+                      color: ref.watch(themeProvider).bgColor,
+                      child: Column(
+                        children: [
+                          const Display(),
+                          const RollButton(),
+                          const MultiplierControls(),
+                        ],
+                      ),
+                    ),
+                  ),
+                  content: const ButtonsDialer(),
+                ),
                 Text(
                   ref.read(version),
                   style: TextStyle(
