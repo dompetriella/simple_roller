@@ -1,5 +1,7 @@
-# dice_roller
+# Simple Roller
 
-A dice rolling app made in flutter
+A straightforward dice rolling app for use in tabletop games.
 
-Built for Windows, Mac, Linux, iOS, Android and Web
+Available for Android and Mobile Web @https://simple-roller.web.app
+
+Built with #Flutter
