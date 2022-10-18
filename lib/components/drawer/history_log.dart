@@ -71,7 +71,7 @@ class HistoryLog extends ConsumerWidget {
                             children: [
                               Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Center(
                                     child: Container(
@@ -171,12 +171,12 @@ class HistoryLog extends ConsumerWidget {
             ),
           if (sequence > 0 && ref.watch(_expand) == false)
             Positioned(
-              right: 5,
+              right: 8,
               bottom: 0,
               top: 2,
               child: Icon(
                 Icons.arrow_drop_down_rounded,
-                size: 35,
+                size: 30,
                 color: ref.watch(themeProvider).rollButtonBgColor,
               ),
             ),
