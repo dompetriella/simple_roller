@@ -130,7 +130,6 @@ class DiceIconDisplay extends ConsumerWidget {
           width: screenHeight * 0.07,
           height: screenHeight * 0.07,
           child: GestureDetector(
-            // onTap: () => Scaffold.of(context).openEndDrawer(),
             onTap: () => (ref.read(modifierProvider) < 99)
                 ? ref.read(modifierProvider.notifier).state += 1
                 : null,
@@ -138,7 +137,6 @@ class DiceIconDisplay extends ConsumerWidget {
             onPanStart: (swipe) => ref
                 .read(modifierSignPositive.notifier)
                 .state = !ref.read(modifierSignPositive),
-
             child: Container(
               decoration: BoxDecoration(
                   color: ref.watch(themeProvider).diceTypeBgColor,
