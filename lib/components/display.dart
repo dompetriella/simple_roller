@@ -1,4 +1,3 @@
-import 'package:badges/badges.dart';
 import 'package:dice_roller/providers/dice_provider.dart';
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
@@ -6,20 +5,11 @@ import 'package:dice_roller/components/rolled_dice_icon.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dice_roller/providers/theme_provider.dart';
-import 'package:dice_roller/models/rolledDice.dart';
 import 'package:dice_roller/providers/animation_provider.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 class Display extends ConsumerWidget {
   const Display({Key? key}) : super(key: key);
-
-  int getRolledDiceSum(List<RolledDice> rolledDice) {
-    int sum = 0;
-    for (var die in rolledDice) {
-      sum += die.rollValue;
-    }
-    return sum < 1000 ? sum : 999;
-  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -40,8 +30,27 @@ class Display extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            RolledDiceView(
-              size: 35,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: SizedBox(
+                    width: screenWidth * .75,
+                    child: RolledDiceView(
+                      size: 35,
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () => Scaffold.of(context).openEndDrawer(),
+                  child: Icon(
+                    Icons.menu,
+                    size: 30,
+                    color: ref.watch(themeProvider).numberDisplayTextColor,
+                  ),
+                )
+              ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -56,7 +65,7 @@ class Display extends ConsumerWidget {
                   onComplete: (controller) =>
                       ref.watch(diceTotalCondition.notifier).state = false,
                   child: Text(
-                    '${getRolledDiceSum(ref.watch(rollHistoryProvider).last) + ref.watch(rollHistoryProvider).last[0].modifier}',
+                    ref.watch(displayNumber),
                     style: TextStyle(
                         color: ref.watch(themeProvider).numberDisplayTextColor,
                         fontSize: 100,
@@ -192,22 +201,26 @@ class RolledDiceView extends ConsumerWidget {
         height: size,
         child: ListView(
             scrollDirection: Axis.horizontal,
-            children: AnimateList(
-              children: ref
-                  .watch(rollHistoryProvider)
-                  .last
-                  .map(
-                    (e) => RolledDiceIcon(
-                      originalDice: e.diceValue,
-                      rolledValue: e.rollValue,
-                      size: size,
-                    ),
-                  )
-                  .toList(),
-              adapter: TriggerAdapter(ref.watch(rollButtonPressCondition)),
-              effects: ref.watch(rolledDisplayDiceEffects),
-              onComplete: (controller) =>
-                  ref.watch(rolledDisplayDiceCondition.notifier).state = false,
-            )));
+            children: ref.watch(isClear)
+                ? []
+                : AnimateList(
+                    children: ref
+                        .watch(rollHistoryProvider)
+                        .last
+                        .map(
+                          (e) => RolledDiceIcon(
+                            originalDice: e.diceValue,
+                            rolledValue: e.rollValue,
+                            size: size,
+                          ),
+                        )
+                        .toList(),
+                    adapter:
+                        TriggerAdapter(ref.watch(rollButtonPressCondition)),
+                    effects: ref.watch(rolledDisplayDiceEffects),
+                    onComplete: (controller) => ref
+                        .watch(rolledDisplayDiceCondition.notifier)
+                        .state = false,
+                  )));
   }
 }

@@ -16,6 +16,14 @@ class RollButton extends ConsumerWidget {
     return randomInt;
   }
 
+  int getRolledDiceSum(List<RolledDice> rolledDice) {
+    int sum = 0;
+    for (var die in rolledDice) {
+      sum += die.rollValue;
+    }
+    return sum < 1000 ? sum : 999;
+  }
+
   List<RolledDice> createRolledDiceList(WidgetRef ref) {
     List<RolledDice> rolledDiceList = [];
     for (var i = 0; i < ref.read(multiplierProvider); i++) {
@@ -112,10 +120,13 @@ class RollButton extends ConsumerWidget {
         onTap: () {
           buttonPressAnimation(
               ref, rollButtonPressEffects, rollButtonPressCondition);
+          ref.watch(isClear.notifier).state = false;
           ref
               .read(rollHistoryProvider.notifier)
               .addRoll(createRolledDiceList(ref));
 
+          ref.watch(displayNumber.notifier).state =
+              '${getRolledDiceSum(ref.watch(rollHistoryProvider).last) + ref.watch(rollHistoryProvider).last[0].modifier}';
           triggerAnimation(ref, diceTotalEffects, diceTotalCondition, [
             ScaleEffect(begin: 1.05, delay: 300.ms, curve: Curves.easeInOut),
             MoveEffect(delay: 300.ms, begin: Offset(0, 5), curve: Curves.easeIn)

@@ -73,8 +73,10 @@ class MultiplierControls extends ConsumerWidget {
                     buttonPressAnimation(ref, multiplierClearButtonPressEffects,
                         multiplierClearButtonPressCondition,
                         speed: 100, name: "Clear");
+                    ref.watch(isClear.notifier).state = true;
                     ref.watch(multiplierProvider.notifier).reset();
                     ref.watch(modifierProvider.notifier).state = 0;
+                    ref.watch(displayNumber.notifier).state = '0';
                     ref.watch(modifierSignPositive.notifier).state = true;
                   },
                   child: Animate(

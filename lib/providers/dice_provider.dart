@@ -119,3 +119,7 @@ final modifierSignPositive = StateProvider<bool>(
 var modifierProvider = StateProvider<int>(
   (ref) => 0,
 );
+
+final displayNumber = StateProvider<String>((ref) => '0');
+
+final isClear = StateProvider<bool>((ref) => false);
