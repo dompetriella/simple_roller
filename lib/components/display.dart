@@ -56,9 +56,7 @@ class Display extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                RepaintBoundary(
-                  child: DiceIconDisplay(screenHeight: screenHeight),
-                ),
+                DiceIconDisplay(screenHeight: screenHeight),
                 Animate(
                   adapter: TriggerAdapter(ref.watch(diceTotalCondition)),
                   effects: ref.watch(diceTotalEffects),
