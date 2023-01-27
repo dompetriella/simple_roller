@@ -2,7 +2,7 @@
 
 A straightforward dice rolling app for use in tabletop games.
 
-Available for Android (and coming soon to IOS)
+Available for iOS and Android
 
 Built with #Flutter
 
