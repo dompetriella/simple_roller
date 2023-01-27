@@ -3,7 +3,7 @@
 A straightforward dice rolling app for use in tabletop games.
 
 Available for 
-iOS - 
+iOS - https://apps.apple.com/us/app/simple-roller-dice-app/id1659106306?platform=iphone
 Android - https://play.google.com/store/apps/details?id=com.dompetriella.simpleRoller
 
 Built with #Flutter
