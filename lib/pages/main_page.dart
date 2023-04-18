@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:dice_roller/components/multiplier_controls.dart';
 import 'package:dice_roller/components/display.dart';
 import 'package:dice_roller/components/roll_button.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sticky_headers/sticky_headers.dart';
+import '../components/large_display.dart';
 import 'history_drawer.dart';
 import 'package:dice_roller/components/buttons_dialer.dart';
 import 'package:dice_roller/themes.dart';
@@ -46,7 +48,10 @@ class _MainPageState extends ConsumerState<MainPage> {
             }
           },
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(8.0, 8, 8, 0),
+            padding: getValueForScreenType(
+                context: context,
+                mobile: EdgeInsets.fromLTRB(8.0, 8, 8, 0),
+                tablet: EdgeInsets.all(24)),
             child: ListView(
               children: [
                 StickyHeader(
@@ -55,8 +60,11 @@ class _MainPageState extends ConsumerState<MainPage> {
                     child: Container(
                       color: ref.watch(themeProvider).bgColor,
                       child: Column(
-                        children: const [
-                          Display(),
+                        children: [
+                          ScreenTypeLayout.builder(
+                            mobile: (BuildContext context) => Display(),
+                            tablet: (BuildContext context) => LargeDisplay(),
+                          ),
                           RollButton(),
                           MultiplierControls(),
                         ],

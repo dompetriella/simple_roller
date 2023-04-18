@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'pages/main_page.dart';
 
 void main() {
@@ -11,10 +12,12 @@ class DiceRoller extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(),
-      home: const SafeArea(child: MainPage()),
-    );
+    return ResponsiveApp(builder: (context) {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(),
+        home: const SafeArea(child: MainPage()),
+      );
+    });
   }
 }

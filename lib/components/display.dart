@@ -62,6 +62,7 @@ class Display extends ConsumerWidget {
                   effects: ref.watch(diceTotalEffects),
                   onComplete: (controller) =>
                       ref.watch(diceTotalCondition.notifier).state = false,
+                  // this is the number of the dice total
                   child: Text(
                     ref.watch(displayNumber),
                     style: TextStyle(

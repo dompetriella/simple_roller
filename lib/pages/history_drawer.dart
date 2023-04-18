@@ -4,6 +4,7 @@ import 'package:dice_roller/components/drawer/themes_bar.dart';
 import 'package:dice_roller/components/drawer/roll_history.dart';
 import 'package:dice_roller/components/drawer/stats.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class HistoryDrawer extends ConsumerWidget {
   const HistoryDrawer({Key? key}) : super(key: key);
@@ -13,7 +14,8 @@ class HistoryDrawer extends ConsumerWidget {
     var drawerWidth = MediaQuery.of(context).size.width * .70;
     var drawerHeight = MediaQuery.of(context).size.height;
     return Container(
-        width: MediaQuery.of(context).size.width * .80,
+        width: getValueForScreenType(
+            context: context, mobile: 80.sw, tablet: 50.sw),
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.horizontal(
@@ -24,7 +26,8 @@ class HistoryDrawer extends ConsumerWidget {
         child: SizedBox(
           height: drawerHeight,
           width: drawerWidth,
-          child: Column(children: const [ ThemesBar(),  RollHistoryBar(), StatsBar()]),
+          child: Column(
+              children: const [ThemesBar(), RollHistoryBar(), StatsBar()]),
         ));
   }
 }

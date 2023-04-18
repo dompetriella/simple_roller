@@ -7,6 +7,7 @@ import 'package:dice_roller/models/rolledDice.dart';
 import 'dart:math';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:dice_roller/providers/animation_provider.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class RollButton extends ConsumerWidget {
   const RollButton({Key? key}) : super(key: key);
@@ -115,7 +116,10 @@ class RollButton extends ConsumerWidget {
     var throwDirection = getRandomNumber(-20, 20);
     var screenWidth = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+      padding: getValueForScreenType(
+          context: context,
+          mobile: EdgeInsets.all(10),
+          tablet: EdgeInsets.fromLTRB(14.sw, 25, 14.sw, 0)),
       child: GestureDetector(
         onTap: () {
           buttonPressAnimation(
@@ -129,7 +133,8 @@ class RollButton extends ConsumerWidget {
               '${getRolledDiceSum(ref.watch(rollHistoryProvider).last) + ref.watch(rollHistoryProvider).last[0].modifier}';
           triggerAnimation(ref, diceTotalEffects, diceTotalCondition, [
             ScaleEffect(begin: 1.05, delay: 300.ms, curve: Curves.easeInOut),
-            MoveEffect(delay: 300.ms, begin: const Offset(0, 5), curve: Curves.easeIn)
+            MoveEffect(
+                delay: 300.ms, begin: const Offset(0, 5), curve: Curves.easeIn)
           ]);
 
           triggerAnimation(
@@ -165,9 +170,14 @@ class RollButton extends ConsumerWidget {
                 ]),
             child: Center(
                 child: Text(
-              "ROLL",
+              getValueForScreenType(
+                  context: context,
+                  mobile: "ROLL",
+                  tablet:
+                      "ROLL${ref.watch(multiplierProvider) > 1 ? ' ${ref.watch(multiplierProvider)}x' : ''} D${ref.watch(selectedDiceProvider)}"),
               style: TextStyle(
-                  fontSize: MediaQuery.of(context).size.height * 0.07,
+                  fontSize: getValueForScreenType(
+                      context: context, mobile: 7.sh, tablet: 60),
                   color: ref.watch(themeProvider).rollButtonTextColor,
                   fontWeight: FontWeight.w900),
             )),

@@ -3,6 +3,7 @@ import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dice_roller/providers/theme_provider.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class RolledDiceIcon extends ConsumerWidget {
   final int originalDice;
@@ -18,7 +19,10 @@ class RolledDiceIcon extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(2.0, 0, 2.0, 0),
+      padding: getValueForScreenType(
+          context: context,
+          mobile: const EdgeInsets.fromLTRB(2.0, 0, 2.0, 0),
+          tablet: EdgeInsets.all(4)),
       child: Container(
         height: size,
         width: size,
