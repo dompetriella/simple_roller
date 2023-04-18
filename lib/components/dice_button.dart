@@ -83,17 +83,17 @@ class DiceButtonContainer extends ConsumerWidget {
             ref.watch(selectedDiceProvider) == diceNumber
                 ? BoxShadow(
                     color: ref.watch(themeProvider).rollButtonBgColor,
-                    offset: Offset(0, 0),
+                    offset: const Offset(0, 0),
                     spreadRadius: 5,
                     blurRadius: 15,
                     blurStyle: BlurStyle.normal)
-                : BoxShadow()
+                : const BoxShadow()
           ]),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            Container(
+            SizedBox(
               height: buttonHeight * .60,
               width: buttonWidth,
               child: Center(

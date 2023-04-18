@@ -12,7 +12,7 @@ class ButtonsDialer extends StatelessWidget {
       width: screenWidth,
       child: ScreenTypeLayout.builder(
         mobile: (context) {
-          return MobileDialer();
+          return const MobileDialer();
         },
         tablet: (context) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16),
@@ -20,7 +20,7 @@ class ButtonsDialer extends StatelessWidget {
             alignment: WrapAlignment.center,
             spacing: 30,
             runSpacing: 30,
-            children: [
+            children: const [
               DiceButton(diceNumber: 20),
               DiceButton(diceNumber: 4),
               DiceButton(diceNumber: 6),

@@ -118,7 +118,7 @@ class RollButton extends ConsumerWidget {
     return Padding(
       padding: getValueForScreenType(
           context: context,
-          mobile: EdgeInsets.all(10),
+          mobile: const EdgeInsets.all(10),
           tablet: EdgeInsets.fromLTRB(14.sw, 25, 14.sw, 0)),
       child: GestureDetector(
         onTap: () {

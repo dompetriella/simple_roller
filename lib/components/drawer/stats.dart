@@ -53,26 +53,26 @@ class StatsBar extends ConsumerWidget {
                                 children: getValueForScreenType(
                                   context: context,
                                   mobile: [
-                                    StatsLog(
+                                    const StatsLog(
                                       diceValue: '20',
                                     ),
-                                    StatsLog(diceValue: '6'),
-                                    StatsLog(diceValue: '4'),
-                                    StatsLog(diceValue: '8'),
-                                    StatsLog(diceValue: '10'),
-                                    StatsLog(diceValue: '12'),
-                                    StatsLog(diceValue: '100')
+                                    const StatsLog(diceValue: '6'),
+                                    const StatsLog(diceValue: '4'),
+                                    const StatsLog(diceValue: '8'),
+                                    const StatsLog(diceValue: '10'),
+                                    const StatsLog(diceValue: '12'),
+                                    const StatsLog(diceValue: '100')
                                   ],
                                   tablet: [
-                                    StatsLog(
+                                    const StatsLog(
                                       diceValue: '20',
                                     ),
-                                    StatsLog(diceValue: '4'),
-                                    StatsLog(diceValue: '6'),
-                                    StatsLog(diceValue: '8'),
-                                    StatsLog(diceValue: '10'),
-                                    StatsLog(diceValue: '12'),
-                                    StatsLog(diceValue: '100')
+                                    const StatsLog(diceValue: '4'),
+                                    const StatsLog(diceValue: '6'),
+                                    const StatsLog(diceValue: '8'),
+                                    const StatsLog(diceValue: '10'),
+                                    const StatsLog(diceValue: '12'),
+                                    const StatsLog(diceValue: '100')
                                   ],
                                 ))),
                       ),
@@ -84,8 +84,8 @@ class StatsBar extends ConsumerWidget {
             Padding(
               padding: getValueForScreenType(
                   context: context,
-                  mobile: EdgeInsets.fromLTRB(24, 10, 10, 10.0),
-                  tablet: EdgeInsets.fromLTRB(24, 20, 16, 8)),
+                  mobile: const EdgeInsets.fromLTRB(24, 10, 10, 10.0),
+                  tablet: const EdgeInsets.fromLTRB(24, 20, 16, 8)),
               child: Text(
                 'Stats',
                 style: TextStyle(

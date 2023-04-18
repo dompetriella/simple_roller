@@ -42,7 +42,7 @@ class LargeDisplay extends ConsumerWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Container(
+              child: SizedBox(
                 height: 180,
                 width: 22.sw,
                 child: ListView(

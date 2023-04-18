@@ -177,7 +177,7 @@ class HistoryLog extends ConsumerWidget {
                 size: 75.0,
                 color: ref.watch(themeProvider).rollButtonBgColor,
               ).animate().scale(begin: 0.50, duration: 750.ms).move(
-                  begin: Offset(0, -25),
+                  begin: const Offset(0, -25),
                   duration: 250.ms,
                   curve: Curves.bounceOut),
             ),

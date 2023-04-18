@@ -39,8 +39,8 @@ class RollHistoryBar extends ConsumerWidget {
                 child: Padding(
                   padding: getValueForScreenType(
                       context: context,
-                      mobile: EdgeInsets.fromLTRB(24, 0, 12, 8),
-                      tablet: EdgeInsets.fromLTRB(24, 0, 16, 8)),
+                      mobile: const EdgeInsets.fromLTRB(24, 0, 12, 8),
+                      tablet: const EdgeInsets.fromLTRB(24, 0, 16, 8)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.end,

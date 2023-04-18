@@ -22,7 +22,7 @@ class RolledDiceIcon extends ConsumerWidget {
       padding: getValueForScreenType(
           context: context,
           mobile: const EdgeInsets.fromLTRB(2.0, 0, 2.0, 0),
-          tablet: EdgeInsets.all(4)),
+          tablet: const EdgeInsets.all(4)),
       child: Container(
         height: size,
         width: size,

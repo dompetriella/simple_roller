@@ -12,7 +12,6 @@ import 'history_drawer.dart';
 import 'package:dice_roller/components/buttons_dialer.dart';
 import 'package:dice_roller/themes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:dice_roller/version.dart';
 
 class MainPage extends ConsumerStatefulWidget {
   const MainPage({super.key});
@@ -50,8 +49,8 @@ class _MainPageState extends ConsumerState<MainPage> {
           child: Padding(
             padding: getValueForScreenType(
                 context: context,
-                mobile: EdgeInsets.fromLTRB(8.0, 8, 8, 0),
-                tablet: EdgeInsets.all(24)),
+                mobile: const EdgeInsets.fromLTRB(8.0, 8, 8, 0),
+                tablet: const EdgeInsets.all(24)),
             child: ListView(
               children: [
                 StickyHeader(
@@ -62,11 +61,12 @@ class _MainPageState extends ConsumerState<MainPage> {
                       child: Column(
                         children: [
                           ScreenTypeLayout.builder(
-                            mobile: (BuildContext context) => Display(),
-                            tablet: (BuildContext context) => LargeDisplay(),
+                            mobile: (BuildContext context) => const Display(),
+                            tablet: (BuildContext context) =>
+                                const LargeDisplay(),
                           ),
-                          RollButton(),
-                          MultiplierControls(),
+                          const RollButton(),
+                          const MultiplierControls(),
                         ],
                       ),
                     ),
