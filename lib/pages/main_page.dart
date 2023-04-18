@@ -65,11 +65,6 @@ class _MainPageState extends ConsumerState<MainPage> {
                   ),
                   content: const ButtonsDialer(),
                 ),
-                Text(
-                  ref.read(version),
-                  style: TextStyle(
-                      color: ref.watch(themeProvider).rollButtonBgColor),
-                )
               ],
             ),
           ),
