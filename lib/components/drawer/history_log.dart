@@ -9,6 +9,8 @@ import 'package:dice_roller/models/rolledDice.dart';
 import 'package:intl/intl.dart';
 import 'dart:math';
 
+import 'package:responsive_builder/responsive_builder.dart';
+
 class HistoryLog extends ConsumerWidget {
   final List<RolledDice> rolledDiceList;
   final int sequence;
@@ -55,99 +57,111 @@ class HistoryLog extends ConsumerWidget {
             padding: const EdgeInsets.fromLTRB(10.0, 5, 8, 0),
             child: Column(
               children: [
-                Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      color: ref.watch(themeProvider).drawerHistorySliverBg,
-                      borderRadius: BorderRadius.all(Radius.circular(
-                          ref.watch(themeProvider).drawerBorderRadius)),
-                      boxShadow: [
-                        ref.watch(themeProvider).innerShadow,
-                      ]),
-                  child: Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: sequence > 0
-                        ? Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Center(
-                                    child: Text(
-                                      handleText(),
-                                      style: TextStyle(
-                                          color: ref
-                                              .watch(themeProvider)
-                                              .drawerHistorySliverTextColor,
-                                          fontSize: 12),
+                AnimatedSize(
+                  duration: 200.ms,
+                  curve: Curves.easeInOut,
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        color: ref.watch(themeProvider).drawerHistorySliverBg,
+                        borderRadius: BorderRadius.all(Radius.circular(
+                            ref.watch(themeProvider).drawerBorderRadius)),
+                        boxShadow: [
+                          ref.watch(themeProvider).innerShadow,
+                        ]),
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: sequence > 0
+                          ? Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Center(
+                                      child: Text(
+                                        handleText(),
+                                        style: TextStyle(
+                                            color: ref
+                                                .watch(themeProvider)
+                                                .drawerHistorySliverTextColor,
+                                            fontSize: getValueForScreenType(
+                                                context: context,
+                                                mobile: 12,
+                                                tablet: 16)),
+                                      ),
                                     ),
-                                  ),
-                                  if (ref.read(_expand) == false)
-                                    Text(
-                                        '${getRolledDiceSum(rolledDiceList) + rolledDiceList[0].modifier}',
-                                        style: TextStyle(
-                                            color: ref
-                                                .watch(themeProvider)
-                                                .drawerHistorySliverTextColor,
-                                            fontWeight: FontWeight.w900)),
-                                ],
-                              ),
-                              if (ref.watch(_expand))
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
-                                  child: Wrap(
-                                      crossAxisAlignment:
-                                          WrapCrossAlignment.center,
-                                      children: rolledDiceList
-                                          .map((e) => Padding(
-                                              padding:
-                                                  const EdgeInsets.all(1.0),
-                                              child: RolledDiceIcon(
-                                                  originalDice: e.diceValue,
-                                                  rolledValue: e.rollValue,
-                                                  size: 25)))
-                                          .toList()
-                                          .animate(interval: 80.ms)
-                                          .fade(duration: 300.ms, delay: 100.ms)
-                                          .rotate(
-                                              duration: 500.ms,
-                                              begin: throwDirection > 0
-                                                  ? 1.80
-                                                  : .20)
-                                          .move(
-                                              duration: 500.ms,
-                                              begin: Offset(
-                                                  throwDirection.toDouble(),
-                                                  -20),
-                                              curve: Curves.elasticOut,
-                                              delay: 200.ms)
-                                          .scale(
-                                              duration: 200.ms,
-                                              curve: Curves.elasticIn,
-                                              begin: .7)),
+                                    if (ref.read(_expand) == false)
+                                      Text(
+                                          '${getRolledDiceSum(rolledDiceList) + rolledDiceList[0].modifier}',
+                                          style: TextStyle(
+                                              color: ref
+                                                  .watch(themeProvider)
+                                                  .drawerHistorySliverTextColor,
+                                              fontWeight: FontWeight.w900)),
+                                  ],
                                 ),
-                              if (ref.read(_expand))
-                                Text('${getRolledDiceSum(rolledDiceList)}${(rolledDiceList[0].modifier != 0 ? ' + (${rolledDiceList[0].modifier})' : '')}',
-                                        style: TextStyle(
-                                            color: ref
-                                                .watch(themeProvider)
-                                                .drawerHistorySliverTextColor,
-                                            fontWeight: FontWeight.w900,
-                                            fontSize: 25))
-                                    .animate()
-                                    .fade(duration: 500.ms, delay: 250.ms),
-                            ],
-                          )
-                        : Center(
-                            child: Text(
-                            'Simple Roller Started',
-                            style: TextStyle(
-                                color: ref
-                                    .watch(themeProvider)
-                                    .drawerHistorySliverTextColor,
-                                fontWeight: FontWeight.w900),
-                          )),
+                                if (ref.watch(_expand))
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8.0),
+                                    child: Wrap(
+                                        crossAxisAlignment:
+                                            WrapCrossAlignment.center,
+                                        children: rolledDiceList
+                                            .map((e) => Padding(
+                                                padding:
+                                                    const EdgeInsets.all(1.0),
+                                                child: RolledDiceIcon(
+                                                    originalDice: e.diceValue,
+                                                    rolledValue: e.rollValue,
+                                                    size: 25)))
+                                            .toList()
+                                            .animate(interval: 80.ms)
+                                            .fade(
+                                                duration: 300.ms, delay: 100.ms)
+                                            .rotate(
+                                                duration: 500.ms,
+                                                begin: throwDirection > 0
+                                                    ? 1.80
+                                                    : .20)
+                                            .move(
+                                                duration: 500.ms,
+                                                begin: Offset(
+                                                    throwDirection.toDouble(),
+                                                    -20),
+                                                curve: Curves.elasticOut,
+                                                delay: 200.ms)
+                                            .scale(
+                                                duration: 200.ms,
+                                                curve: Curves.elasticIn,
+                                                begin: .7)),
+                                  ),
+                                if (ref.read(_expand))
+                                  Text('${getRolledDiceSum(rolledDiceList)}${(rolledDiceList[0].modifier != 0 ? ' + (${rolledDiceList[0].modifier})' : '')}',
+                                          style: TextStyle(
+                                              color: ref
+                                                  .watch(themeProvider)
+                                                  .drawerHistorySliverTextColor,
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 25))
+                                      .animate()
+                                      .fade(duration: 500.ms, delay: 250.ms),
+                              ],
+                            )
+                          : Center(
+                              child: Text(
+                              'Simple Roller Started',
+                              style: TextStyle(
+                                  color: ref
+                                      .watch(themeProvider)
+                                      .drawerHistorySliverTextColor,
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: getValueForScreenType(
+                                      context: context,
+                                      mobile: 12,
+                                      tablet: 16)),
+                            )),
+                    ),
                   ),
                 ),
               ],

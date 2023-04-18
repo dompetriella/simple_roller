@@ -4,6 +4,7 @@ import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dice_roller/components/drawer/theme_button.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class ThemesBar extends ConsumerWidget {
   const ThemesBar({
@@ -31,11 +32,15 @@ class ThemesBar extends ConsumerWidget {
                   Radius.circular(ref.watch(themeProvider).drawerBorderRadius)),
               boxShadow: [ref.watch(themeProvider).innerShadow]),
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(8.0, 12, 12, 8),
+            padding: getValueForScreenType(
+                context: context,
+                mobile: EdgeInsets.fromLTRB(8.0, 12, 12, 8),
+                tablet: EdgeInsets.all(16)),
             child: Column(
               children: [
                 Flexible(
-                  flex: 4,
+                  flex: getValueForScreenType(
+                      context: context, mobile: 4, tablet: 2),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -45,7 +50,10 @@ class ThemesBar extends ConsumerWidget {
                         Text(
                           'Themes',
                           style: TextStyle(
-                              fontSize: screenHeight * 0.04,
+                              fontSize: getValueForScreenType(
+                                  context: context,
+                                  mobile: 3.screenHeight,
+                                  tablet: 30),
                               fontWeight: FontWeight.w900,
                               color: ref
                                   .watch(themeProvider)
@@ -53,7 +61,8 @@ class ThemesBar extends ConsumerWidget {
                         ),
                         Text(ref.watch(themeProvider).themeName,
                             style: TextStyle(
-                                fontSize: screenHeight * 0.02,
+                                fontSize: getValueForScreenType(
+                                    context: context, mobile: 2.sh, tablet: 20),
                                 color: ref
                                     .watch(themeProvider)
                                     .drawerColumnTextColor))
@@ -62,7 +71,8 @@ class ThemesBar extends ConsumerWidget {
                   ),
                 ),
                 Flexible(
-                    flex: 4,
+                    flex: getValueForScreenType(
+                        context: context, mobile: 4, tablet: 3),
                     child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(
