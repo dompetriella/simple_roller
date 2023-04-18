@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dice_roller/providers/theme_provider.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:dice_roller/providers/animation_provider.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class DiceButton extends ConsumerWidget {
   final int diceNumber;
@@ -13,8 +14,10 @@ class DiceButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    double buttonHeight = 110;
-    double buttonWidth = 120;
+    double buttonHeight =
+        getValueForScreenType(context: context, mobile: 110, tablet: 15.5.sh);
+    double buttonWidth =
+        getValueForScreenType(context: context, mobile: 120, tablet: 15.5.sh);
     String diceNumberString = diceNumber.toString();
     return GestureDetector(
       onTap: () => {
@@ -108,7 +111,8 @@ class DiceButtonContainer extends ConsumerWidget {
                 "D$diceNumberString",
                 style: TextStyle(
                     color: ref.watch(themeProvider).diceButtonTextColor,
-                    fontSize: 20,
+                    fontSize: getValueForScreenType(
+                        context: context, mobile: 20, tablet: 2.5.sh),
                     fontWeight: FontWeight.bold),
               ),
             ))
