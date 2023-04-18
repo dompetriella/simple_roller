@@ -74,15 +74,13 @@ class HistoryLog extends ConsumerWidget {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Center(
-                                    child: Container(
-                                      child: Text(
-                                        handleText(),
-                                        style: TextStyle(
-                                            color: ref
-                                                .watch(themeProvider)
-                                                .drawerHistorySliverTextColor,
-                                            fontSize: 12),
-                                      ),
+                                    child: Text(
+                                      handleText(),
+                                      style: TextStyle(
+                                          color: ref
+                                              .watch(themeProvider)
+                                              .drawerHistorySliverTextColor,
+                                          fontSize: 12),
                                     ),
                                   ),
                                   if (ref.read(_expand) == false)

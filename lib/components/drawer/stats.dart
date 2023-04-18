@@ -31,37 +31,35 @@ class StatsBar extends ConsumerWidget {
                   ),
                   Expanded(
                     flex: 7,
-                    child: Container(
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(8.0, 8, 8, 8),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              boxShadow: [
-                                ref.watch(themeProvider).columnShadow,
-                                ref.watch(themeProvider).diceButtonOutline
-                              ],
-                              borderRadius: BorderRadius.all(Radius.circular(ref
-                                  .watch(themeProvider)
-                                  .themeBarBorderRadius)),
-                              color: ref
-                                  .watch(themeProvider)
-                                  .drawerColumnContentBg),
-                          child: Padding(
-                              padding: const EdgeInsets.fromLTRB(2, 5, 2, 5),
-                              child: ListView(
-                                  scrollDirection: Axis.horizontal,
-                                  children: const [
-                                    StatsLog(
-                                      diceValue: '20',
-                                    ),
-                                    StatsLog(diceValue: '6'),
-                                    StatsLog(diceValue: '4'),
-                                    StatsLog(diceValue: '8'),
-                                    StatsLog(diceValue: '10'),
-                                    StatsLog(diceValue: '12'),
-                                    StatsLog(diceValue: '100')
-                                  ])),
-                        ),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(8.0, 8, 8, 8),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            boxShadow: [
+                              ref.watch(themeProvider).columnShadow,
+                              ref.watch(themeProvider).diceButtonOutline
+                            ],
+                            borderRadius: BorderRadius.all(Radius.circular(ref
+                                .watch(themeProvider)
+                                .themeBarBorderRadius)),
+                            color: ref
+                                .watch(themeProvider)
+                                .drawerColumnContentBg),
+                        child: Padding(
+                            padding: const EdgeInsets.fromLTRB(2, 5, 2, 5),
+                            child: ListView(
+                                scrollDirection: Axis.horizontal,
+                                children: const [
+                                  StatsLog(
+                                    diceValue: '20',
+                                  ),
+                                  StatsLog(diceValue: '6'),
+                                  StatsLog(diceValue: '4'),
+                                  StatsLog(diceValue: '8'),
+                                  StatsLog(diceValue: '10'),
+                                  StatsLog(diceValue: '12'),
+                                  StatsLog(diceValue: '100')
+                                ])),
                       ),
                     ),
                   )

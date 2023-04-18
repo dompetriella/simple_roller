@@ -36,7 +36,6 @@ dependencies:
   flutter_riverpod: ^1.0.4
   flutter_svg: ^1.1.4
   flutter_inset_box_shadow: ^1.0.8
-  firebase_core: ^1.21.1
   intl: ^0.17.0
   shared_preferences: ^2.0.15
   flutter_launcher_icons: ^0.10.0

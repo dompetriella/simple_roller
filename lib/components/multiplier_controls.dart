@@ -15,7 +15,7 @@ class MultiplierControls extends ConsumerWidget {
     var screenWidth = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Container(
+      child: SizedBox(
         height: screenHeight * 0.08,
         width: screenWidth,
         child: Center(

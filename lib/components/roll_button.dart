@@ -129,7 +129,7 @@ class RollButton extends ConsumerWidget {
               '${getRolledDiceSum(ref.watch(rollHistoryProvider).last) + ref.watch(rollHistoryProvider).last[0].modifier}';
           triggerAnimation(ref, diceTotalEffects, diceTotalCondition, [
             ScaleEffect(begin: 1.05, delay: 300.ms, curve: Curves.easeInOut),
-            MoveEffect(delay: 300.ms, begin: Offset(0, 5), curve: Curves.easeIn)
+            MoveEffect(delay: 300.ms, begin: const Offset(0, 5), curve: Curves.easeIn)
           ]);
 
           triggerAnimation(
@@ -154,7 +154,7 @@ class RollButton extends ConsumerWidget {
               ref.watch(rollButtonPressCondition.notifier).state = false,
           child: Container(
             width: screenWidth,
-            constraints: BoxConstraints(minHeight: 100),
+            constraints: const BoxConstraints(minHeight: 100),
             decoration: BoxDecoration(
                 color: ref.watch(themeProvider).rollButtonBgColor,
                 borderRadius: BorderRadius.all(Radius.circular(

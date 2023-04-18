@@ -7,14 +7,14 @@ class ButtonsDialer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
-    return Container(
+    return SizedBox(
       width: screenWidth,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               Padding(
                 padding: EdgeInsets.all(12.0),
                 child: DiceButton(diceNumber: 20),
@@ -27,7 +27,7 @@ class ButtonsDialer extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               Padding(
                 padding: EdgeInsets.all(12.0),
                 child: DiceButton(diceNumber: 4),
@@ -40,7 +40,7 @@ class ButtonsDialer extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               Padding(
                 padding: EdgeInsets.all(12.0),
                 child: DiceButton(diceNumber: 10),
@@ -53,7 +53,7 @@ class ButtonsDialer extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               Padding(
                 padding: EdgeInsets.all(12.0),
                 child: DiceButton(

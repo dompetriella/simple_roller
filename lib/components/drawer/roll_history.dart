@@ -55,25 +55,23 @@ class RollHistoryBar extends ConsumerWidget {
               ),
               Expanded(
                 flex: 8,
-                child: Container(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(12.0, 0, 12, 12),
-                    child: Container(
-                        decoration: BoxDecoration(
-                            boxShadow: [
-                              ref.watch(themeProvider).columnShadow,
-                              ref.watch(themeProvider).diceButtonOutline,
-                            ],
-                            borderRadius: BorderRadius.all(Radius.circular(
-                                ref.watch(themeProvider).drawerBorderRadius)),
-                            color:
-                                ref.watch(themeProvider).drawerColumnContentBg),
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
-                          child: ListView(
-                              reverse: true, children: getLoggingData()),
-                        )),
-                  ),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(12.0, 0, 12, 12),
+                  child: Container(
+                      decoration: BoxDecoration(
+                          boxShadow: [
+                            ref.watch(themeProvider).columnShadow,
+                            ref.watch(themeProvider).diceButtonOutline,
+                          ],
+                          borderRadius: BorderRadius.all(Radius.circular(
+                              ref.watch(themeProvider).drawerBorderRadius)),
+                          color:
+                              ref.watch(themeProvider).drawerColumnContentBg),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+                        child: ListView(
+                            reverse: true, children: getLoggingData()),
+                      )),
                 ),
               ),
             ],

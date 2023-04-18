@@ -38,28 +38,26 @@ class ThemesBar extends ConsumerWidget {
                   flex: 4,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            'Themes',
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          'Themes',
+                          style: TextStyle(
+                              fontSize: screenHeight * 0.04,
+                              fontWeight: FontWeight.w900,
+                              color: ref
+                                  .watch(themeProvider)
+                                  .drawerColumnTextColor),
+                        ),
+                        Text(ref.watch(themeProvider).themeName,
                             style: TextStyle(
-                                fontSize: screenHeight * 0.04,
-                                fontWeight: FontWeight.w900,
+                                fontSize: screenHeight * 0.02,
                                 color: ref
                                     .watch(themeProvider)
-                                    .drawerColumnTextColor),
-                          ),
-                          Text(ref.watch(themeProvider).themeName,
-                              style: TextStyle(
-                                  fontSize: screenHeight * 0.02,
-                                  color: ref
-                                      .watch(themeProvider)
-                                      .drawerColumnTextColor))
-                        ],
-                      ),
+                                    .drawerColumnTextColor))
+                      ],
                     ),
                   ),
                 ),

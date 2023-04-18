@@ -37,7 +37,7 @@ class _MainPageState extends ConsumerState<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ref.watch(themeProvider).bgColor,
-      endDrawer: HistoryDrawer(),
+      endDrawer: const HistoryDrawer(),
       body: Builder(builder: (context) {
         return GestureDetector(
           onPanUpdate: (swipe) {
@@ -55,10 +55,10 @@ class _MainPageState extends ConsumerState<MainPage> {
                     child: Container(
                       color: ref.watch(themeProvider).bgColor,
                       child: Column(
-                        children: [
-                          const Display(),
-                          const RollButton(),
-                          const MultiplierControls(),
+                        children: const [
+                          Display(),
+                          RollButton(),
+                          MultiplierControls(),
                         ],
                       ),
                     ),

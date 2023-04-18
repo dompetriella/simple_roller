@@ -21,10 +21,10 @@ class HistoryDrawer extends ConsumerWidget {
                   ref.watch(themeProvider).diceButtonBorderRadius)),
           color: ref.watch(themeProvider).drawerBg,
         ),
-        child: Container(
+        child: SizedBox(
           height: drawerHeight,
           width: drawerWidth,
-          child: Column(children: [ThemesBar(), RollHistoryBar(), StatsBar()]),
+          child: Column(children: const [ ThemesBar(),  RollHistoryBar(), StatsBar()]),
         ));
   }
 }
