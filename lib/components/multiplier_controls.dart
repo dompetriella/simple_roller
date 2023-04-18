@@ -5,6 +5,7 @@ import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dice_roller/providers/theme_provider.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class MultiplierControls extends ConsumerWidget {
   const MultiplierControls({Key? key}) : super(key: key);
@@ -43,8 +44,10 @@ class MultiplierControls extends ConsumerWidget {
                       .watch(multiplierMinusButtonPressCondition.notifier)
                       .state = false,
                   child: Container(
-                      height: 50,
-                      width: 70,
+                      height: getValueForScreenType(
+                          context: context, mobile: 50, tablet: 65),
+                      width: getValueForScreenType(
+                          context: context, mobile: 70, tablet: 80),
                       decoration: BoxDecoration(
                           color: ref.watch(themeProvider).multiplierBgColor,
                           borderRadius: BorderRadius.all(Radius.circular(
@@ -57,7 +60,8 @@ class MultiplierControls extends ConsumerWidget {
                         child: Text(
                           "-",
                           style: TextStyle(
-                              fontSize: 60,
+                              fontSize: getValueForScreenType(
+                                  context: context, mobile: 60, tablet: 76),
                               fontWeight: FontWeight.w900,
                               height: .95,
                               color:
@@ -87,8 +91,10 @@ class MultiplierControls extends ConsumerWidget {
                         .watch(multiplierClearButtonPressCondition.notifier)
                         .state = false,
                     child: Container(
-                      height: 50,
-                      width: 60,
+                      height: getValueForScreenType(
+                          context: context, mobile: 50, tablet: 65),
+                      width: getValueForScreenType(
+                          context: context, mobile: 60, tablet: 225),
                       decoration: BoxDecoration(
                           color: ref.watch(themeProvider).multiplierBgColor,
                           borderRadius: BorderRadius.all(Radius.circular(
@@ -99,9 +105,11 @@ class MultiplierControls extends ConsumerWidget {
                           ]),
                       child: Center(
                           child: Text(
-                        "C",
+                        getValueForScreenType(
+                            context: context, mobile: "C", tablet: "CLEAR"),
                         style: TextStyle(
-                            fontSize: 30,
+                            fontSize: getValueForScreenType(
+                                context: context, mobile: 30, tablet: 40),
                             fontWeight: FontWeight.w900,
                             color:
                                 ref.watch(themeProvider).multiplierTextColor),
@@ -134,8 +142,10 @@ class MultiplierControls extends ConsumerWidget {
                       .watch(multiplierPlusButtonPressCondition.notifier)
                       .state = false,
                   child: Container(
-                      height: 50,
-                      width: 70,
+                      height: getValueForScreenType(
+                          context: context, mobile: 50, tablet: 65),
+                      width: getValueForScreenType(
+                          context: context, mobile: 70, tablet: 80),
                       decoration: BoxDecoration(
                           color: ref.watch(themeProvider).multiplierBgColor,
                           borderRadius: BorderRadius.all(Radius.circular(
@@ -148,7 +158,8 @@ class MultiplierControls extends ConsumerWidget {
                         child: Text(
                           "+",
                           style: TextStyle(
-                              fontSize: 60,
+                              fontSize: getValueForScreenType(
+                                  context: context, mobile: 60, tablet: 76),
                               fontWeight: FontWeight.w900,
                               height: .95,
                               color:
