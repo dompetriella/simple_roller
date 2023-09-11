@@ -119,7 +119,7 @@ Map<String, AppTheme> themesDictionary = {
       rollButtonBgColor: Colors.white,
       rollButtonTextColor: Colors.black,
       multiplierTextColor: Colors.white,
-      multiplierOutline: BoxShadow(color: Colors.white, spreadRadius: 1),
+      multiplierOutline: const BoxShadow(color: Colors.white, spreadRadius: 1),
       diceButtonBg: Colors.black,
       diceButtonOutline: const BoxShadow(color: Colors.white, spreadRadius: 1),
       diceButtonInnerShadow:
@@ -413,7 +413,7 @@ Map<String, AppTheme> themesDictionary = {
         Colors.white,
         Colors.black,
       ],
-      innerShadow: BoxShadow(),
+      innerShadow: const BoxShadow(),
       drawerBorderRadius: 0,
       diceIconBorderRadius: 0,
       diceTypeBorderRadius: 0,
@@ -430,7 +430,7 @@ Map<String, AppTheme> themesDictionary = {
       rollButtonBgColor: Colors.black,
       rollButtonTextColor: Colors.white,
       multiplierTextColor: Colors.black,
-      multiplierOutline: BoxShadow(color: Colors.black, spreadRadius: 1),
+      multiplierOutline: const BoxShadow(color: Colors.black, spreadRadius: 1),
       diceButtonBg: Colors.white,
       diceButtonOutline: const BoxShadow(color: Colors.black, spreadRadius: 1),
       diceButtonInnerShadow:

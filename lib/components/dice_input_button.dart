@@ -28,7 +28,7 @@ class DiceInputButton extends ConsumerWidget {
         child: Column(
           children: [
             Center(
-              child: Container(
+              child: SizedBox(
                 height: buttonHeight * .60,
                 width: buttonWidth,
                 child: Center(

@@ -5,6 +5,7 @@ import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dice_roller/providers/theme_provider.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_svg/svg.dart';
 
 class MultiplierControls extends ConsumerWidget {
   const MultiplierControls({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class MultiplierControls extends ConsumerWidget {
     var screenWidth = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Container(
+      child: SizedBox(
         height: screenHeight * 0.08,
         width: screenWidth,
         child: Center(
@@ -42,28 +43,40 @@ class MultiplierControls extends ConsumerWidget {
                   onComplete: (controller) => ref
                       .watch(multiplierMinusButtonPressCondition.notifier)
                       .state = false,
-                  child: Container(
-                      height: 50,
-                      width: 70,
-                      decoration: BoxDecoration(
-                          color: ref.watch(themeProvider).multiplierBgColor,
-                          borderRadius: BorderRadius.all(Radius.circular(
-                              ref.watch(themeProvider).diceButtonBorderRadius)),
-                          boxShadow: [
-                            ref.watch(themeProvider).multiplierDropShadow,
-                            ref.watch(themeProvider).multiplierOutline,
-                          ]),
-                      child: Center(
-                        child: Text(
-                          "-",
-                          style: TextStyle(
-                              fontSize: 60,
-                              fontWeight: FontWeight.w900,
-                              height: .95,
-                              color:
-                                  ref.watch(themeProvider).multiplierTextColor),
+                  child: Stack(
+                    children: [
+                      Container(
+                        height: screenWidth < 600 ? 50 : 120,
+                        width: screenWidth < 600 ? 70 : 140,
+                        decoration: BoxDecoration(
+                            color: ref.watch(themeProvider).multiplierBgColor,
+                            borderRadius: BorderRadius.all(Radius.circular(ref
+                                .watch(themeProvider)
+                                .diceButtonBorderRadius)),
+                            boxShadow: [
+                              ref.watch(themeProvider).multiplierDropShadow,
+                              ref.watch(themeProvider).multiplierOutline,
+                            ]),
+                      ),
+                      Positioned.fill(
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(2.0),
+                            child: SvgPicture.asset(
+                              'assets/minus.svg',
+                              colorFilter: ColorFilter.mode(
+                                  ref.watch(themeProvider).multiplierTextColor,
+                                  BlendMode.srcIn),
+                            ),
+                          ),
                         ),
-                      )),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Padding(
@@ -86,26 +99,41 @@ class MultiplierControls extends ConsumerWidget {
                     onComplete: (controller) => ref
                         .watch(multiplierClearButtonPressCondition.notifier)
                         .state = false,
-                    child: Container(
-                      height: 50,
-                      width: 60,
-                      decoration: BoxDecoration(
-                          color: ref.watch(themeProvider).multiplierBgColor,
-                          borderRadius: BorderRadius.all(Radius.circular(
-                              ref.watch(themeProvider).diceButtonBorderRadius)),
-                          boxShadow: [
-                            ref.watch(themeProvider).multiplierDropShadow,
-                            ref.watch(themeProvider).multiplierOutline,
-                          ]),
-                      child: Center(
-                          child: Text(
-                        "C",
-                        style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.w900,
-                            color:
-                                ref.watch(themeProvider).multiplierTextColor),
-                      )),
+                    child: Stack(
+                      children: [
+                        Container(
+                          height: screenWidth < 600 ? 50 : 120,
+                          width: screenWidth < 600 ? 60 : 130,
+                          decoration: BoxDecoration(
+                              color: ref.watch(themeProvider).multiplierBgColor,
+                              borderRadius: BorderRadius.all(Radius.circular(ref
+                                  .watch(themeProvider)
+                                  .diceButtonBorderRadius)),
+                              boxShadow: [
+                                ref.watch(themeProvider).multiplierDropShadow,
+                                ref.watch(themeProvider).multiplierOutline,
+                              ]),
+                        ),
+                        Positioned.fill(
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: SvgPicture.asset(
+                                'assets/clear.svg',
+                                colorFilter: ColorFilter.mode(
+                                    ref
+                                        .watch(themeProvider)
+                                        .multiplierTextColor,
+                                    BlendMode.srcIn),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -133,28 +161,40 @@ class MultiplierControls extends ConsumerWidget {
                   onComplete: (controller) => ref
                       .watch(multiplierPlusButtonPressCondition.notifier)
                       .state = false,
-                  child: Container(
-                      height: 50,
-                      width: 70,
-                      decoration: BoxDecoration(
-                          color: ref.watch(themeProvider).multiplierBgColor,
-                          borderRadius: BorderRadius.all(Radius.circular(
-                              ref.watch(themeProvider).diceButtonBorderRadius)),
-                          boxShadow: [
-                            ref.watch(themeProvider).multiplierDropShadow,
-                            ref.watch(themeProvider).multiplierOutline,
-                          ]),
-                      child: Center(
-                        child: Text(
-                          "+",
-                          style: TextStyle(
-                              fontSize: 60,
-                              fontWeight: FontWeight.w900,
-                              height: .95,
-                              color:
-                                  ref.watch(themeProvider).multiplierTextColor),
+                  child: Stack(
+                    children: [
+                      Container(
+                        height: screenWidth < 600 ? 50 : 120,
+                        width: screenWidth < 600 ? 70 : 140,
+                        decoration: BoxDecoration(
+                            color: ref.watch(themeProvider).multiplierBgColor,
+                            borderRadius: BorderRadius.all(Radius.circular(ref
+                                .watch(themeProvider)
+                                .diceButtonBorderRadius)),
+                            boxShadow: [
+                              ref.watch(themeProvider).multiplierDropShadow,
+                              ref.watch(themeProvider).multiplierOutline,
+                            ]),
+                      ),
+                      Positioned.fill(
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(2.0),
+                            child: SvgPicture.asset(
+                              'assets/plus.svg',
+                              colorFilter: ColorFilter.mode(
+                                  ref.watch(themeProvider).multiplierTextColor,
+                                  BlendMode.srcIn),
+                            ),
+                          ),
                         ),
-                      )),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

@@ -21,9 +21,9 @@ void triggerAnimation(
     List<Effect<dynamic>> effects) {
   ref.read(condition.notifier).state = false;
   ref.read(effectsProvider.notifier).state.clear();
-  effects.forEach((element) {
+  for (var element in effects) {
     ref.read(effectsProvider.notifier).state.add(element);
-  });
+  }
   ref.read(condition.notifier).state = true;
 }
 
@@ -35,11 +35,11 @@ void buttonPressAnimation(
     String name = ''}) {
   List<Effect<dynamic>> effects = [
     MoveEffect(
-        begin: Offset(0, 0),
-        end: Offset(0, -2),
+        begin: const Offset(0, 0),
+        end: const Offset(0, -2),
         duration: speed.ms,
         curve: Curves.easeOut),
-    MoveEffect(begin: Offset(0, 2), end: Offset(0, 0), delay: speed.ms),
+    MoveEffect(begin: const Offset(0, 2), end: const Offset(0, 0), delay: speed.ms),
     ScaleEffect(
         begin: 1.0, end: 0.9, duration: speed.ms, curve: Curves.easeOut),
     ScaleEffect(begin: 0.9, end: 1.1, delay: speed.ms)

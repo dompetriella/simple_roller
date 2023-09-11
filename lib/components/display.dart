@@ -16,7 +16,7 @@ class Display extends ConsumerWidget {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      constraints: BoxConstraints(minHeight: 100),
+      constraints: const BoxConstraints(minHeight: 100),
       decoration: BoxDecoration(
           color: ref.watch(themeProvider).numberDisplayBgColor,
           borderRadius: BorderRadius.all(Radius.circular(
@@ -37,7 +37,7 @@ class Display extends ConsumerWidget {
                   alignment: Alignment.centerLeft,
                   child: SizedBox(
                     width: screenWidth * .75,
-                    child: RolledDiceView(
+                    child: const RolledDiceView(
                       size: 35,
                     ),
                   ),
@@ -116,8 +116,9 @@ class DiceIconDisplay extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     String formatModifierToString() {
-      if (ref.read(modifierSignPositive))
+      if (ref.read(modifierSignPositive)) {
         return '+${ref.watch(modifierProvider)}';
+      }
       return '- ${ref.watch(modifierProvider)}';
     }
 

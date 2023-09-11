@@ -42,9 +42,9 @@ class RollButton extends ConsumerWidget {
     List<RolledDice> lastRoll = ref.read(rollHistoryProvider).last;
     int diceValue = lastRoll[0].diceValue;
     int addToTotal = 0;
-    lastRoll.forEach((element) {
+    for (var element in lastRoll) {
       addToTotal += element.rollValue;
-    });
+    }
     switch (diceValue) {
       case 20:
         ref.read(d20Stats.notifier).state.total += addToTotal;
@@ -115,7 +115,9 @@ class RollButton extends ConsumerWidget {
     var throwDirection = getRandomNumber(-20, 20);
     var screenWidth = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+      padding: screenWidth < 600
+          ? const EdgeInsets.all(10)
+          : EdgeInsets.symmetric(vertical: 10, horizontal: screenWidth * 0.15),
       child: GestureDetector(
         onTap: () {
           buttonPressAnimation(
@@ -129,7 +131,7 @@ class RollButton extends ConsumerWidget {
               '${getRolledDiceSum(ref.watch(rollHistoryProvider).last) + ref.watch(rollHistoryProvider).last[0].modifier}';
           triggerAnimation(ref, diceTotalEffects, diceTotalCondition, [
             ScaleEffect(begin: 1.05, delay: 300.ms, curve: Curves.easeInOut),
-            MoveEffect(delay: 300.ms, begin: Offset(0, 5), curve: Curves.easeIn)
+            MoveEffect(delay: 300.ms, begin: const Offset(0, 5), curve: Curves.easeIn)
           ]);
 
           triggerAnimation(
@@ -154,7 +156,7 @@ class RollButton extends ConsumerWidget {
               ref.watch(rollButtonPressCondition.notifier).state = false,
           child: Container(
             width: screenWidth,
-            constraints: BoxConstraints(minHeight: 100),
+            constraints: const BoxConstraints(minHeight: 100),
             decoration: BoxDecoration(
                 color: ref.watch(themeProvider).rollButtonBgColor,
                 borderRadius: BorderRadius.all(Radius.circular(

@@ -10,7 +10,6 @@ import 'history_drawer.dart';
 import 'package:dice_roller/components/buttons_dialer.dart';
 import 'package:dice_roller/themes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:dice_roller/version.dart';
 
 class MainPage extends ConsumerStatefulWidget {
   const MainPage({super.key});
@@ -37,7 +36,7 @@ class _MainPageState extends ConsumerState<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ref.watch(themeProvider).bgColor,
-      endDrawer: HistoryDrawer(),
+      endDrawer: const HistoryDrawer(),
       body: Builder(builder: (context) {
         return GestureDetector(
           onPanUpdate: (swipe) {
@@ -54,11 +53,11 @@ class _MainPageState extends ConsumerState<MainPage> {
                     padding: const EdgeInsets.only(bottom: 8.0),
                     child: Container(
                       color: ref.watch(themeProvider).bgColor,
-                      child: Column(
+                      child: const Column(
                         children: [
-                          const Display(),
-                          const RollButton(),
-                          const MultiplierControls(),
+                          Display(),
+                          RollButton(),
+                          MultiplierControls(),
                         ],
                       ),
                     ),

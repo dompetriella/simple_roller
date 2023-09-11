@@ -6,61 +6,19 @@ class ButtonsDialer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var screenWidth = MediaQuery.of(context).size.width;
-    return Container(
-      width: screenWidth,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return const Center(
+      child: Wrap(
+        alignment: WrapAlignment.spaceEvenly,
+        runAlignment: WrapAlignment.spaceEvenly,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.all(12.0),
-                child: DiceButton(diceNumber: 20),
-              ),
-              Padding(
-                padding: EdgeInsets.all(12.0),
-                child: DiceButton(diceNumber: 6),
-              )
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.all(12.0),
-                child: DiceButton(diceNumber: 4),
-              ),
-              Padding(
-                padding: EdgeInsets.all(12.0),
-                child: DiceButton(diceNumber: 8),
-              )
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.all(12.0),
-                child: DiceButton(diceNumber: 10),
-              ),
-              Padding(
-                padding: EdgeInsets.all(12.0),
-                child: DiceButton(diceNumber: 12),
-              )
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.all(12.0),
-                child: DiceButton(
-                  diceNumber: 100,
-                ),
-              ),
-            ],
+          DiceButton(diceNumber: 20),
+          DiceButton(diceNumber: 6),
+          DiceButton(diceNumber: 4),
+          DiceButton(diceNumber: 8),
+          DiceButton(diceNumber: 10),
+          DiceButton(diceNumber: 12),
+          DiceButton(
+            diceNumber: 100,
           ),
         ],
       ),
