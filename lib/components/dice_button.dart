@@ -14,9 +14,10 @@ class DiceButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var screenWidth = MediaQuery.of(context).size.width;
+    var screenHeight = MediaQuery.of(context).size.height;
 
-    double buttonHeight = screenWidth < 600 ? 110 : 150;
-    double buttonWidth = screenWidth < 600 ? 120 : 165;
+    double buttonHeight = screenWidth < 600 ? 110 : screenHeight * .20;
+    double buttonWidth = screenWidth < 600 ? 120 : screenHeight * .20;
     String diceNumberString = diceNumber.toString();
     return GestureDetector(
       onTap: () => {
@@ -69,6 +70,7 @@ class DiceButtonContainer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var screenWidth = MediaQuery.of(context).size.width;
+    var screenHeight = MediaQuery.of(context).size.height;
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: Container(
@@ -99,10 +101,15 @@ class DiceButtonContainer extends ConsumerWidget {
                 height: buttonHeight * .60,
                 width: buttonWidth,
                 child: Center(
-                  child: SvgPicture.asset(
-                    "assets/D$diceNumberString.svg",
-                    color: ref.watch(themeProvider).diceButtonTextColor,
-                    clipBehavior: Clip.antiAlias,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SvgPicture.asset(
+                      "assets/D$diceNumberString.svg",
+                      clipBehavior: Clip.antiAlias,
+                      colorFilter: ColorFilter.mode(
+                          ref.watch(themeProvider).diceButtonTextColor,
+                          BlendMode.srcIn),
+                    ),
                   ),
                 ),
               ),
@@ -113,7 +120,7 @@ class DiceButtonContainer extends ConsumerWidget {
                   "D$diceNumberString",
                   style: TextStyle(
                       color: ref.watch(themeProvider).diceButtonTextColor,
-                      fontSize: screenWidth < 600 ? 20 : 32,
+                      fontSize: screenWidth < 600 ? 20 : screenHeight * .04,
                       fontWeight: FontWeight.bold),
                 ),
               ))

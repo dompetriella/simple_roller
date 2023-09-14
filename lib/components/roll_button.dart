@@ -117,7 +117,9 @@ class RollButton extends ConsumerWidget {
     return Padding(
       padding: screenWidth < 600
           ? const EdgeInsets.all(10)
-          : EdgeInsets.symmetric(vertical: 10, horizontal: screenWidth * 0.15),
+          : EdgeInsets.symmetric(
+              vertical: 10,
+              horizontal: screenWidth < 600 ? screenWidth * 0.15 : 0),
       child: GestureDetector(
         onTap: () {
           buttonPressAnimation(
@@ -131,7 +133,8 @@ class RollButton extends ConsumerWidget {
               '${getRolledDiceSum(ref.watch(rollHistoryProvider).last) + ref.watch(rollHistoryProvider).last[0].modifier}';
           triggerAnimation(ref, diceTotalEffects, diceTotalCondition, [
             ScaleEffect(begin: 1.05, delay: 300.ms, curve: Curves.easeInOut),
-            MoveEffect(delay: 300.ms, begin: const Offset(0, 5), curve: Curves.easeIn)
+            MoveEffect(
+                delay: 300.ms, begin: const Offset(0, 5), curve: Curves.easeIn)
           ]);
 
           triggerAnimation(

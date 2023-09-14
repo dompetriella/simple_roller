@@ -12,7 +12,12 @@ import 'dart:math';
 class HistoryLog extends ConsumerWidget {
   final List<RolledDice> rolledDiceList;
   final int sequence;
-  HistoryLog({Key? key, required this.rolledDiceList, required this.sequence})
+  final bool isLast;
+  HistoryLog(
+      {Key? key,
+      required this.rolledDiceList,
+      required this.sequence,
+      this.isLast = false})
       : super(key: key);
 
   final _expand = StateProvider<bool>((ref) => false);
@@ -43,6 +48,8 @@ class HistoryLog extends ConsumerWidget {
     }
 
     var throwDirection = getRandomNumber(-20, 20);
+
+    double screenHeight = MediaQuery.of(context).size.height;
 
     return GestureDetector(
       onTap: () {
@@ -81,7 +88,8 @@ class HistoryLog extends ConsumerWidget {
                                             color: ref
                                                 .watch(themeProvider)
                                                 .drawerHistorySliverTextColor,
-                                            fontSize: 12),
+                                            fontSize:
+                                                screenHeight < 1000 ? 12 : 24),
                                       ),
                                     ),
                                   ),
@@ -89,6 +97,8 @@ class HistoryLog extends ConsumerWidget {
                                     Text(
                                         '${getRolledDiceSum(rolledDiceList) + rolledDiceList[0].modifier}',
                                         style: TextStyle(
+                                            fontSize:
+                                                screenHeight < 1000 ? 12 : 24,
                                             color: ref
                                                 .watch(themeProvider)
                                                 .drawerHistorySliverTextColor,
@@ -108,7 +118,9 @@ class HistoryLog extends ConsumerWidget {
                                               child: RolledDiceIcon(
                                                   originalDice: e.diceValue,
                                                   rolledValue: e.rollValue,
-                                                  size: 25)))
+                                                  size: screenHeight < 1000
+                                                      ? 25
+                                                      : 40)))
                                           .toList()
                                           .animate(interval: 80.ms)
                                           .fade(duration: 300.ms, delay: 100.ms)
@@ -136,7 +148,8 @@ class HistoryLog extends ConsumerWidget {
                                                 .watch(themeProvider)
                                                 .drawerHistorySliverTextColor,
                                             fontWeight: FontWeight.w900,
-                                            fontSize: 25))
+                                            fontSize:
+                                                screenHeight < 1000 ? 24 : 48))
                                     .animate()
                                     .fade(duration: 500.ms, delay: 250.ms),
                             ],

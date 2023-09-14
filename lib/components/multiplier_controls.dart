@@ -47,7 +47,7 @@ class MultiplierControls extends ConsumerWidget {
                     children: [
                       Container(
                         height: screenWidth < 600 ? 50 : 120,
-                        width: screenWidth < 600 ? 70 : 140,
+                        width: screenWidth < 600 ? 70 : 200,
                         decoration: BoxDecoration(
                             color: ref.watch(themeProvider).multiplierBgColor,
                             borderRadius: BorderRadius.all(Radius.circular(ref
@@ -102,8 +102,8 @@ class MultiplierControls extends ConsumerWidget {
                     child: Stack(
                       children: [
                         Container(
-                          height: screenWidth < 600 ? 50 : 120,
-                          width: screenWidth < 600 ? 60 : 130,
+                          height: screenWidth < 600 ? 50 : 200,
+                          width: screenWidth < 600 ? 60 : 225,
                           decoration: BoxDecoration(
                               color: ref.watch(themeProvider).multiplierBgColor,
                               borderRadius: BorderRadius.all(Radius.circular(ref
@@ -165,7 +165,7 @@ class MultiplierControls extends ConsumerWidget {
                     children: [
                       Container(
                         height: screenWidth < 600 ? 50 : 120,
-                        width: screenWidth < 600 ? 70 : 140,
+                        width: screenWidth < 600 ? 70 : 200,
                         decoration: BoxDecoration(
                             color: ref.watch(themeProvider).multiplierBgColor,
                             borderRadius: BorderRadius.all(Radius.circular(ref
