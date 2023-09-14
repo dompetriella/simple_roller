@@ -114,68 +114,77 @@ class RollButton extends ConsumerWidget {
 
     var throwDirection = getRandomNumber(-20, 20);
     var screenWidth = MediaQuery.of(context).size.width;
-    return Padding(
-      padding: screenWidth < 600
-          ? const EdgeInsets.all(10)
-          : EdgeInsets.symmetric(
-              vertical: 10,
-              horizontal: screenWidth < 600 ? screenWidth * 0.15 : 0),
-      child: GestureDetector(
-        onTap: () {
-          buttonPressAnimation(
-              ref, rollButtonPressEffects, rollButtonPressCondition);
-          ref.watch(isClear.notifier).state = false;
-          ref
-              .read(rollHistoryProvider.notifier)
-              .addRoll(createRolledDiceList(ref));
+    return Semantics(
+      button: true,
+      label: 'Click to Roll Selected Dice',
+      child: Padding(
+        padding: screenWidth < 600
+            ? const EdgeInsets.all(10)
+            : EdgeInsets.symmetric(
+                vertical: 10,
+                horizontal: screenWidth < 600 ? screenWidth * 0.15 : 0),
+        child: GestureDetector(
+          onTap: () {
+            buttonPressAnimation(
+                ref, rollButtonPressEffects, rollButtonPressCondition);
+            ref.watch(isClear.notifier).state = false;
+            ref
+                .read(rollHistoryProvider.notifier)
+                .addRoll(createRolledDiceList(ref));
 
-          ref.watch(displayNumber.notifier).state =
-              '${getRolledDiceSum(ref.watch(rollHistoryProvider).last) + ref.watch(rollHistoryProvider).last[0].modifier}';
-          triggerAnimation(ref, diceTotalEffects, diceTotalCondition, [
-            ScaleEffect(begin: 1.05, delay: 300.ms, curve: Curves.easeInOut),
-            MoveEffect(
-                delay: 300.ms, begin: const Offset(0, 5), curve: Curves.easeIn)
-          ]);
+            ref.watch(displayNumber.notifier).state =
+                '${getRolledDiceSum(ref.watch(rollHistoryProvider).last) + ref.watch(rollHistoryProvider).last[0].modifier}';
+            triggerAnimation(ref, diceTotalEffects, diceTotalCondition, [
+              ScaleEffect(begin: 1.05, delay: 300.ms, curve: Curves.easeInOut),
+              MoveEffect(
+                  delay: 300.ms,
+                  begin: const Offset(0, 5),
+                  curve: Curves.easeIn)
+            ]);
 
-          triggerAnimation(
-              ref, rolledDisplayDiceEffects, rolledDisplayDiceCondition, [
-            FadeEffect(duration: 200.ms, delay: 50.ms),
-            RotateEffect(
-                duration: 500.ms, begin: throwDirection > 0 ? 1.80 : .20),
-            MoveEffect(
-                duration: 500.ms,
-                begin: Offset(throwDirection.toDouble(), -20),
-                curve: Curves.elasticOut,
-                delay: 200.ms),
-            ScaleEffect(duration: 200.ms, curve: Curves.elasticIn, begin: .7),
-          ]);
+            triggerAnimation(
+                ref, rolledDisplayDiceEffects, rolledDisplayDiceCondition, [
+              FadeEffect(duration: 200.ms, delay: 50.ms),
+              RotateEffect(
+                  duration: 500.ms, begin: throwDirection > 0 ? 1.80 : .20),
+              MoveEffect(
+                  duration: 500.ms,
+                  begin: Offset(throwDirection.toDouble(), -20),
+                  curve: Curves.elasticOut,
+                  delay: 200.ms),
+              ScaleEffect(duration: 200.ms, curve: Curves.elasticIn, begin: .7),
+            ]);
 
-          calculateStats(ref);
-        },
-        child: Animate(
-          adapter: TriggerAdapter(ref.watch(rollButtonPressCondition)),
-          effects: ref.watch(rollButtonPressEffects),
-          onComplete: (controller) =>
-              ref.watch(rollButtonPressCondition.notifier).state = false,
-          child: Container(
-            width: screenWidth,
-            constraints: const BoxConstraints(minHeight: 100),
-            decoration: BoxDecoration(
-                color: ref.watch(themeProvider).rollButtonBgColor,
-                borderRadius: BorderRadius.all(Radius.circular(
-                    ref.watch(themeProvider).numberDisplayBorderRadius)),
-                boxShadow: [
-                  ref.watch(themeProvider).innerShadow,
-                  ref.watch(themeProvider).rollButtonOutline
-                ]),
-            child: Center(
+            calculateStats(ref);
+          },
+          child: Animate(
+            adapter: TriggerAdapter(ref.watch(rollButtonPressCondition)),
+            effects: ref.watch(rollButtonPressEffects),
+            onComplete: (controller) =>
+                ref.watch(rollButtonPressCondition.notifier).state = false,
+            child: Container(
+              width: screenWidth,
+              constraints: const BoxConstraints(minHeight: 100),
+              decoration: BoxDecoration(
+                  color: ref.watch(themeProvider).rollButtonBgColor,
+                  borderRadius: BorderRadius.all(Radius.circular(
+                      ref.watch(themeProvider).numberDisplayBorderRadius)),
+                  boxShadow: [
+                    ref.watch(themeProvider).innerShadow,
+                    ref.watch(themeProvider).rollButtonOutline
+                  ]),
+              child: Center(
+                  child: Semantics(
+                excludeSemantics: true,
                 child: Text(
-              "ROLL",
-              style: TextStyle(
-                  fontSize: MediaQuery.of(context).size.height * 0.07,
-                  color: ref.watch(themeProvider).rollButtonTextColor,
-                  fontWeight: FontWeight.w900),
-            )),
+                  "ROLL",
+                  style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.height * 0.07,
+                      color: ref.watch(themeProvider).rollButtonTextColor,
+                      fontWeight: FontWeight.w900),
+                ),
+              )),
+            ),
           ),
         ),
       ),

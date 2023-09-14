@@ -15,65 +15,83 @@ class Display extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
-    return Container(
-      constraints: const BoxConstraints(minHeight: 100),
-      decoration: BoxDecoration(
-          color: ref.watch(themeProvider).numberDisplayBgColor,
-          borderRadius: BorderRadius.all(Radius.circular(
-              ref.watch(themeProvider).numberDisplayBorderRadius)),
-          boxShadow: [
-            ref.watch(themeProvider).innerShadow,
-            ref.watch(themeProvider).numberDisplayDropShadow
-          ]),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(24.0, 16, 24.0, 16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: SizedBox(
-                    width: screenWidth * .75,
-                    child: const RolledDiceView(
-                      size: 35,
+    return Semantics(
+      container: true,
+      label: 'Dice Display',
+      explicitChildNodes: true,
+      child: Container(
+        constraints: const BoxConstraints(minHeight: 100),
+        decoration: BoxDecoration(
+            color: ref.watch(themeProvider).numberDisplayBgColor,
+            borderRadius: BorderRadius.all(Radius.circular(
+                ref.watch(themeProvider).numberDisplayBorderRadius)),
+            boxShadow: [
+              ref.watch(themeProvider).innerShadow,
+              ref.watch(themeProvider).numberDisplayDropShadow
+            ]),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(24.0, 16, 24.0, 16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Semantics(
+                    readOnly: true,
+                    label: 'Individual Rolled Dice',
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: SizedBox(
+                        width: screenWidth * .75,
+                        child: const RolledDiceView(
+                          size: 35,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-                GestureDetector(
-                  onTap: () => Scaffold.of(context).openEndDrawer(),
-                  child: Icon(
-                    Icons.menu,
-                    size: 30,
-                    color: ref.watch(themeProvider).numberDisplayTextColor,
-                  ),
-                )
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                DiceIconDisplay(screenHeight: screenHeight),
-                Animate(
-                  adapter: TriggerAdapter(ref.watch(diceTotalCondition)),
-                  effects: ref.watch(diceTotalEffects),
-                  onComplete: (controller) =>
-                      ref.watch(diceTotalCondition.notifier).state = false,
-                  child: Text(
-                    ref.watch(displayNumber),
-                    style: TextStyle(
+                  Semantics(
+                    button: true,
+                    label: 'Open Settings Drawer',
+                    child: GestureDetector(
+                      onTap: () => Scaffold.of(context).openEndDrawer(),
+                      child: Icon(
+                        Icons.menu,
+                        size: 30,
                         color: ref.watch(themeProvider).numberDisplayTextColor,
-                        fontSize: 100,
-                        fontWeight: FontWeight.w900),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  DiceIconDisplay(screenHeight: screenHeight),
+                  Animate(
+                    adapter: TriggerAdapter(ref.watch(diceTotalCondition)),
+                    effects: ref.watch(diceTotalEffects),
+                    onComplete: (controller) =>
+                        ref.watch(diceTotalCondition.notifier).state = false,
+                    child: Semantics(
+                      liveRegion: true,
+                      label: 'Roll Result Total',
+                      child: Text(
+                        ref.watch(displayNumber),
+                        style: TextStyle(
+                            color:
+                                ref.watch(themeProvider).numberDisplayTextColor,
+                            fontSize: 100,
+                            fontWeight: FontWeight.w900),
+                      ),
+                    ),
                   ),
-                ),
-                DisplayMultiplierTotal(screenHeight: screenHeight)
-              ],
-            )
-          ],
+                  DisplayMultiplierTotal(screenHeight: screenHeight)
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -93,13 +111,20 @@ class DisplayMultiplierTotal extends ConsumerWidget {
     return SizedBox(
       width: screenHeight * 0.07,
       child: Center(
-        child: Text('x${(ref.watch(multiplierProvider).toString())}',
-            style: TextStyle(
-                color: ref.watch(themeProvider).numberDisplayTextColor,
-                fontSize: ref.watch(multiplierProvider) < 10
-                    ? screenHeight * .05
-                    : screenHeight * 0.04,
-                fontWeight: FontWeight.w900)),
+        child: Semantics(
+          label: 'Number of Dice',
+          value: '${(ref.watch(multiplierProvider))}',
+          child: Semantics(
+            excludeSemantics: true,
+            child: Text('x${(ref.watch(multiplierProvider).toString())}',
+                style: TextStyle(
+                    color: ref.watch(themeProvider).numberDisplayTextColor,
+                    fontSize: ref.watch(multiplierProvider) < 10
+                        ? screenHeight * .05
+                        : screenHeight * 0.04,
+                    fontWeight: FontWeight.w900)),
+          ),
+        ),
       ),
     );
   }
@@ -205,10 +230,14 @@ class RolledDiceView extends ConsumerWidget {
                         .watch(rollHistoryProvider)
                         .last
                         .map(
-                          (e) => RolledDiceIcon(
-                            originalDice: e.diceValue,
-                            rolledValue: e.rollValue,
-                            size: size,
+                          (e) => Semantics(
+                            readOnly: true,
+                            label: 'd${e.diceValue} rolled',
+                            child: RolledDiceIcon(
+                              originalDice: e.diceValue,
+                              rolledValue: e.rollValue,
+                              size: size,
+                            ),
                           ),
                         )
                         .toList(),

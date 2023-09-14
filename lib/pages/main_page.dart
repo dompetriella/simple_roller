@@ -48,21 +48,25 @@ class _MainPageState extends ConsumerState<MainPage> {
             padding: const EdgeInsets.fromLTRB(8.0, 8, 8, 0),
             child: ListView(
               children: [
-                StickyHeader(
-                  header: Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0),
-                    child: Container(
-                      color: ref.watch(themeProvider).bgColor,
-                      child: const Column(
-                        children: [
-                          Display(),
-                          RollButton(),
-                          MultiplierControls(),
-                        ],
+                Semantics(
+                  container: true,
+                  header: true,
+                  child: StickyHeader(
+                    header: Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: Container(
+                        color: ref.watch(themeProvider).bgColor,
+                        child: const Column(
+                          children: [
+                            Display(),
+                            RollButton(),
+                            MultiplierControls(),
+                          ],
+                        ),
                       ),
                     ),
+                    content: const ButtonsDialer(),
                   ),
-                  content: const ButtonsDialer(),
                 ),
               ],
             ),
