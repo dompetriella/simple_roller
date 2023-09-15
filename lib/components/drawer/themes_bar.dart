@@ -52,12 +52,15 @@ class ThemesBar extends ConsumerWidget {
                                     .watch(themeProvider)
                                     .drawerColumnTextColor),
                           ),
-                          Text(ref.watch(themeProvider).themeName,
-                              style: TextStyle(
-                                  fontSize: screenHeight * 0.02,
-                                  color: ref
-                                      .watch(themeProvider)
-                                      .drawerColumnTextColor))
+                          Semantics(
+                            label: 'Current Theme: ',
+                            child: Text(ref.watch(themeProvider).themeName,
+                                style: TextStyle(
+                                    fontSize: screenHeight * 0.02,
+                                    color: ref
+                                        .watch(themeProvider)
+                                        .drawerColumnTextColor)),
+                          )
                         ],
                       ),
                     ),
@@ -74,12 +77,15 @@ class ThemesBar extends ConsumerWidget {
                               ref.watch(themeProvider).columnShadow,
                               ref.watch(themeProvider).diceButtonOutline
                             ]),
-                        child: ListView.builder(
-                            itemBuilder: ((context, index) {
-                              return themesButtonList[
-                                  index % themesButtonList.length];
-                            }),
-                            scrollDirection: Axis.horizontal)))
+                        child: Semantics(
+                          slider: true,
+                          child: ListView.builder(
+                              itemBuilder: ((context, index) {
+                                return themesButtonList[
+                                    index % themesButtonList.length];
+                              }),
+                              scrollDirection: Axis.horizontal),
+                        )))
               ],
             ),
           ),

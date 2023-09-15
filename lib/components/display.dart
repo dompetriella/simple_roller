@@ -1,6 +1,7 @@
+import 'package:dice_roller/components/Insets/display_container_inset.dart';
 import 'package:dice_roller/providers/dice_provider.dart';
-import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
-import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/material.dart';
 import 'package:dice_roller/components/rolled_dice_icon.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,81 +20,8 @@ class Display extends ConsumerWidget {
       container: true,
       label: 'Dice Display',
       explicitChildNodes: true,
-      child: Container(
-        constraints: const BoxConstraints(minHeight: 100),
-        decoration: BoxDecoration(
-            color: ref.watch(themeProvider).numberDisplayBgColor,
-            borderRadius: BorderRadius.all(Radius.circular(
-                ref.watch(themeProvider).numberDisplayBorderRadius)),
-            boxShadow: [
-              ref.watch(themeProvider).innerShadow,
-              ref.watch(themeProvider).numberDisplayDropShadow
-            ]),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(24.0, 16, 24.0, 16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Semantics(
-                    readOnly: true,
-                    label: 'Individual Rolled Dice',
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: SizedBox(
-                        width: screenWidth * .75,
-                        child: const RolledDiceView(
-                          size: 35,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Semantics(
-                    button: true,
-                    label: 'Open Settings Drawer',
-                    child: GestureDetector(
-                      onTap: () => Scaffold.of(context).openEndDrawer(),
-                      child: Icon(
-                        Icons.menu,
-                        size: 30,
-                        color: ref.watch(themeProvider).numberDisplayTextColor,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  DiceIconDisplay(screenHeight: screenHeight),
-                  Animate(
-                    adapter: TriggerAdapter(ref.watch(diceTotalCondition)),
-                    effects: ref.watch(diceTotalEffects),
-                    onComplete: (controller) =>
-                        ref.watch(diceTotalCondition.notifier).state = false,
-                    child: Semantics(
-                      liveRegion: true,
-                      label: 'Roll Result Total',
-                      child: Text(
-                        ref.watch(displayNumber),
-                        style: TextStyle(
-                            color:
-                                ref.watch(themeProvider).numberDisplayTextColor,
-                            fontSize: 100,
-                            fontWeight: FontWeight.w900),
-                      ),
-                    ),
-                  ),
-                  DisplayMultiplierTotal(screenHeight: screenHeight)
-                ],
-              )
-            ],
-          ),
-        ),
-      ),
+      child: DisplayContainerInset(
+          screenWidth: screenWidth, screenHeight: screenHeight),
     );
   }
 }
@@ -113,7 +41,8 @@ class DisplayMultiplierTotal extends ConsumerWidget {
       child: Center(
         child: Semantics(
           label: 'Number of Dice',
-          value: '${(ref.watch(multiplierProvider))}',
+          liveRegion: true,
+          value: (ref.watch(multiplierProvider)).toString(),
           child: Semantics(
             excludeSemantics: true,
             child: Text('x${(ref.watch(multiplierProvider).toString())}',
@@ -147,68 +76,72 @@ class DiceIconDisplay extends ConsumerWidget {
       return '- ${ref.watch(modifierProvider)}';
     }
 
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        SizedBox(
-          width: screenHeight * 0.07,
-          height: screenHeight * 0.07,
-          child: GestureDetector(
-            onTap: () => (ref.read(modifierProvider) < 99)
-                ? ref.read(modifierProvider.notifier).state += 1
-                : null,
-            onLongPress: (() => ref.read(modifierProvider.notifier).state = 0),
-            onPanStart: (swipe) => ref
-                .read(modifierSignPositive.notifier)
-                .state = !ref.read(modifierSignPositive),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: ref.watch(themeProvider).diceTypeBgColor,
-                  borderRadius: BorderRadius.all(Radius.circular(
-                      ref.watch(themeProvider).diceTypeBorderRadius))),
-              child: Padding(
-                padding: const EdgeInsets.all(6.0),
-                child: SvgPicture.asset(
-                  'assets/D${ref.watch(selectedDiceProvider).toString()}.svg',
-                  color: ref.watch(themeProvider).diceTypeStrokeColor,
+    return Semantics(
+      label: 'Current Dice d${ref.watch(selectedDiceProvider)}',
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          SizedBox(
+            width: screenHeight * 0.07,
+            height: screenHeight * 0.07,
+            child: GestureDetector(
+              onTap: () => (ref.read(modifierProvider) < 99)
+                  ? ref.read(modifierProvider.notifier).state += 1
+                  : null,
+              onLongPress: (() =>
+                  ref.read(modifierProvider.notifier).state = 0),
+              onPanStart: (swipe) => ref
+                  .read(modifierSignPositive.notifier)
+                  .state = !ref.read(modifierSignPositive),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: ref.watch(themeProvider).diceTypeBgColor,
+                    borderRadius: BorderRadius.all(Radius.circular(
+                        ref.watch(themeProvider).diceTypeBorderRadius))),
+                child: Padding(
+                  padding: const EdgeInsets.all(6.0),
+                  child: SvgPicture.asset(
+                    'assets/D${ref.watch(selectedDiceProvider).toString()}.svg',
+                    color: ref.watch(themeProvider).diceTypeStrokeColor,
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-        if (ref.watch(modifierProvider) != 0)
-          Positioned(
-              top: -8,
-              left: -8,
-              child: Container(
-                height: 25,
-                width: 25,
-                decoration: BoxDecoration(
-                    color: ref.watch(modifierSignPositive)
-                        ? ref.watch(themeProvider).rollButtonBgColor
-                        : ref.watch(themeProvider).rollButtonTextColor,
-                    borderRadius: BorderRadius.circular(
-                        ref.watch(themeProvider).diceButtonBorderRadius),
-                    border: Border.all(
+          if (ref.watch(modifierProvider) != 0)
+            Positioned(
+                top: -8,
+                left: -8,
+                child: Container(
+                  height: 25,
+                  width: 25,
+                  decoration: BoxDecoration(
                       color: ref.watch(modifierSignPositive)
-                          ? ref.watch(themeProvider).rollButtonTextColor
-                          : ref.watch(themeProvider).rollButtonBgColor,
-                    )),
-                child: Center(
-                  child: Text(
-                    ref.watch(modifierSignPositive)
-                        ? '+${ref.watch(modifierProvider)}'
-                        : '- ${ref.watch(modifierProvider)}',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: ref.watch(modifierSignPositive)
-                          ? ref.watch(themeProvider).rollButtonTextColor
-                          : ref.watch(themeProvider).rollButtonBgColor,
+                          ? ref.watch(themeProvider).rollButtonBgColor
+                          : ref.watch(themeProvider).rollButtonTextColor,
+                      borderRadius: BorderRadius.circular(
+                          ref.watch(themeProvider).diceButtonBorderRadius),
+                      border: Border.all(
+                        color: ref.watch(modifierSignPositive)
+                            ? ref.watch(themeProvider).rollButtonTextColor
+                            : ref.watch(themeProvider).rollButtonBgColor,
+                      )),
+                  child: Center(
+                    child: Text(
+                      ref.watch(modifierSignPositive)
+                          ? '+${ref.watch(modifierProvider)}'
+                          : '- ${ref.watch(modifierProvider)}',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: ref.watch(modifierSignPositive)
+                            ? ref.watch(themeProvider).rollButtonTextColor
+                            : ref.watch(themeProvider).rollButtonBgColor,
+                      ),
                     ),
                   ),
-                ),
-              ).animate().scale(begin: 0.5, duration: 100.ms))
-      ],
+                ).animate().scale(begin: 0.5, duration: 100.ms))
+        ],
+      ),
     );
   }
 }
@@ -219,34 +152,39 @@ class RolledDiceView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return SizedBox(
-        height: size,
-        child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: ref.watch(isClear)
-                ? []
-                : AnimateList(
-                    children: ref
-                        .watch(rollHistoryProvider)
-                        .last
-                        .map(
-                          (e) => Semantics(
-                            readOnly: true,
-                            label: 'd${e.diceValue} rolled',
-                            child: RolledDiceIcon(
-                              originalDice: e.diceValue,
-                              rolledValue: e.rollValue,
-                              size: size,
-                            ),
-                          ),
-                        )
-                        .toList(),
-                    adapter:
-                        TriggerAdapter(ref.watch(rollButtonPressCondition)),
-                    effects: ref.watch(rolledDisplayDiceEffects),
-                    onComplete: (controller) => ref
-                        .watch(rolledDisplayDiceCondition.notifier)
-                        .state = false,
-                  )));
+    return Semantics(
+      label: '${ref.read(rollHistoryProvider).last.length} dice rolled',
+      child: SizedBox(
+          height: size,
+          child: MergeSemantics(
+            child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: ref.watch(isClear)
+                    ? []
+                    : AnimateList(
+                        children: ref
+                            .watch(rollHistoryProvider)
+                            .last
+                            .map(
+                              (e) => Semantics(
+                                readOnly: true,
+                                label: 'd${e.diceValue} rolled',
+                                child: RolledDiceIcon(
+                                  originalDice: e.diceValue,
+                                  rolledValue: e.rollValue,
+                                  size: size,
+                                ),
+                              ),
+                            )
+                            .toList(),
+                        adapter:
+                            TriggerAdapter(ref.watch(rollButtonPressCondition)),
+                        effects: ref.watch(rolledDisplayDiceEffects),
+                        onComplete: (controller) => ref
+                            .watch(rolledDisplayDiceCondition.notifier)
+                            .state = false,
+                      )),
+          )),
+    );
   }
 }

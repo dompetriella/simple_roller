@@ -12,8 +12,8 @@ class ButtonsDialer extends StatelessWidget {
         runAlignment: WrapAlignment.spaceEvenly,
         children: [
           DiceButton(diceNumber: 20),
-          DiceButton(diceNumber: 6),
           DiceButton(diceNumber: 4),
+          DiceButton(diceNumber: 6),
           DiceButton(diceNumber: 8),
           DiceButton(diceNumber: 10),
           DiceButton(diceNumber: 12),

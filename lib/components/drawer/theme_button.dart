@@ -31,27 +31,34 @@ class ThemesButton extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(5.0, 2, 3, 2),
       child: Center(
-          child: GestureDetector(
-        onTap: () => {
-          ref.watch(themeProvider.notifier).state = appTheme,
-          saveThemeToPreferences()
+          child: Semantics(
+        onDidGainAccessibilityFocus: () {
+          Scrollable.ensureVisible(context);
         },
-        child: Container(
-            height: MediaQuery.of(context).size.height * 0.06,
-            width: MediaQuery.of(context).size.height * 0.06,
-            clipBehavior: Clip.antiAlias,
-            decoration: BoxDecoration(
-              boxShadow: [
-                if (ref.watch(themeProvider.notifier).state == appTheme)
-                  BoxShadow(
-                      color: ref.watch(themeProvider).rollButtonBgColor,
-                      offset: const Offset(0, 0),
-                      blurRadius: 5,
-                      spreadRadius: 2)
-              ],
-              borderRadius: const BorderRadius.all(Radius.circular(100)),
-            ),
-            child: Row(children: generateButtonColors())),
+        button: true,
+        label: 'Change Theme: ${appTheme.themeName}',
+        child: GestureDetector(
+          onTap: () => {
+            ref.watch(themeProvider.notifier).state = appTheme,
+            saveThemeToPreferences()
+          },
+          child: Container(
+              height: MediaQuery.of(context).size.height * 0.06,
+              width: MediaQuery.of(context).size.height * 0.06,
+              clipBehavior: Clip.antiAlias,
+              decoration: BoxDecoration(
+                boxShadow: [
+                  if (ref.watch(themeProvider.notifier).state == appTheme)
+                    BoxShadow(
+                        color: ref.watch(themeProvider).rollButtonBgColor,
+                        offset: const Offset(0, 0),
+                        blurRadius: 5,
+                        spreadRadius: 2)
+                ],
+                borderRadius: const BorderRadius.all(Radius.circular(100)),
+              ),
+              child: Row(children: generateButtonColors())),
+        ),
       )),
     );
   }

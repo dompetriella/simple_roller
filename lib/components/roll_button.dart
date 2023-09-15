@@ -1,12 +1,13 @@
 import 'package:dice_roller/providers/dice_provider.dart';
-import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
-import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:dice_roller/providers/theme_provider.dart';
 import 'package:dice_roller/models/rolledDice.dart';
 import 'dart:math';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:dice_roller/providers/animation_provider.dart';
+
+import 'Insets/roll_button_inset.dart';
 
 class RollButton extends ConsumerWidget {
   const RollButton({Key? key}) : super(key: key);
@@ -116,7 +117,8 @@ class RollButton extends ConsumerWidget {
     var screenWidth = MediaQuery.of(context).size.width;
     return Semantics(
       button: true,
-      label: 'Click to Roll Selected Dice',
+      label:
+          'Roll ${ref.watch(multiplierProvider)} d${ref.watch(selectedDiceProvider)}',
       child: Padding(
         padding: screenWidth < 600
             ? const EdgeInsets.all(10)
@@ -124,7 +126,7 @@ class RollButton extends ConsumerWidget {
                 vertical: 10,
                 horizontal: screenWidth < 600 ? screenWidth * 0.15 : 0),
         child: GestureDetector(
-          onTap: () {
+          onTap: () async {
             buttonPressAnimation(
                 ref, rollButtonPressEffects, rollButtonPressCondition);
             ref.watch(isClear.notifier).state = false;
@@ -162,29 +164,7 @@ class RollButton extends ConsumerWidget {
             effects: ref.watch(rollButtonPressEffects),
             onComplete: (controller) =>
                 ref.watch(rollButtonPressCondition.notifier).state = false,
-            child: Container(
-              width: screenWidth,
-              constraints: const BoxConstraints(minHeight: 100),
-              decoration: BoxDecoration(
-                  color: ref.watch(themeProvider).rollButtonBgColor,
-                  borderRadius: BorderRadius.all(Radius.circular(
-                      ref.watch(themeProvider).numberDisplayBorderRadius)),
-                  boxShadow: [
-                    ref.watch(themeProvider).innerShadow,
-                    ref.watch(themeProvider).rollButtonOutline
-                  ]),
-              child: Center(
-                  child: Semantics(
-                excludeSemantics: true,
-                child: Text(
-                  "ROLL",
-                  style: TextStyle(
-                      fontSize: MediaQuery.of(context).size.height * 0.07,
-                      color: ref.watch(themeProvider).rollButtonTextColor,
-                      fontWeight: FontWeight.w900),
-                ),
-              )),
-            ),
+            child: RollButtonInset(screenWidth: screenWidth),
           ),
         ),
       ),
