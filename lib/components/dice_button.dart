@@ -15,8 +15,8 @@ class DiceButton extends ConsumerWidget {
     var screenWidth = MediaQuery.of(context).size.width;
     var screenHeight = MediaQuery.of(context).size.height;
 
-    double buttonHeight = screenWidth < 600 ? 110 : screenHeight * .20;
-    double buttonWidth = screenWidth < 600 ? 120 : screenHeight * .20;
+    double buttonHeight = screenWidth < 600 ? 110 : screenHeight * .15;
+    double buttonWidth = screenWidth < 600 ? 120 : screenHeight * .15;
     String diceNumberString = diceNumber.toString();
     return Semantics(
       button: true,

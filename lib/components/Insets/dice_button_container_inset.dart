@@ -72,7 +72,7 @@ class DiceButtonContainerInset extends ConsumerWidget {
                 "D$diceNumberString",
                 style: TextStyle(
                     color: ref.watch(themeProvider).diceButtonTextColor,
-                    fontSize: screenWidth < 600 ? 20 : screenHeight * .04,
+                    fontSize: screenWidth < 600 ? 20 : screenHeight * .03,
                     fontWeight: FontWeight.bold),
               ),
             ))

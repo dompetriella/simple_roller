@@ -14,7 +14,7 @@ class RollButtonInset extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
-      width: screenWidth,
+      width: screenWidth * .9,
       constraints: const BoxConstraints(minHeight: 100),
       decoration: BoxDecoration(
           color: ref.watch(themeProvider).rollButtonBgColor,
