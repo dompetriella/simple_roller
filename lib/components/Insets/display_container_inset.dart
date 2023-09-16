@@ -40,7 +40,7 @@ class DisplayContainerInset extends ConsumerWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: SizedBox(
-                    width: screenWidth * .75,
+                    width: screenWidth * .7,
                     child: const RolledDiceView(
                       size: 35,
                     ),
@@ -51,10 +51,27 @@ class DisplayContainerInset extends ConsumerWidget {
                   label: 'Open Settings Drawer',
                   child: GestureDetector(
                     onTap: () => Scaffold.of(context).openEndDrawer(),
-                    child: Icon(
-                      Icons.menu,
-                      size: 30,
-                      color: ref.watch(themeProvider).numberDisplayTextColor,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: ref.watch(themeProvider).numberDisplayBgColor,
+                          boxShadow: [
+                            ref.watch(themeProvider).multiplierDropShadow
+                          ],
+                          border: Border.all(
+                              color: ref
+                                  .watch(themeProvider)
+                                  .numberDisplayTextColor),
+                          borderRadius: BorderRadius.circular(
+                              ref.watch(themeProvider).diceIconBorderRadius)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Icon(
+                          Icons.menu,
+                          size: 24,
+                          color:
+                              ref.watch(themeProvider).numberDisplayTextColor,
+                        ),
+                      ),
                     ),
                   ),
                 )
