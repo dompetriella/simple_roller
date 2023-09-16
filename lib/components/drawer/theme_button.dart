@@ -7,7 +7,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemesButton extends ConsumerWidget {
   final AppTheme appTheme;
-  const ThemesButton({Key? key, required this.appTheme}) : super(key: key);
+  const ThemesButton({
+    Key? key,
+    required this.appTheme,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

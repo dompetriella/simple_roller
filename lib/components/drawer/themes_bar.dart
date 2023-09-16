@@ -6,9 +6,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dice_roller/components/drawer/theme_button.dart';
 
 class ThemesBar extends ConsumerWidget {
-  const ThemesBar({
-    Key? key,
-  }) : super(key: key);
+  final ScrollController scrollController;
+  const ThemesBar({Key? key, required this.scrollController}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -80,6 +79,7 @@ class ThemesBar extends ConsumerWidget {
                         child: Semantics(
                           slider: true,
                           child: ListView.builder(
+                              controller: scrollController,
                               itemCount:
                                   MediaQuery.of(context).accessibleNavigation
                                       ? themesButtonList.length
