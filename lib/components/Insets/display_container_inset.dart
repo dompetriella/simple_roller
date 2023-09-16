@@ -71,7 +71,6 @@ class DisplayContainerInset extends ConsumerWidget {
                   onComplete: (controller) =>
                       ref.watch(diceTotalCondition.notifier).state = false,
                   child: Semantics(
-                    liveRegion: true,
                     value: ref.watch(displayNumber),
                     child: Text(
                       ref.watch(displayNumber),

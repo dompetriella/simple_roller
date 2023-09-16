@@ -158,6 +158,10 @@ class RollButton extends ConsumerWidget {
             ]);
 
             calculateStats(ref);
+
+            SemanticsService.announce(
+                '${ref.watch(multiplierProvider)} d${ref.watch(selectedDiceProvider)} rolled.  Total: ${ref.watch(displayNumber)}',
+                TextDirection.ltr);
           },
           child: Animate(
             adapter: TriggerAdapter(ref.watch(rollButtonPressCondition)),

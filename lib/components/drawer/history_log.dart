@@ -94,15 +94,18 @@ class HistoryLog extends ConsumerWidget {
                                     ),
                                   ),
                                   if (ref.read(_expand) == false)
-                                    Text(
-                                        '${getRolledDiceSum(rolledDiceList) + rolledDiceList[0].modifier}',
-                                        style: TextStyle(
-                                            fontSize:
-                                                screenHeight < 1000 ? 12 : 24,
-                                            color: ref
-                                                .watch(themeProvider)
-                                                .drawerHistorySliverTextColor,
-                                            fontWeight: FontWeight.w900)),
+                                    Semantics(
+                                      label: 'Total',
+                                      child: Text(
+                                          '${getRolledDiceSum(rolledDiceList) + rolledDiceList[0].modifier}',
+                                          style: TextStyle(
+                                              fontSize:
+                                                  screenHeight < 1000 ? 12 : 24,
+                                              color: ref
+                                                  .watch(themeProvider)
+                                                  .drawerHistorySliverTextColor,
+                                              fontWeight: FontWeight.w900)),
+                                    ),
                                 ],
                               ),
                               if (ref.watch(_expand))
@@ -142,16 +145,21 @@ class HistoryLog extends ConsumerWidget {
                                               begin: .7)),
                                 ),
                               if (ref.read(_expand))
-                                Text('${getRolledDiceSum(rolledDiceList)}${(rolledDiceList[0].modifier != 0 ? ' + (${rolledDiceList[0].modifier})' : '')}',
-                                        style: TextStyle(
-                                            color: ref
-                                                .watch(themeProvider)
-                                                .drawerHistorySliverTextColor,
-                                            fontWeight: FontWeight.w900,
-                                            fontSize:
-                                                screenHeight < 1000 ? 24 : 48))
-                                    .animate()
-                                    .fade(duration: 500.ms, delay: 250.ms),
+                                Semantics(
+                                  label: 'Total: ',
+                                  child: Text(
+                                          '${getRolledDiceSum(rolledDiceList)}${(rolledDiceList[0].modifier != 0 ? ' + (${rolledDiceList[0].modifier})' : '')}',
+                                          style: TextStyle(
+                                              color: ref
+                                                  .watch(themeProvider)
+                                                  .drawerHistorySliverTextColor,
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: screenHeight < 1000
+                                                  ? 24
+                                                  : 48))
+                                      .animate()
+                                      .fade(duration: 500.ms, delay: 250.ms),
+                                ),
                             ],
                           )
                         : Center(

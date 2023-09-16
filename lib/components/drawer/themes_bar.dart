@@ -80,9 +80,18 @@ class ThemesBar extends ConsumerWidget {
                         child: Semantics(
                           slider: true,
                           child: ListView.builder(
+                              itemCount:
+                                  MediaQuery.of(context).accessibleNavigation
+                                      ? themesButtonList.length
+                                      : null,
                               itemBuilder: ((context, index) {
-                                return themesButtonList[
-                                    index % themesButtonList.length];
+                                if (MediaQuery.of(context)
+                                    .accessibleNavigation) {
+                                  return themesButtonList[index];
+                                } else {
+                                  return themesButtonList[
+                                      index % themesButtonList.length];
+                                }
                               }),
                               scrollDirection: Axis.horizontal),
                         )))

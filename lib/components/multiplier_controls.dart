@@ -1,6 +1,7 @@
 import 'package:dice_roller/providers/animation_provider.dart';
 import 'package:dice_roller/providers/dice_provider.dart';
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
+import 'package:flutter/semantics.dart';
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dice_roller/providers/theme_provider.dart';
@@ -33,6 +34,8 @@ class MultiplierControls extends ConsumerWidget {
                         multiplierMinusButtonPressCondition,
                         speed: 100, name: 'Minus');
                     ref.watch(multiplierProvider.notifier).decrement();
+                    SemanticsService.announce(
+                        '${ref.watch(multiplierProvider)}', TextDirection.ltr);
                   },
                   onLongPress: () {
                     buttonPressAnimation(ref, multiplierMinusButtonPressEffects,
@@ -104,6 +107,10 @@ class MultiplierControls extends ConsumerWidget {
                       ref.watch(modifierProvider.notifier).state = 0;
                       ref.watch(displayNumber.notifier).state = '0';
                       ref.watch(modifierSignPositive.notifier).state = true;
+
+                      SemanticsService.announce(
+                          '${ref.watch(multiplierProvider)} rolled dice',
+                          TextDirection.ltr);
                     },
                     child: Animate(
                       adapter: TriggerAdapter(
@@ -164,6 +171,9 @@ class MultiplierControls extends ConsumerWidget {
                         multiplierPlusButtonPressCondition,
                         speed: 100, name: 'Plus');
                     ref.watch(multiplierProvider.notifier).increment();
+
+                    SemanticsService.announce(
+                        '${ref.watch(multiplierProvider)}', TextDirection.ltr);
                   },
                   onLongPress: () {
                     buttonPressAnimation(
