@@ -37,7 +37,7 @@ class DisplayMultiplierTotal extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return SizedBox(
-      width: screenHeight * 0.07,
+      width: screenHeight * 0.08,
       child: Center(
         child: Semantics(
           label: 'Number of Dice',
